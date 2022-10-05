@@ -55,8 +55,8 @@ export default function Cataloging(props) {
 
                 <div className="item1"></div>
                 <div className="item4"><div className="catal_botbutton">Editar</div></div>
-                <div className="item4"><div className="catal_botbutton">Salvar atual</div></div>
-                <div className="item4"><div className="catal_botbutton">Salvar novo</div></div>
+                <div className="item4"><div className="catal_botbutton">Salvar no atual</div></div>
+                <div className="item4"><div className="catal_botbutton">Salvar como novo</div></div>
                 <div className="item3"></div>
 
                 <div className="item1"></div>
