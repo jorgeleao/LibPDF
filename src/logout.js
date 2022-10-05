@@ -13,15 +13,7 @@ export default function Logout(props) {
         <div>  {/* onClick={() => props.clicou()}> */}
             <br/>
             <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <a href={url} className="logout_anchor">{t('appPageTexts.part4')}</a>
-            <h2>Teste</h2>
+            <span style={{fontSize:"2.5em"}}>{t('appPageTexts.part4')}</span>
         </div>
     );
 }
