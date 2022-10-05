@@ -1,0 +1,183 @@
+.search_cardboard{
+    /* background-color: rgb(250, 250, 250); */
+    margin-top:0;
+    margin-left:auto;
+    margin-right:auto;
+    width:960px;
+    height:100%;
+}
+
+.search_grid-container {
+    display: grid;
+    grid-template-columns: 155px 286px 286px 70px 70px;
+    padding: 0;
+    justify-content: center;
+    grid-gap:5px;
+}
+
+.grid-item {
+    color:black;
+    border: 0px solid rgba(200, 0, 0, 0.8);
+    padding: 12px;
+    font-size: 16px;
+    text-align: right;
+}
+
+.search_item1{
+    height:27px;
+    line-height:27px;
+    text-align: right;
+}
+.search_item2{
+    grid-column: 2 / 4;
+    text-align: right;
+}
+.search_item4{
+    height:27px;
+    line-height:27px;
+    text-align: right;
+}
+.search_item6{
+    height:27px;
+    line-height:27px;
+    text-align: right;
+}
+.search_item7{
+    text-align: right;
+}
+.search_item8{
+    text-align: right;
+}
+
+.intext{
+    width:560px;
+    height:27px;
+    padding-left:5px;
+    font-size:1.1em;
+    border:1px solid black;
+    border-radius: 8px;
+}
+
+.checkboxstyle{
+    padding:0;
+/*    filter: invert(100%) hue-rotate(18deg) brightness(1.7);*/
+}
+
+.next_previous_buttons{
+    display: grid;
+    grid-template-columns: 160px 160px 160px;
+    padding: 0;
+    margin-right: auto;
+    margin-left: auto;
+    height: 108px;
+/*    border: 1px solid black;  */
+    justify-content: center;
+}
+
+.paginaAtualInput{
+    border:1px solid white;
+    height:23px;
+    line-height:23px;
+    outline: none;
+    width:134px;
+    text-align:center;
+    font-size:1.1em;
+}
+
+.buttondiv{
+    width:150px;
+    height:27px;
+    line-height:25px;
+    border:2px solid black;
+    border-radius: 8px;
+    text-align:center;
+    margin:3px;
+    background-color: rgb(149, 176, 252);
+    color:white;
+    font-size:0.9em;
+    font-weight: bold;
+}
+
+.left_button1{
+
+}
+.center_button1{
+
+}
+.right_button1{
+
+}
+.left_button2{
+    cursor:pointer;
+}
+.left_button2:active {
+    transform: scale(0.98);
+}
+.center_button2{
+
+}
+.right_button2{
+    cursor:pointer;
+}
+.right_button2:active {
+    transform: scale(0.98);
+}
+.left_button3{
+    cursor:pointer;
+}
+.left_button3:active {
+    transform: scale(0.98);
+}
+.center_button3{
+
+}
+.right_button3{
+    cursor:pointer;
+}
+.right_button3:active {
+    transform: scale(0.96);
+    /* Scaling button to 0.98 to its original size */
+    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24); 
+    /* Lowering the shadow */
+    background-color:rgb(186, 239, 248);
+    color:black;
+}
+
+.numberOfResults{
+    width:300px;
+    height:60px;
+    margin-left:auto;
+    margin-right:auto;
+    text-align: center;
+}
+
+.resultsTextArea{
+    display: block;
+    width:800px;
+    height:220px;
+    margin-left:auto;
+    margin-right:auto;
+    border:1px solid black;
+    background-color: white;
+    overflow-y:scroll;
+    overflow-x:auto;
+    resize: none;
+  }
+
+.spacer{
+    margin-left:30px;
+}
+
+.buttondiv{
+    width:150px;
+    height:27px;
+    line-height:25px;
+    border:2px solid black;
+    border-radius: 8px;
+    text-align:center;
+    margin:3px;
+    background-color: rgb(149, 176, 252);
+    color:white;
+    font-size:0.9em;
+    font-weight: bold;
+}

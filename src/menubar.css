@@ -1,0 +1,125 @@
+.menubar{
+    position:fixed;
+    z-index:101;
+    width:100%;
+    height:50px;
+    background-color: #404b53;
+    border-bottom:1px solid black;
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: normal;
+    color:white;
+}
+
+.titleandlanguage{
+    display:flex;
+    flex-direction: row;
+}
+
+.titletext{
+    text-align: left;
+    padding-top: 3px;
+    padding-left:20px;
+    margin-right:auto;
+    margin-left:0;
+    font-size:0.7em;
+
+    user-select: none; /* supported by Chrome and Opera */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */    
+}
+
+.language{
+    position:absolute;
+    z-index: 100;
+    text-align: center;
+    width:250px;
+    right:8px;
+    top:14px;
+    text-align: center;
+    font-weight: normal;
+    font-size:0.7em;
+    font-style: italic;
+    cursor: pointer;
+    color:#91C7F4;
+}
+
+.menuitems{
+    height:25px;
+    display:flex;
+    justify-content: space-between;
+}
+
+.search-catalog{
+    width:100%;
+    margin-right:auto;
+    margin-left:0;
+    margin-top:0;
+    text-align: center;
+    font-size: 0.6em;
+    color:white;
+    display:flex;
+    flex-flow: row wrap; 
+}
+
+.menuitemselected{
+    font-weight:bold;
+    font-style:normal;
+    border-bottom:4px solid rgb(149, 176, 252);
+}
+.menuitemNOTselected{
+    font-weight:normal;
+    font-style:italic;
+}
+.search{
+    margin-left:120px;
+    cursor: pointer;
+    color:white;
+}
+.search-selected{
+    margin-left:120px;
+    cursor: pointer;
+    color:white;
+}
+.catalog{
+    margin-left:30px;
+    cursor: pointer;
+    color:white;
+}
+.about{
+    margin-left:30px;
+    cursor: pointer;
+    color:white;
+}
+.logout{
+    margin-left:auto;
+    margin-right:20px;
+    cursor: pointer;
+}
+
+.cardboard{
+/*    background-color: rgb(213, 219, 187);*/
+    width:900px;
+    height:100vh;
+    margin-right:auto;
+    margin-left: auto;
+}
+
+.spacer{
+    margin-left:30px;
+}
+/*
+input{
+    background-color: white;
+}
+input [type="text"]{
+    border:1px solid red;
+}
+*/
+
+a{
+    text-decoration:none;
+    color:white;    
+}

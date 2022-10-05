@@ -1,0 +1,11 @@
+.mainpage_cardboard{
+    position: fixed;
+    z-index:-10;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgb(243, 245, 243);
+    border-left: 1px solid lightgray;
+    border-right: 1px solid lightgray;
+    width: 1000px;
+    height: 100vh;
+  }
