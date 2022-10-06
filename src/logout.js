@@ -1,19 +1,14 @@
 import { t }  from 'i18next';
 import './logout.css';
 
-export default function Logout(props) {
-    let url = "#";
-
-    function clicou(e){
-        console.log('======= OK =======');
-    }
-    
+export default function Logout() {
 
     return (
-        <div>  {/* onClick={() => props.clicou()}> */}
+        <div style={{textAlign:"center"}}>
             <br/>
             <br/>
-            <span style={{fontSize:"2.5em"}}>{t('appPageTexts.part4')}</span>
+            <br/>
+            <span style={{fontSize:"2.5em",textAlign:"center"}}>{t('appPageTexts.part4')}</span>
         </div>
     );
 }

@@ -28,7 +28,14 @@ i18n
                 part6: 'Cataloging',
                 part7: 'About',
                 part8: 'Logout',
-              },
+            },
+            search:{
+                serial: 'Serial'
+
+            },  
+            cataloging:{
+
+            },  
             about:{
               paragraph01: 'LibPDF is a React/Java web application that allows you to manage electronic bibliographic resources such as papers, books, and even code.',  
               paragraph02: 'The frontend will be built with REACT, while the backend will be a Restful API built with Spring (a Java backend framework) and Spring-JPA on PostgreSQL.',  
@@ -54,6 +61,13 @@ i18n
                 part7: 'Sobre',
                 part8: 'Sair',
             },
+            search:{
+              serial: 'Patrimônio'
+
+            },  
+            cataloging:{
+
+            },  
             about: {
               paragraph01: 'LibPDF é uma aplicação React/Java para armazenar, buscar e recuperar materiais bibliográficos eletrônicos, como papers, livros e até código de programas de computador',  
               paragraph02: 'O frontend vai ser desenvolvido em REACT e o backend vai ser, na sua versão final, uma implementação de uma API REST em Spring,'+
