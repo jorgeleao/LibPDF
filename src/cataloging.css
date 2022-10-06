@@ -4,11 +4,13 @@
     height:100vh;
     margin-right:auto;
     margin-left: auto;
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 
 .catal_divcontainer{
     display: grid;
-    grid-template-columns: 201px 193px 200px 200px 130px;
+    grid-template-columns: 190px 190px 190px 190px 110px;
     grid-gap:7px;
     padding: 6px;
     justify-content: right;

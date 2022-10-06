@@ -30,8 +30,24 @@ i18n
                 part8: 'Logout',
             },
             search:{
-                serial: 'Serial'
-
+                serial: 'Serial',
+                title: 'Title',
+                author: 'Authority',
+                vehicle: 'Vehicle',
+                pubdate: 'Publish date',
+                from: 'From',
+                to: 'To',
+                keywords: 'Keywords',
+                currentpage: 'Current page',
+                previouspage: 'Previous',
+                nextpage: 'Next',
+                search: 'Search',
+                cataloging: 'Cataloging',
+                clear: 'Clear',
+                results: 'Results',
+                nrorecordsfound: '# records',
+                and: 'AND',
+                or: 'OR'
             },  
             cataloging:{
 
@@ -62,9 +78,25 @@ i18n
                 part8: 'Sair',
             },
             search:{
-              serial: 'Patrimônio'
-
-            },  
+              serial: 'Patrimônio',
+              title: 'Título',
+              author: 'Autores',
+              vehicle: 'Veículo',
+              pubdate: 'Data de publicação',
+              from: 'De',
+              to: 'Até',
+              keywords: 'Palavras-chave',
+              currentpage: 'Página atual',
+              previouspage: 'Anterior',
+              nextpage: 'Próxima',
+              search: 'Busca',
+              cataloging: 'Catalogar',
+              clear: 'Limpar',
+              results: 'Resultados',
+              nrorecordsfound: '# registros',
+              and: 'E',
+              or: 'OU'
+          },  
             cataloging:{
 
             },  
