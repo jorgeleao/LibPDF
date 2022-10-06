@@ -50,8 +50,28 @@ i18n
                 or: 'OR'
             },  
             cataloging:{
-
-            },  
+              previous: 'Previous',
+              next: 'Next',
+              serial: 'Serial',
+              title: 'Title',
+              author: 'Authority',
+              vehicle: 'Vehicle',
+              pubdate: 'Publish date',
+              keywords: 'Keywords',
+              originalfilename: 'Original filename',
+              fileupload: 'File upload',
+              choosefile: 'Choose file',
+              nofilechosen: 'No file chosen',
+              upload: 'Upload',
+              newcomment: 'New comment',
+              previouscomments: 'Previous comments',
+              edit: 'Edit',
+              saveascurrent: 'Save as current',
+              saveasnew: 'Save as new',
+              download: 'Download',
+              clear: 'Clear',
+              delete: 'Delete'
+          },  
             about:{
               paragraph01: 'LibPDF is a React/Java web application that allows you to manage electronic bibliographic resources such as papers, books, and even code.',  
               paragraph02: 'The frontend will be built with REACT, while the backend will be a Restful API built with Spring (a Java backend framework) and Spring-JPA on PostgreSQL.',  
@@ -98,7 +118,27 @@ i18n
               or: 'OU'
           },  
             cataloging:{
-
+              previous: 'Anterior',
+              next: 'Próximo',
+              serial: 'Patrimônio',
+              title: 'Título',
+              author: 'Autores',
+              vehicle: 'Veículo',
+              pubdate: 'Date de publicação',
+              keywords: 'Palavras-chave',
+              originalfilename: 'Nome original do arquivo',
+              fileupload: 'Subir arquivo',
+              choosefile: 'Escolher',
+              nofilechosen: 'Nenhum arquivo escolhido',
+              upload: 'Subir',
+              newcomment: 'Novo comentário',
+              previouscomments: 'Comentários anteriores',
+              edit: 'Editar',
+              saveascurrent: 'Salvar como atual',
+              saveasnew: 'Salvar como novo',
+              download: 'Download',
+              clear: 'Limpar',
+              delete: 'Excluir'
             },  
             about: {
               paragraph01: 'LibPDF é uma aplicação React/Java para armazenar, buscar e recuperar materiais bibliográficos eletrônicos, como papers, livros e até código de programas de computador',  

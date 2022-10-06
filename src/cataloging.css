@@ -52,7 +52,7 @@
 }
 
 .catal_largeinput{
-    width:590px;
+    width:570px;
     height:27px;
     line-height:27px;
     border:1px solid black;
@@ -62,7 +62,7 @@
 }
 
 .catal_largeinput_file{
-    width:595px;
+    width:575px;
     height:29px;
     line-height:29px;
     border:1px solid black;
@@ -102,7 +102,7 @@
 
 .catal_newcomment{
     display: block;
-    width:592px;
+    width:575px;
     height:110px;
     margin-left:auto;
     margin-right:0;
