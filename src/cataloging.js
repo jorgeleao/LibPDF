@@ -59,7 +59,7 @@ export default function Cataloging(props) {
                 <div className="item3"></div>
 
                 <div className="item1"></div>
-                <div className="item4"><div className="catal_botbutton">{t('cataloging.upload')}</div></div>
+                <div className="item4"><div className="catal_botbutton">{t('cataloging.download')}</div></div>
                 <div className="item4"><div className="catal_botbutton">{t('cataloging.clear')}</div></div>
                 <div className="item4"><div className="catal_botbutton">{t('cataloging.delete')}</div></div>
                 <div className="item3"></div>
