@@ -1,0 +1,16 @@
+.SearchMode{
+    font-size: 13pt;
+    width:200px;
+    height:100px;
+    margin-left:auto;
+    margin-right:auto;
+    display:flex;
+    flex-direction: row;
+
+}
+
+.SearchMode-checkboxes{
+    text-align: left;
+    line-height: 30.4px;
+    padding-left:10px;
+}
