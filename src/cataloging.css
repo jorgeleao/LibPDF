@@ -11,7 +11,7 @@
 .catal_divcontainer{
     display: grid;
     grid-template-columns: 190px 190px 190px 190px 110px;
-    grid-template-rows: repeat(7, 25px) 30px 118px 118px 25px 25px;
+    grid-template-rows: repeat(8, 25px) 30px 118px 118px 25px 25px;
     grid-gap:4px;
     padding: 6px;
 /*    justify-content: right;
@@ -49,7 +49,7 @@
     color:white;
     font-size:0.9em;
     font-weight: bold;
-    margin-right:3px;
+    margin-right:0;
 }
 
 .catal_upload{
@@ -119,7 +119,7 @@
 
 .catal_newcomment{
     display: block;
-    width:575px;
+    width:573px;
     height:110px;
     margin-left:auto;
     margin-right:0;
@@ -132,7 +132,7 @@
 }
 
 .catal_botbutton{
-    width:180px;
+    width:183px;
     height:21px;
     line-height:21px;
     border:2px solid black;
@@ -148,5 +148,5 @@
 .item4{
     line-height:21px;
     margin-left:auto;
-    margin-right:0;
+    margin-right:auto;
 }

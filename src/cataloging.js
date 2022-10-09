@@ -12,9 +12,16 @@ export default function Cataloging(props) {
             <span style={{ fontSize: "2.5em" }}>{t('appPageTexts.part6')}</span>
             <br/>
             <div className="catal_divcontainer">
-                <div className="item1"><div className="catal_anterior">{t('cataloging.previous')}</div> {t('cataloging.serial')}</div>
+                <div className="item1"></div>
+                <div className="item2" style={{paddingLeft:"8px",paddingRight:"0",display:"flex",justifyContent: "space-between"}}>
+                    <div className="catal_anterior">{t('cataloging.previous')}</div>
+                    <div className="catal_proximo">{t('cataloging.next')}</div>
+                </div>
+                <div className="item3"></div>
+
+                <div className="item1">{t('cataloging.serial')}</div>
                 <div className="item2"><input type="text" className="catal_largeinput" /></div>
-                <div className="item3"><div className="catal_proximo">{t('cataloging.next')}</div></div>
+                <div className="item3"></div>
 
                 <div className="item1">{t('cataloging.title')}</div>
                 <div className="item2"><input type="text" className="catal_largeinput" /></div>
