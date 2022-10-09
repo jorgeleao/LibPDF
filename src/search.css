@@ -3,7 +3,7 @@
     grid-template-columns: 155px 60px 240px 60px 240px 110px;
     grid-template-rows: repeat(7, 27px);
     grid-column-gap: 4px;
-    grid-row-gap: 4px;
+    grid-row-gap: 2px;
 }
 
 .intext{
@@ -39,7 +39,6 @@
 }
 
 .search_cardboard{
-    /* background-color: rgb(250, 250, 250); */
     margin-top:0;
     margin-left:auto;
     margin-right:auto;
@@ -65,20 +64,6 @@
     font-size:1.0em;
     border-radius: 5px;
 }
-
-/*==================*/
-.search_cardboard{
-    /* background-color: rgb(250, 250, 250); */
-    margin-top:0;
-    margin-left:auto;
-    margin-right:auto;
-    width:960px;
-    height:100%;
-    z-index: "50";
-    padding: 0 20px;
-    box-sizing: border-box;
-}
-
 
 .next_previous_buttons{
     display: grid;

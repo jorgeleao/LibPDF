@@ -42,7 +42,7 @@ export default function Cataloging(props) {
 
                 <div className="item1">{t('cataloging.fileupload')}</div>
                 <div className="item2"><input type="file" className="catal_largeinput_file" /></div>
-                <div className="item3"><div className="catal_proximo">{t('cataloging.upload')}</div></div>
+                <div className="item3"><div className="catal_upload">{t('cataloging.upload')}</div></div>
 
                 <div className="itemC">{t('cataloging.newcomment')}</div>
                 <div className="item2"><textarea className="catal_newcomment" /></div>
