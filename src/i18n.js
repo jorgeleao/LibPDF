@@ -50,6 +50,10 @@ i18n
                 nrorecordsfound: '# records',
                 and: 'AND',
                 or: 'OR'
+            },
+            searchMode:{
+              AND: 'And',
+              OR: 'Or'
             },  
             cataloging:{
               previous: 'Previous',
@@ -120,7 +124,11 @@ i18n
               nrorecordsfound: '# registros',
               and: 'E',
               or: 'OU'
-          },  
+            },  
+            searchMode:{
+              AND: 'E',
+              OR: 'Ou'
+            },  
             cataloging:{
               previous: 'Anterior',
               next: 'Próximo',
