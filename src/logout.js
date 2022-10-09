@@ -13,6 +13,8 @@ export default function Logout(props) {
             <span style={{ fontSize: "2.5em" }}>{t('appPageTexts.part5')}</span>
             <br />
             <div>
+
+
                 <div class="parent" style={{width:"888px",marginLeft:"auto",marginRight:"auto"}}>
                     <div style={{border:"0px solid black"}}></div>
                     <div style={{border:"0px solid black",gridColumn: "2 / 6",textAlign:"right", 
@@ -47,6 +49,9 @@ export default function Logout(props) {
                         <SearchMode />
                     </div>
                 </div>
+
+
+
 
             </div>
         </div>

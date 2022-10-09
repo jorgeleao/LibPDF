@@ -1,3 +1,72 @@
+.parent {
+    display: grid;
+    grid-template-columns: 155px 60px 240px 60px 240px 110px;
+    grid-template-rows: repeat(7, 27px);
+    grid-column-gap: 4px;
+    grid-row-gap: 4px;
+}
+
+.intext{
+    width:97%;
+    height:21px;
+    padding-left:8px;
+    font-size:1.0em;
+    border:1px solid black;
+    border-radius: 5px;
+}
+
+.intextSmall{
+    width:94%;
+    height:21px;
+    padding-left:5px;
+    font-size:1.0em;
+    border:1px solid black;
+    border-radius: 5px;
+}
+
+.search_but_top{
+    width:100px;
+    height:21px;
+    line-height:20px;
+    border:2px solid black;
+    border-radius: 5px;
+    text-align:center;
+    background-color: rgb(149, 176, 252);
+    color:white;
+    font-size:0.9em;
+    font-weight: bold;
+    margin-right:0px;
+}
+
+.search_cardboard{
+    /* background-color: rgb(250, 250, 250); */
+    margin-top:0;
+    margin-left:auto;
+    margin-right:auto;
+    width:960px;
+    height:100%;
+    z-index: "50";
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.search_butPreviousNext{
+    border-radius: 6px;
+    width:100px;
+    height:27px;
+    color:white;
+    background-color: blue;
+    font-weight:bolder;
+}
+
+.search_text{
+    width:96%;
+    height:27px;
+    font-size:1.0em;
+    border-radius: 5px;
+}
+
+/*==================*/
 .search_cardboard{
     /* background-color: rgb(250, 250, 250); */
     margin-top:0;
@@ -69,10 +138,11 @@
 .next_previous_buttons{
     display: grid;
     grid-template-columns: 160px 160px 160px;
+    grid-template-rows: 20px 36px 36px;
     padding: 0;
     margin-right: auto;
     margin-left: auto;
-    height: 108px;
+    height: 93px;
 /*    border: 1px solid black;  */
     justify-content: center;
 }
@@ -86,7 +156,19 @@
     text-align:center;
     font-size:1.1em;
 }
-
+.buttondivSmall{
+    width:150px;
+    height:18px;
+    line-height:18px;
+    border:2px solid black;
+    border-radius: 8px;
+    text-align:center;
+    margin:3px;
+    background-color: rgb(149, 176, 252);
+    color:white;
+    font-size:0.9em;
+    font-weight: bold;
+}
 .buttondiv{
     width:150px;
     height:27px;
@@ -148,7 +230,7 @@
 
 .numberOfResults{
     width:300px;
-    height:60px;
+    height:48px;
     margin-left:auto;
     margin-right:auto;
     text-align: center;
