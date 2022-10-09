@@ -1,6 +1,6 @@
 .parent {
     display: grid;
-    grid-template-columns: 155px 60px 240px 60px 240px 110px;
+    grid-template-columns: 155px 60px 240px 60px 240px 120px;
     grid-template-rows: repeat(7, 27px);
     grid-column-gap: 4px;
     grid-row-gap: 2px;
