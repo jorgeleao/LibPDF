@@ -6,7 +6,7 @@ export default function Cataloging(props) {
     const { t } = useTranslation();
 
     return (
-        <div onClick={() => props.clickHandler()} className="cataloging_cardboard">
+        <div className="cataloging_cardboard">
             <br />
             <br />
             <span className="cataloging_pageTitle">{t('appPageTexts.part6')}</span>

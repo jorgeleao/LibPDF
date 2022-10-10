@@ -133,7 +133,7 @@ i18n
               nextpage: 'Próxima',
               previous: 'Anterior',
               next: 'Próximo',
-              search: 'Busca',
+              search: 'Buscar',
               cataloging: 'Editar',
               clear: 'Limpar',
               results: 'Resultados',

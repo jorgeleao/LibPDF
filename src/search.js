@@ -8,13 +8,13 @@ export default function Search(props) {
     const { t } = useTranslation();
 
     return (
-        <div onClick={() => props.clickHandler()} className="search_cardboard">
+        <div className="search_cardboard">
             <br />
             <br />
             <span className="search_pageTitle">{t('appPageTexts.part5')}</span>
             <br />
             <div>
-                <div class="search-parent">
+                <div className="search-parent">
                     <div></div>
                     <div className="search-two-upper-buttons">
                         <div className="search_but_top">{t('search.previous')}</div>
@@ -43,7 +43,7 @@ export default function Search(props) {
                     <div className="search-right_button2 search-buttondiv">{t('search.nextpage')} &gt;</div>
                     <div className="search-left_button3 search-buttondiv">{t('search.search')}</div>
                     <div className="search-center_button3 search-buttondiv">{t('search.cataloging')}</div>
-                    <div className="search-right_button3 search-buttondiv" onClick="">{t('search.clear')}</div>
+                    <div className="search-right_button3 search-buttondiv">{t('search.clear')}</div>
                 </div>
 
                 <div className="search-numberOfResults">

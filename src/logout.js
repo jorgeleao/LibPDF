@@ -9,7 +9,7 @@ export default function Logout(props) {
     const { t } = useTranslation();
 
     return (
-        <div onClick={() => props.clickHandler()} className="logout_cardboard">
+        <div className="logout_cardboard">
             <br />
             <br />
             <span style={{ fontSize: "2.5em" }}>Logout</span>
