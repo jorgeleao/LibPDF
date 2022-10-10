@@ -8,25 +8,25 @@ export default function BibliForm(){
     return(
         <div class="bibliform-parent">
             <div>{t('bibliform.serial')}</div>
-            <div className="bibliform-twosix"><input type="text" className="bibliform-intext" /></div>
+            <div className="bibliform-twosix"><input name="serial" type="text" className="bibliform-intext" /></div>
 
             <div>{t('bibliform.title')}</div>
-            <div className="bibliform-twosix"><input type="text" className="bibliform-intext" /></div>
+            <div className="bibliform-twosix"><input name="title" type="text" className="bibliform-intext" /></div>
             
             <div>{t('bibliform.author')}</div>
-            <div className="bibliform-twosix"><input type="text" className="bibliform-intext" /></div>
+            <div className="bibliform-twosix"><input name="author" type="text" className="bibliform-intext" /></div>
             
             <div>{t('bibliform.vehicle')}</div>
-            <div className="bibliform-twosix"><input type="text" className="bibliform-intext" /></div>
+            <div className="bibliform-twosix"><input name="vehicle" type="text" className="bibliform-intext" /></div>
             
             <div>{t('bibliform.pubdate')}</div>
             <div>{t('bibliform.from')}</div>
-            <div><input type="text" className="bibliform-intextSmall" /></div>
+            <div><input name="from" type="text" className="bibliform-intextSmall" /></div>
             <div>{t('bibliform.to')}</div>
-            <div><input type="text" className="bibliform-intextSmall" /></div>
+            <div><input name="to" type="text" className="bibliform-intextSmall" /></div>
 
             <div>{t('bibliform.keywords')}</div>
-            <div className="bibliform-twosix"><input type="text" className="bibliform-intext" /></div>
+            <div className="bibliform-twosix"><input name="keywords" type="text" className="bibliform-intext" /></div>
         </div>
     )
 }
