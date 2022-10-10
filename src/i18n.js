@@ -148,7 +148,7 @@ i18n
               edit: 'Editar',
               saveascurrent: 'Salvar como atual',
               saveasnew: 'Salvar como novo',
-              download: 'Download',
+              download: 'Baixar',
               clear: 'Limpar',
               delete: 'Excluir'
             },  

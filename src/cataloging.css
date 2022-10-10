@@ -8,19 +8,15 @@
     box-sizing: border-box;
 }
 
-.catal_divcontainer{
+.cataloging_divcontainer{
     display: grid;
     grid-template-columns: 190px 190px 190px 190px 110px;
     grid-template-rows: repeat(8, 25px) 30px 118px 118px 25px 25px;
     grid-gap:4px;
     padding: 6px;
-/*    justify-content: right;
-    align-content: center;
-    align-items: center;
-    align-items: start; */
 }
 
-.catal_anterior{
+.cataloging_anterior{
     position:relative;
     left:-8px;
     width:100px;
@@ -36,7 +32,7 @@
     margin-right:3px;
 }
 
-.catal_proximo{
+.cataloging_proximo{
     position:relative;
     top:0px;
     width:100px;
@@ -52,7 +48,7 @@
     margin-right:0;
 }
 
-.catal_upload{
+.cataloging_upload{
     position:relative;
     top:0px;
     width:100px;
@@ -68,7 +64,7 @@
     margin-right:3px;
 }
 
-.catal_largeinput{
+.cataloging_largeinput{
     width:570px;
     height:21px;
     line-height:21px;
@@ -78,7 +74,7 @@
     font-size:1.1em;
 }
 
-.catal_largeinput_file{
+.cataloging_largeinput_file{
     width:575px;
     height:29px;
     line-height:29px;
@@ -89,7 +85,7 @@
     text-align:left;
 }
 
-.item1{
+.cataloging_item1{
     height:21px;
     line-height:21px;
     display:flex;
@@ -98,14 +94,14 @@
     justify-content: right;
 }
 
-.item2{
+.cataloging_item2{
     grid-column: 2 / 5;
     height:21px;
     line-height:21px;
     text-align:right;
 }
 
-.itemC{
+.cataloging_itemC{
     height:116px;
     display:flex;
     flex-direction: row;
@@ -113,11 +109,11 @@
     justify-content: flex-end;
 }
 
-.catal_item3{
+.cataloging_item3{
     width:100px;
 }
 
-.catal_newcomment{
+.cataloging_newcomment{
     display: block;
     width:573px;
     height:110px;
@@ -131,7 +127,7 @@
     text-align: right;
 }
 
-.catal_botbutton{
+.cataloging_botbutton{
     width:183px;
     height:21px;
     line-height:21px;
@@ -145,7 +141,7 @@
     font-weight: bold;
 }
 
-.item4{
+.cataloging_item4{
     line-height:21px;
     margin-left:auto;
     margin-right:auto;
