@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useTranslation } from 'react-i18next';
 import './BibliForm.css'
 
@@ -33,7 +33,7 @@ export default function BibliForm(){
                 <div>{t('bibliform.keywords')}</div>
                 <div className="bibliform-twosix"><input name="keywords" type="text" className="bibliform-intext" /></div>
             </div>
-            
+
             <input type="submit" value="Submit"/>
 
         </form>
