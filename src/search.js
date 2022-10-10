@@ -10,7 +10,7 @@ export default function Search(props) {
         <div onClick={() => props.clickHandler()} className="search_cardboard">
             <br />
             <br />
-            <span style={{ fontSize: "2.5em" }}>{t('appPageTexts.part5')}</span>
+            <span className="search_pageTitle">{t('appPageTexts.part5')}</span>
             <br />
             <div>
                 <div class="search-parent">
@@ -22,16 +22,16 @@ export default function Search(props) {
                     <div></div>
 
                     <div>{t('search.serial')}</div>
-                    <div style={{gridColumn: "2 / 6",}}><input type="text" className="search-intext" /></div>
+                    <div className="search-twosix"><input type="text" className="search-intext" /></div>
 
                     <div>{t('search.title')}</div>
-                    <div style={{gridColumn: "2 / 6",}}><input type="text" className="search-intext" /></div>
+                    <div className="search-twosix"><input type="text" className="search-intext" /></div>
                     
                     <div>{t('search.author')}</div>
-                    <div style={{gridColumn: "2 / 6",}}><input type="text" className="search-intext" /></div>
+                    <div className="search-twosix"><input type="text" className="search-intext" /></div>
                     
                     <div>{t('search.vehicle')}</div>
-                    <div style={{gridColumn: "2 / 6",}}><input type="text" className="search-intext" /></div>
+                    <div className="search-twosix"><input type="text" className="search-intext" /></div>
                     
                     <div>{t('search.pubdate')}</div>
                     <div>{t('search.from')}</div>
@@ -40,9 +40,9 @@ export default function Search(props) {
                     <div><input type="text" className="search-intextSmall" /></div>
 
                     <div>{t('search.keywords')}</div>
-                    <div style={{gridColumn: "2 / 6",}}><input type="text" className="search-intext" /></div>
+                    <div className="search-twosix"><input type="text" className="search-intext" /></div>
                     
-                    <div style={{gridColumn:"6",gridRow:"2/8"}}>
+                    <div className="search-mode-grid">
                         <SearchMode />
                     </div>
                 </div>
@@ -63,7 +63,7 @@ export default function Search(props) {
                 </div>
 
                 <div className="search-numberOfResults">
-                    <span style={{fontSize:"1.0em",lineHeight:"18px",fontWeight:"bold"}}>{t('search.results')}</span><br />
+                    <span className="search-forResults">{t('search.results')}</span><br />
                     {t('search.nrorecordsfound')}: <span id="idNroRows">33</span>
                 </div>
 

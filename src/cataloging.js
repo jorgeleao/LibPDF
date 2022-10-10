@@ -9,11 +9,12 @@ export default function Cataloging(props) {
         <div onClick={() => props.clickHandler()} className="cataloging_cardboard">
             <br />
             <br />
-            <span style={{ fontSize: "2.5em" }}>{t('appPageTexts.part6')}</span>
+            <span className="cataloging_pageTitle">{t('appPageTexts.part6')}</span>
             <br/>
             <div className="cataloging_divcontainer">
                 <div className="cataloging_item1"></div>
-                <div className="cataloging_item2" style={{paddingLeft:"8px",paddingRight:"0",display:"flex",justifyContent: "space-between"}}>
+
+                <div className="cataloging_item2 cataloging_two-upper-buttons">
                     <div className="cataloging_anterior">{t('cataloging.previous')}</div>
                     <div className="cataloging_proximo">{t('cataloging.next')}</div>
                 </div>
