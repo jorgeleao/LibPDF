@@ -88,7 +88,7 @@
     justify-content: center;
 }
 
-.search-paginaAtualInput{
+.search-currentpageInput{
     border:1px solid white;
     height:16px;
     line-height:16px;
@@ -101,12 +101,11 @@
     width:150px;
     height:18px;
     line-height:18px;
-    border:2px solid black;
-    border-radius: 8px;
+    border: none;
     text-align:center;
     margin:3px;
-    background-color: rgb(149, 176, 252);
-    color:white;
+    background-color: rgb(243, 245, 243);
+    color:black;
     font-size:0.9em;
     font-weight: bold;
 }
@@ -140,7 +139,8 @@
     transform: scale(0.98);
 }
 .search-center_button2{
-
+    background-color: white;
+    color: black; 
 }
 .search-right_button2{
     cursor:pointer;

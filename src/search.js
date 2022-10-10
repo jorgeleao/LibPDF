@@ -48,12 +48,13 @@ export default function Search(props) {
                 </div>
 
                 <div className="search-next_previous_buttons">
-                    <div className="search-left_button1 search-buttondivSmall" style={{ backgroundColor: "rgb(243, 245, 243)", border: "none" }}></div>
-                    <div className="search-center_button1 search-buttondivSmall" style={{ backgroundColor: "rgb(243, 245, 243)", border: "none", color: "black" }}>{t('search.currentpage')}</div>
-                    <div className="search-right_button1 search-buttondivSmall" style={{ backgroundColor: "rgb(243, 245, 243)", border: "none" }}></div>
+                    <div className="search-left_button1 search-buttondivSmall"></div>
+                    <div className="search-center_button1 search-buttondivSmall">{t('search.currentpage')}</div>
+                    <div className="search-right_button1 search-buttondivSmall"></div>
+
                     <div className="search-left_button2 search-buttondiv">&lt; {t('search.previouspage')}</div>
-                    <div className="search-center_button2 search-buttondiv" style={{ backgroundColor: "white", color: "black" }}>
-                        <input type="text" className="search-paginaAtualInput" />
+                    <div className="search-center_button2 search-buttondiv">
+                        <input type="text" className="search-currentpageInput" />
                     </div>
                     <div className="search-right_button2 search-buttondiv">{t('search.nextpage')} &gt;</div>
                     <div className="search-left_button3 search-buttondiv">{t('search.search')}</div>
