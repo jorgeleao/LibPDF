@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import './search.css'
+import BibliForm from './BibliForm'
 import SearchMode from './SearchMode'
 
 export default function Search(props) {
@@ -21,27 +22,10 @@ export default function Search(props) {
                     </div>
                     <div></div>
 
-                    <div>{t('search.serial')}</div>
-                    <div className="search-twosix"><input type="text" className="search-intext" /></div>
+                    <div className="search-bibliform-grid">
+                        <BibliForm />
+                    </div>
 
-                    <div>{t('search.title')}</div>
-                    <div className="search-twosix"><input type="text" className="search-intext" /></div>
-                    
-                    <div>{t('search.author')}</div>
-                    <div className="search-twosix"><input type="text" className="search-intext" /></div>
-                    
-                    <div>{t('search.vehicle')}</div>
-                    <div className="search-twosix"><input type="text" className="search-intext" /></div>
-                    
-                    <div>{t('search.pubdate')}</div>
-                    <div>{t('search.from')}</div>
-                    <div><input type="text" className="search-intextSmall" /></div>
-                    <div>{t('search.to')}</div>
-                    <div><input type="text" className="search-intextSmall" /></div>
-
-                    <div>{t('search.keywords')}</div>
-                    <div className="search-twosix"><input type="text" className="search-intext" /></div>
-                    
                     <div className="search-mode-grid">
                         <SearchMode />
                     </div>

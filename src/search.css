@@ -21,6 +21,11 @@
     justify-content: space-between;
 }
 
+.search-bibliform-grid{
+    grid-column: 1 / 6;
+    grid-row: 2/8;
+}    
+
 .search-twosix{
     grid-column: 2 / 6;
 }
