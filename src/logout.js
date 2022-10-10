@@ -1,7 +1,9 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import './logout.css'
-import SearchMode from './SearchMode'
+import './search.css'
+//import SearchMode from './SearchMode'
+import BibliForm from './BibliForm'
 
 export default function Logout(props) {
     const { t } = useTranslation();
@@ -13,6 +15,8 @@ export default function Logout(props) {
             <span style={{ fontSize: "2.5em" }}>Logout</span>
             <br />
             <div>
+
+            <BibliForm />
 
             </div>
         </div>

@@ -53,6 +53,18 @@ i18n
                 and: 'AND',
                 or: 'OR'
             },
+            bibliform:{
+              serial: 'Serial',
+              title: 'Title',
+              author: 'Authority',
+              vehicle: 'Material & publisher',
+              type: 'Material',
+              publisher: 'Publisher',
+                pubdate: 'Publish date',
+              from: 'From',
+              to: 'To',
+              keywords: 'Keywords',
+          },
             searchMode:{
               AND: 'And',
               OR: 'Or'
@@ -129,6 +141,18 @@ i18n
               and: 'E',
               or: 'OU'
             },  
+            bibliform:{
+              serial: 'Patrimônio',
+              title: 'Título',
+              author: 'Autores',
+              vehicle: 'Tipo e editor',
+              type: 'Tipo',
+              publisher: 'Editor',
+              pubdate: 'Data de publicação',
+              from: 'De',
+              to: 'Até',
+              keywords: 'Palavras-chave',
+            },
             searchMode:{
               AND: 'E',
               OR: 'Ou'
