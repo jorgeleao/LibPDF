@@ -4,9 +4,13 @@ import './SearchMode.css'
 
 export default function SearchMode(){
     const { t } = useTranslation();
+
     const onSubmit= (evt) => {
         evt.preventDefault();
-        console.log("===> "+evt.target.serialChkd.checked)
+        console.log("===         serial: "+serialNChkd+"\n"+
+                    "    title.titleAnd: "+title.titleAnd+"\n"+
+                    "     title.titleOr: "+title.titleOr+"\n"+
+                    "                    "+evt.target.title.value)
     }
 
     const [serialNChkd, setSerialNChkd] = useState(false)
