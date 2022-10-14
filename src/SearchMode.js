@@ -8,23 +8,24 @@ export default function SearchMode(){
     const onSubmit= (evt) => {
         evt.preventDefault();
         console.log("===         serial: "+serialNChkd+"\n"+
-                    "    title.titleAnd: "+title.titleAnd+"\n"+
-                    "     title.titleOr: "+title.titleOr+"\n"+
-                    "                    "+evt.target.tituloE.checked
+                    "    title.titleAndChkd: "+title.titleAndChkd+"\n"+
+                    "     title.titleOrChkd: "+title.titleOrChkd+"\n"+
+                    "                    "+evt.target.titleAnd.checked
         )
     }
 
     const [serialNChkd, setSerialNChkd] = useState(false)
-
-    const [title, setTitle] = useState({disabled:false, titleAnd:false, titleOr:false})
+    const [title, setTitle] = useState({disabled:false, titleAndChkd:false, titleOrChkd:false})
     const [author, setAuthor] = useState({disabled:false, authorAnd:false, authorOr:false})
     const [publisher, setPublisher] = useState({disabled:false, publisherAnd:false, publisherOr:false})
     const [pubDate, setpubDate] = useState({disabled:false, pubDateAnd:false, pubDateOr:false})
     const [keywords, setKeywords] = useState({disabled:false, keywordsAnd:false, keywordsOr:false})
 
+
+        
+
     function serialClick(){
         setSerialNChkd(!serialNChkd)
-
         setTitle({...title, disabled:!serialNChkd})
         setAuthor({...author, disabled:!serialNChkd})
         setPublisher({...publisher, disabled:!serialNChkd})
@@ -33,11 +34,14 @@ export default function SearchMode(){
     }
 
     function titleAndClick(evt){
-        const chk = document.getElementById('tituloE').checked
-        setTitle({ disabled:false, titleAnd:chk, titleOr:false})
+        const checked = document.querySelectorAll('input[type="checkbox"]:checked');
+        console.log([...checked].map(c => c.value))
+
+        const chk = document.getElementById('titleAnd').checked
+        setTitle({ disabled:false, titleAndChkd:chk, titleOrChkd:false})
     }
     function titleOrClick(evt){
-        setTitle({ disabled:false, titleAnd:false, titleOr:!title.titleOr})
+        setTitle({ disabled:false, titleAndChkd:false, titleOrChkd:!title.titleOrChkd})
     }
 
     function authorAndClick(evt){
@@ -76,15 +80,15 @@ export default function SearchMode(){
 
                     <input name="serialChkd" type="checkbox" id="serialChkd" checked={serialNChkd} onChange={serialClick} /><br />
 
-                    <label htmlFor="tituloE">{t('searchMode.AND')}</label>
-                    <input name="tituloE" type="checkbox" id="tituloE" checked={title.titleAnd} disabled={title.disabled} onChange={titleAndClick} />
-                    <label htmlFor="tituloOU">&nbsp;&nbsp;{t('searchMode.OR')}</label>
-                    <input name="tituloOU" type="checkbox" id="tituloOU" checked={title.titleOr} disabled={title.disabled} onChange={titleOrClick} /><br />
+                    <label htmlFor="titleAnd">{t('searchMode.AND')}</label>
+                    <input name="titleAnd" type="checkbox" id="titleAnd" checked={title.titleAndChkd} disabled={title.disabled} onChange={titleAndClick} />
+                    <label htmlFor="titleOr">&nbsp;&nbsp;{t('searchMode.OR')}</label>
+                    <input name="titleOr" type="checkbox" id="titleOr" checked={title.titleOrChkd} disabled={title.disabled} onChange={titleOrClick} /><br />
 
-                    <label htmlFor="autorE">{t('searchMode.AND')}</label>
-                    <input name="autorE" type="checkbox" id="autorE" checked={author.authorAnd} disabled={author.disabled} onChange={authorAndClick} />
-                    <label htmlFor="autorOU">&nbsp;&nbsp;{t('searchMode.OR')}</label>
-                    <input name="autorOU" type="checkbox" id="autorOU" checked={author.authorOr} disabled={author.disabled} onChange={authorOrClick} /><br />
+                    <label htmlFor="authorAnd">{t('searchMode.AND')}</label>
+                    <input name="authorAnd" type="checkbox" id="authorAnd" checked={author.authorAnd} disabled={author.disabled} onChange={authorAndClick} />
+                    <label htmlFor="authorOr">&nbsp;&nbsp;{t('searchMode.OR')}</label>
+                    <input name="authorOr" type="checkbox" id="authorOr" checked={author.authorOr} disabled={author.disabled} onChange={authorOrClick} /><br />
 
                     <label htmlFor="publisherAnd">{t('searchMode.AND')}</label>
                     <input name="publisherAnd" type="checkbox" id="publisherAnd" checked={publisher.publisherAnd} disabled={publisher.disabled} onChange={publisherAndClick} />
