@@ -51,7 +51,7 @@ export default function Search(props) {
                     {t('search.nrorecordsfound')}: <span id="idNroRows">33</span>
                 </div>
 
-                <textarea className="search-resultsTextArea">
+                <textarea className="search-resultsTextArea" id="search-resultsTextArea">
                 </textarea>
             </div>
         </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import './logout.css'
 import { useInput } from './hooks/useInput';
@@ -6,8 +6,19 @@ import { useInput } from './hooks/useInput';
 export default function Logout(props) {
     const { t } = useTranslation();
 
+    const [chkbox_state, setChkbox_state] = useState([false,false])
+
+    function toggleOneChkbox(chkboxindx){
+        let newChkbox_state = new Array(2).fill(false,0,2)
+        chkbox_state.map((c,i)=>{
+           newChkbox_state[i] = i===chkboxindx?!chkbox_state[i]:chkbox_state[i];
+        })
+        setChkbox_state(newChkbox_state)
+    }
+
     const { value:firstName, bind:bindFirstName, reset:resetFirstName } = useInput('');
     const { value:lastName, bind:bindLastName, reset:resetLastName } = useInput('');
+
     
     const handleSubmit = (evt) => {
         evt.preventDefault();
@@ -37,6 +48,14 @@ export default function Logout(props) {
             </label>
             <br />
             <input type="submit" value="Submit" />
+
+            <br />
+            <br />
+            <input type="checkbox" name="chk0" onChange={()=>toggleOneChkbox(0)} checked={chkbox_state[0]}/>CHK 1
+            <br />
+            <br />
+            <input type="checkbox" name="chk1" onChange={()=>toggleOneChkbox(1)} checked={chkbox_state[1]}/>CHK 2
+
             </form>
 
             </div>
