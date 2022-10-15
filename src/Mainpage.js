@@ -11,6 +11,9 @@ import './i18n.js';
 
 export default function Mainpage() {
   //console.log("=== React version: "+version);
+  function chkboxchange1(){
+    console.log("=== chkboxChange prop ===")
+  }
 
   return (
     <div>
@@ -18,7 +21,7 @@ export default function Mainpage() {
       <BrowserRouter>
         <Menubar />
         <Routes>
-          <Route exact path="/" element={<Search />}></Route>
+          <Route exact path="/" element={<Search chkboxchange={chkboxchange1}/>}></Route>
           <Route path="/catalog" element={<Cataloging />}></Route>
           <Route path="/about" element={<About />}></Route>
           <Route path="/logout" element={<Logout />}></Route>

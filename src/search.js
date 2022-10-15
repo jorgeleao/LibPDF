@@ -27,7 +27,7 @@ export default function Search(props) {
                     </div>
 
                     <div className="search-mode-grid">
-                        <SearchMode />
+                        <SearchMode chkboxchange={props.chkboxchange}/>
                     </div>
                 </div>
 

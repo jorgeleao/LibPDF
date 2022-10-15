@@ -2,12 +2,14 @@ import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next';
 import './SearchMode.css'
 
-export default function SearchMode(){
+export default function SearchMode(props){
     const { t } = useTranslation();
 
     const onSubmit= (evt) => {
         evt.preventDefault();
         console.log("=== "+chkboxState)
+        props.chkboxchange()
+        //f()
     }
 
     const [chkboxState, setChkboxState] = useState(new Array(11).fill(false,0,11))
