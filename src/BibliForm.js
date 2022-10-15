@@ -21,8 +21,8 @@ export default function BibliForm(){
                 <div>{t('bibliform.author')}</div>
                 <div className="bibliform-twosix"><input name="author" type="text" className="bibliform-intext" /></div>
                 
-                <div>{t('bibliform.vehicle')}</div>
-                <div className="bibliform-twosix"><input name="vehicle" type="text" className="bibliform-intext" /></div>
+                <div>{t('bibliform.publisher')}</div>
+                <div className="bibliform-twosix"><input name="publisher" type="text" className="bibliform-intext" /></div>
                 
                 <div>{t('bibliform.pubdate')}</div>
                 <div>{t('bibliform.from')}</div>

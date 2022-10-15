@@ -11,6 +11,7 @@ import './i18n.js';
 
 export default function Mainpage() {
   //console.log("=== React version: "+version);
+  
   function chkboxchange1(){
     console.log("=== chkboxChange prop ===")
   }

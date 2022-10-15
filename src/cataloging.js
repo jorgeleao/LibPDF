@@ -32,7 +32,7 @@ export default function Cataloging(props) {
                 <div className="cataloging_item2"><input type="text" className="cataloging_largeinput" /></div>
                 <div className="cataloging_item3"></div>
 
-                <div className="cataloging_item1">{t('cataloging.vehicle')}</div>
+                <div className="cataloging_item1">{t('cataloging.publisher')}</div>
                 <div className="cataloging_item2"><input type="text" className="cataloging_largeinput" /></div>
                 <div className="cataloging_item3"></div>
 
