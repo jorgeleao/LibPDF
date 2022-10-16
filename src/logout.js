@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+//import { useTranslation } from 'react-i18next';
 import './logout.css'
 import { useInput } from './hooks/useInput';
 
 export default function Logout(props) {
-    const { t } = useTranslation();
+//    const { t } = useTranslation();
 
     const [chkbox_state, setChkbox_state] = useState([false,false])
 
     function toggleOneChkbox(chkboxindx){
         let newChkbox_state = new Array(2).fill(false,0,2)
         chkbox_state.map((c,i)=>{
-           newChkbox_state[i] = i===chkboxindx?!chkbox_state[i]:chkbox_state[i];
+           return newChkbox_state[i] = i===chkboxindx?!chkbox_state[i]:chkbox_state[i];
         })
         setChkbox_state(newChkbox_state)
     }
@@ -32,6 +32,9 @@ export default function Logout(props) {
             <br />
             <br />
             <span style={{ fontSize: "2.5em" }}>Logout</span>
+            <br />
+            (Playground)
+            <br />
             <br />
             <div>
  

@@ -88,7 +88,7 @@ i18n
               paragraph05: 'Although this software ought to be useful, it will mostly serve as a technology demonstration.',  
               paragraph06: 'Jorge L.S. Leão (jorge.leao@ufrj.br, currently working alone) is leading the project.',  
               paragraph07a: 'The software will be available as a free download (',
-              paragraph07b: ') and was designed to be used on a computer with a minimum resolution of 1280x720 pixels.',
+              paragraph07b: ') and was designed to be used on a computer with a minimum resolution of 1280x720 pixels. Text may not be readable on small screens.',
               paragraph08: 'The project (re)started on september 20th, 2022. It has not yet produced a working version nor been deployed.'
             }  
         }
@@ -165,7 +165,7 @@ i18n
               paragraph05: 'Embora esta aplicação seja útil por si mesma, ela deve servir sobretudo como uma demonstração das tecnologias mencionadas acima.',  
               paragraph06: 'O projeto está sendo conduzido por Jorge L.S.Leão (jorge.leao@ufrj.br, sozinho por enquanto).',  
               paragraph07a: 'O software será disponibilizado como um software de código aberto e gratuito (',
-              paragraph07b: ') e ele foi projetado para ser usado em um computador com uma resolução mínima de 1280x720 pixels.',
+              paragraph07b: ') e ele foi projetado para ser usado em um computador com uma resolução mínima de 1280x720 pixels. O texto pode não ser legível em telas pequenas.',
               paragraph08: 'O projeto (re)iniciou-se em 20 de setembro de 2022. Ele ainda não produziu uma versão funcional nem foi implantado.'
             }
           }
