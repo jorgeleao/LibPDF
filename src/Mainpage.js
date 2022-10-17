@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 //import { version } from 'react';
 import About from './about.js';
 import Search from './search.js';
+import { SearchModeProvider } from './contexts/SearchModeContext'
 import Logout from './logout.js';
 import Menubar from './menubar.js'
 import Cataloging from './cataloging.js';
@@ -19,15 +20,17 @@ export default function Mainpage() {
   return (
     <div>
       <div className="mainpage_cardboard"></div>
-      <BrowserRouter>
-        <Menubar />
-        <Routes>
-          <Route exact path="/" element={<Search chkboxchange={chkboxchange1}/>}></Route>
-          <Route path="/catalog" element={<Cataloging />}></Route>
-          <Route path="/about" element={<About />}></Route>
-          <Route path="/logout" element={<Logout />}></Route>
-        </Routes>
-      </BrowserRouter>
+      <SearchModeProvider>
+        <BrowserRouter>
+          <Menubar />
+          <Routes>
+            <Route exact path="/" element={<Search chkboxchange={chkboxchange1}/>}></Route>
+            <Route path="/catalog" element={<Cataloging />}></Route>
+            <Route path="/about" element={<About />}></Route>
+            <Route path="/logout" element={<Logout />}></Route>
+          </Routes>
+        </BrowserRouter>
+      </SearchModeProvider>
     </div>
   );
 }
