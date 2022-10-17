@@ -1,47 +1,18 @@
-import React, { useState, useContext } from 'react'
+import React, { useContext } from 'react'
 import { SearchModeContext } from './contexts/SearchModeContext'
 import { useTranslation } from 'react-i18next';
 import './SearchMode.css'
 
 export default function SearchMode(){
-    const value = useContext(SearchModeContext)
+    const {chkboxState, serialChange, checkboxANDChange, checkboxORChange } = useContext(SearchModeContext)
     const { t } = useTranslation();
 
-    const onSubmit= (evt) => {
-        evt.preventDefault();
-        value()
-    }
-
-    const [chkboxState, setChkboxState] = useState(new Array(11).fill(false,0,11))
-
-    function serialChange(){
-        let newChkboxState = [...chkboxState]  // to ensure it is a deep copy!
-        newChkboxState[0] = !chkboxState[0]
-        setChkboxState(newChkboxState)
-    }
-    function checkboxANDChange(and,or){
-        let newChkboxState = [...chkboxState]
-        if(!newChkboxState[0]){
-            newChkboxState[and] = !chkboxState[and] // or document.getElementById('titleAnd').checked
-            newChkboxState[or] = false
-            setChkboxState(newChkboxState)
-        }
-    }
-    function checkboxORChange(and,or){
-        let newChkboxState = [...chkboxState]
-        if(!newChkboxState[0]){
-            newChkboxState[and] = false
-            newChkboxState[or] = !chkboxState[or] // or document.getElementById('titleAnd').checked
-            setChkboxState(newChkboxState)
-        }
-    }
-
     return(
-        <form onSubmit={onSubmit}>
+        <form>
             <div className='SearchMode' style={chkboxState[0]?{color:'lightgray'}:{color:'black'}}>
                 <div className='SearchMode-checkboxes'>
                     <label htmlFor="serialChkd" style={{color:"rgb(243, 245, 243)"}}>{t('searchMode.AND')}</label>
-                    <input name="serialChkd" type="checkbox" id="serialChkd" checked={chkboxState[0]} onChange={()=>serialChange()} />
+                    <input name="serialChkd" type="checkbox" id="serialChkd" checked={chkboxState[0]} onChange={serialChange} />
                     <br />
                     <label htmlFor="titleAnd">{t('searchMode.AND')}</label>
                     <input name="titleAnd" type="checkbox" id="titleAnd" checked={chkboxState[1]} disabled={chkboxState[0]} onChange={()=>checkboxANDChange(1,2)} />
@@ -69,9 +40,6 @@ export default function SearchMode(){
                     <input name="keywordsOr" type="checkbox" id="keywordsOr" checked={chkboxState[10]} disabled={chkboxState[0]} onChange={()=>checkboxORChange(9,10)} />
                 </div>
             </div>
-
-            <input type="submit" value="Submit"/>
-
         </form>
     )
 }
