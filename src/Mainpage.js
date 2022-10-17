@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 //import { version } from 'react';
 import About from './about.js';
 import Search from './search.js';
-import { SearchModeProvider } from './contexts/SearchModeContext'
+import { SearchModeContext } from './contexts/SearchModeContext'
 import Logout from './logout.js';
 import Menubar from './menubar.js'
 import Cataloging from './cataloging.js';
@@ -16,11 +16,14 @@ export default function Mainpage() {
   function chkboxchange1(){
     console.log("=== chkboxChange prop ===")
   }
+  function sendMessage1(){
+    console.log("=== Passed 1 by context! ===")
+  }
 
   return (
-    <div>
+    <div> 
       <div className="mainpage_cardboard"></div>
-      <SearchModeProvider>
+      <SearchModeContext.Provider value={sendMessage1}>
         <BrowserRouter>
           <Menubar />
           <Routes>
@@ -30,7 +33,7 @@ export default function Mainpage() {
             <Route path="/logout" element={<Logout />}></Route>
           </Routes>
         </BrowserRouter>
-      </SearchModeProvider>
+      </SearchModeContext.Provider>
     </div>
   );
 }

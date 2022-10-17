@@ -3,13 +3,13 @@ import { SearchModeContext } from './contexts/SearchModeContext'
 import { useTranslation } from 'react-i18next';
 import './SearchMode.css'
 
-export default function SearchMode(props){
-    const {sendMessage} = useContext(SearchModeContext)
+export default function SearchMode(){
+    const value = useContext(SearchModeContext)
     const { t } = useTranslation();
 
     const onSubmit= (evt) => {
         evt.preventDefault();
-        sendMessage()
+        value()
     }
 
     const [chkboxState, setChkboxState] = useState(new Array(11).fill(false,0,11))
