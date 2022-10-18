@@ -17,6 +17,10 @@ export default function Mainpage() {
   
   const [chkboxState, setChkboxState] = useState(new Array(11).fill(false,0,11))
 
+  function clearCheckboxes(){
+    let newChkboxState = new Array(11).fill(false,0,11)
+    setChkboxState(newChkboxState)
+  }
   function serialChange(){
     let newChkboxState = [...chkboxState]  // to ensure it is a deep copy!
     newChkboxState[0] = !chkboxState[0]
@@ -54,7 +58,41 @@ export default function Mainpage() {
       }  
       setFields(fields => ({...fields,...updatedField}))
   }
-
+  const chkboxNames = ['serial','titleAND','titleOR','authorAND','authorOR','publisherAND','publisherOR','dateAND','dateOR','keywordsAND','keywordsOR']
+  var results = ''
+  function handleSearchButtons(button){
+    switch(button){
+      case 'prevSerial':{ console.log("=== PREVIOUS SERIAL ===");break;}
+      case 'nextSerial':{ console.log("=== NEXT SERIAL ===");break;}
+      case 'prevPage'  :{ console.log("=== PREVIOUS PAGE ===");break;}
+      case 'nextPage'  :{ console.log("=== NEXT PAGE ===");break;}
+      case 'search'    :{ console.log("\n\n=== SEARCH ===");
+                          results = new String(
+                            fields.serial+'\n'+
+                            fields.title+'\n'+
+                            fields.author
+                          )
+                          console.log(fields.serial)
+                          console.log(fields.title)
+                          console.log(fields.author)
+                          console.log(fields.publisher)
+                          console.log(fields.from)
+                          console.log(fields.to)
+                          console.log(fields.keywords)
+                          console.log("=== Search mode:")
+                          if(chkboxState[0])console.log('serial')
+                          else for(let i=1;i<11;i++){
+                            if (chkboxState[i]) console.log(chkboxNames[i])
+                          }
+                          break; }
+      case 'clear'     :{ console.log("=== CLEAR ===");
+                          clearCheckboxes()
+                          let updatedField = {serial:"",title:"",author:"",publisher:"",from:"",to:"",keywords:""};
+                          setFields(updatedField);
+                          break;}
+      default:{}
+    }
+  }
   return (
     <div> 
       <div className="mainpage_cardboard"></div>
@@ -63,7 +101,7 @@ export default function Mainpage() {
         <BrowserRouter>
           <Menubar />
           <Routes>
-            <Route exact path="/" element={<Search />}></Route>
+            <Route exact path="/" element={<Search handleSearchButtons={handleSearchButtons} value={results}/>}></Route>
             <Route path="/catalog" element={<Cataloging />}></Route>
             <Route path="/about" element={<About />}></Route>
             <Route path="/logout" element={<Logout />}></Route>

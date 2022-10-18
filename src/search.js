@@ -4,7 +4,7 @@ import './search.css'
 import BibliForm from './BibliForm'
 import SearchMode from './SearchMode'
 
-export default function Search() {
+export default function Search(props) {
     const { t } = useTranslation();
 
     return (
@@ -17,8 +17,8 @@ export default function Search() {
                 <div className="search-parent">
                     <div></div>
                     <div className="search-two-upper-buttons">
-                        <div className="search_but_top">{t('search.previous')}</div>
-                        <div className="search_but_top">{t('search.next')}</div>
+                        <div className="search_but_top" onClick={()=>props.handleSearchButtons('prevSerial')}>{t('search.previous')}</div>
+                        <div className="search_but_top" onClick={()=>props.handleSearchButtons('nextSerial')}>{t('search.next')}</div>
                     </div>
                     <div></div>
 
@@ -36,14 +36,14 @@ export default function Search() {
                     <div className="search-center_button1 search-buttondivSmall">{t('search.currentpage')}</div>
                     <div className="search-right_button1 search-buttondivSmall"></div>
 
-                    <div className="search-left_button2 search-buttondiv">&lt; {t('search.previouspage')}</div>
+                    <div className="search-left_button2 search-buttondiv" onClick={()=>props.handleSearchButtons('prevPage')}>&lt; {t('search.previouspage')}</div>
                     <div className="search-center_button2 search-buttondiv">
                         <input type="text" className="search-currentpageInput" />
                     </div>
-                    <div className="search-right_button2 search-buttondiv">{t('search.nextpage')} &gt;</div>
-                    <div className="search-left_button3 search-buttondiv">{t('search.search')}</div>
-                    <div className="search-center_button3 search-buttondiv">{t('search.cataloging')}</div>
-                    <div className="search-right_button3 search-buttondiv">{t('search.clear')}</div>
+                    <div className="search-right_button2 search-buttondiv" onClick={()=>props.handleSearchButtons('nextPage')}>{t('search.nextpage')} &gt;</div>
+                    <div className="search-left_button3 search-buttondiv" onClick={()=>props.handleSearchButtons('search')}>{t('search.search')}</div>
+                    <div className="search-center_button3"></div>  
+                    <div className="search-right_button3 search-buttondiv" onClick={()=>props.handleSearchButtons('clear')}>{t('search.clear')}</div>
                 </div>
 
                 <div className="search-numberOfResults">
@@ -52,6 +52,7 @@ export default function Search() {
                 </div>
 
                 <textarea className="search-resultsTextArea" id="search-resultsTextArea">
+                    {props.value}
                 </textarea>
             </div>
         </div>
