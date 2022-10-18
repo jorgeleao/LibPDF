@@ -3,7 +3,9 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 //import { version } from 'react';
 import About from './about.js';
 import Search from './search.js';
-import { SearchModeContext } from './contexts/SearchModeContext'
+import { SearchModeContext } from './contexts/SearchModeContext.js'
+import { BibliformContext } from './contexts/BibliformContext.js'
+import { useForm } from "react-hook-form";
 import Logout from './logout.js';
 import Menubar from './menubar.js'
 import Cataloging from './cataloging.js';
@@ -39,20 +41,27 @@ export default function Mainpage() {
           setChkboxState(newChkboxState)
       }
   }
+//===========
 
+const { register, handleSubmit } = useForm();
+const onSubmit = (data) => console.log(data);
+const searchClick = ()=>{handleSubmit(onSubmit);console.log("=== SEARCH ===")}
+//===========
   return (
     <div> 
       <div className="mainpage_cardboard"></div>
       <SearchModeContext.Provider value={{chkboxState, serialChange, checkboxANDChange, checkboxORChange}}>
+      <BibliformContext.Provider value={{register, handleSubmit, onSubmit}}>
         <BrowserRouter>
           <Menubar />
           <Routes>
-            <Route exact path="/" element={<Search />}></Route>
+            <Route exact path="/" element={<Search searchClick={searchClick}/>}></Route>
             <Route path="/catalog" element={<Cataloging />}></Route>
             <Route path="/about" element={<About />}></Route>
             <Route path="/logout" element={<Logout />}></Route>
           </Routes>
         </BrowserRouter>
+      </BibliformContext.Provider>  
       </SearchModeContext.Provider>
     </div>
   );
