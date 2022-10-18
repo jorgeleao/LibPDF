@@ -4,7 +4,7 @@ import './search.css'
 import BibliForm from './BibliForm'
 import SearchMode from './SearchMode'
 
-export default function Search(props) {
+export default function Search() {
     const { t } = useTranslation();
 
     return (
@@ -41,7 +41,7 @@ export default function Search(props) {
                         <input type="text" className="search-currentpageInput" />
                     </div>
                     <div className="search-right_button2 search-buttondiv">{t('search.nextpage')} &gt;</div>
-                    <div className="search-left_button3 search-buttondiv" onClick={props.searchClick}>{t('search.search')}</div>
+                    <div className="search-left_button3 search-buttondiv">{t('search.search')}</div>
                     <div className="search-center_button3 search-buttondiv">{t('search.cataloging')}</div>
                     <div className="search-right_button3 search-buttondiv">{t('search.clear')}</div>
                 </div>
