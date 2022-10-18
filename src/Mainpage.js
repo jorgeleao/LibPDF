@@ -21,8 +21,6 @@ export default function Mainpage() {
     let newChkboxState = [...chkboxState]  // to ensure it is a deep copy!
     newChkboxState[0] = !chkboxState[0]
     setChkboxState(newChkboxState)
-    console.log("=== newChkboxState: "+newChkboxState)
-    console.log("=== chkboxState: "+chkboxState)
   }
   function checkboxANDChange(and,or){
     let newChkboxState = [...chkboxState]
@@ -40,26 +38,28 @@ export default function Mainpage() {
           setChkboxState(newChkboxState)
       }
   }
-//===========
 
-//let state = {serial:"", title:"", author:"", publisher:"", from:"", to:"", keywords:""}
-const [state , setState] = useState({serial:"", title:"", author:"", publisher:"", from:"", to:"", keywords:""})
+  const [fields, setFields] = useState({serial:"",title:"",author:"",publisher:"",from:"",to:"",keywords:""})
+  function handleChangeReducer(field,value){
+      let updatedField = {}
+      switch(field){
+        case 'serial':{ updatedField = {serial:value}; break;}  
+        case 'title':{ updatedField = {title:value}; break;}  
+        case 'author':{ updatedField = {author:value}; break;}  
+        case 'publisher':{ updatedField = {publisher:value}; break;}  
+        case 'from':{ updatedField = {from:value}; break;}  
+        case 'to':{ updatedField = {to:value}; break;}  
+        case 'keywords':{ updatedField = {keywords:value}; break;}  
+        default:{}
+      }  
+      setFields(fields => ({...fields,...updatedField}))
+  }
 
-function handleChangeSerial(serial){
-  setState({...serial})
-  console.log("=== serial: "+serial)
-}
-function handleChangeTitle(title){
-  setState({...title})
-  console.log("=== title: "+title)
-}
-
-//===========
   return (
     <div> 
       <div className="mainpage_cardboard"></div>
       <SearchModeContext.Provider value={{chkboxState, serialChange, checkboxANDChange, checkboxORChange}}>
-      <BibliformContext.Provider value={{state, handleChangeSerial, handleChangeTitle}}>
+      <BibliformContext.Provider value={{fields, handleChangeReducer}}>
         <BrowserRouter>
           <Menubar />
           <Routes>
@@ -69,7 +69,7 @@ function handleChangeTitle(title){
             <Route path="/logout" element={<Logout />}></Route>
           </Routes>
         </BrowserRouter>
-      </BibliformContext.Provider>  
+      </BibliformContext.Provider>
       </SearchModeContext.Provider>
     </div>
   );
