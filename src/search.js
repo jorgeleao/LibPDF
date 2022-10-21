@@ -51,8 +51,8 @@ export default function Search(props) {
                     {t('search.nrorecordsfound')}: <span id="idNroRows">33</span>
                 </div>
 
-                <textarea className="search-resultsTextArea" id="search-resultsTextArea">
-                    {props.value}
+                <textarea className="search-resultsTextArea" id="search-resultsTextArea" value={props.textareavalue} readOnly>
+
                 </textarea>
             </div>
         </div>

@@ -6,9 +6,7 @@ import { BibliformContext } from './contexts/BibliformContext.js'
 
 export default function BibliForm(){
     const {fields, handleChangeReducer} = useContext(BibliformContext)
-//        handleChangeSerial, handleChangeTitle, handleChangeAuthor, handleChangePublisher, handleChangeFrom, handleChangeTo, handleChangeKeywords } = useContext(BibliformContext)
     const { t } = useTranslation();
-
 
     return(
         <form>

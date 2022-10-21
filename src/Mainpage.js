@@ -59,7 +59,7 @@ export default function Mainpage() {
       setFields(fields => ({...fields,...updatedField}))
   }
   const chkboxNames = ['serial','titleAND','titleOR','authorAND','authorOR','publisherAND','publisherOR','dateAND','dateOR','keywordsAND','keywordsOR']
-  var results = ''
+  const [results,setResults] = useState('')
   function handleSearchButtons(button){
     switch(button){
       case 'prevSerial':{ console.log("=== PREVIOUS SERIAL ===");break;}
@@ -67,11 +67,6 @@ export default function Mainpage() {
       case 'prevPage'  :{ console.log("=== PREVIOUS PAGE ===");break;}
       case 'nextPage'  :{ console.log("=== NEXT PAGE ===");break;}
       case 'search'    :{ console.log("\n\n=== SEARCH ===");
-                          results = new String(
-                            fields.serial+'\n'+
-                            fields.title+'\n'+
-                            fields.author
-                          )
                           console.log(fields.serial)
                           console.log(fields.title)
                           console.log(fields.author)
@@ -84,15 +79,18 @@ export default function Mainpage() {
                           else for(let i=1;i<11;i++){
                             if (chkboxState[i]) console.log(chkboxNames[i])
                           }
+                          setResults(fields.serial+'\n'+fields.title+'\n'+fields.author)
                           break; }
       case 'clear'     :{ console.log("=== CLEAR ===");
                           clearCheckboxes()
+                          setResults('')
                           let updatedField = {serial:"",title:"",author:"",publisher:"",from:"",to:"",keywords:""};
                           setFields(updatedField);
                           break;}
       default:{}
     }
   }
+
   return (
     <div> 
       <div className="mainpage_cardboard"></div>
@@ -101,7 +99,7 @@ export default function Mainpage() {
         <BrowserRouter>
           <Menubar />
           <Routes>
-            <Route exact path="/" element={<Search handleSearchButtons={handleSearchButtons} value={results}/>}></Route>
+            <Route exact path="/" element={<Search handleSearchButtons={handleSearchButtons} textareavalue={results}/>}></Route>
             <Route path="/catalog" element={<Cataloging />}></Route>
             <Route path="/about" element={<About />}></Route>
             <Route path="/logout" element={<Logout />}></Route>
