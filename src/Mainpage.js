@@ -58,8 +58,22 @@ export default function Mainpage() {
       }  
       setFields(fields => ({...fields,...updatedField}))
   }
-  const chkboxNames = ['serial','titleAND','titleOR','authorAND','authorOR','publisherAND','publisherOR','dateAND','dateOR','keywordsAND','keywordsOR']
+  const chkboxNames = [
+    'serial',
+    'titleAND',
+    'titleOR',
+    'authorAND',
+    'authorOR',
+    'publisherAND',
+    'publisherOR',
+    'dateAND',
+    'dateOR',
+    'keywordsAND',
+    'keywordsOR'
+  ]
+
   const [results,setResults] = useState('')
+
   function handleSearchButtons(button){
     switch(button){
       case 'prevSerial':{ console.log("=== PREVIOUS SERIAL ===");break;}
@@ -67,19 +81,24 @@ export default function Mainpage() {
       case 'prevPage'  :{ console.log("=== PREVIOUS PAGE ===");break;}
       case 'nextPage'  :{ console.log("=== NEXT PAGE ===");break;}
       case 'search'    :{ console.log("\n\n=== SEARCH ===");
-                          console.log(fields.serial)
-                          console.log(fields.title)
-                          console.log(fields.author)
-                          console.log(fields.publisher)
-                          console.log(fields.from)
-                          console.log(fields.to)
-                          console.log(fields.keywords)
                           console.log("=== Search mode:")
-                          if(chkboxState[0])console.log('serial')
+                          let selectedChkboxes = ''
+                          if(chkboxState[0])selectedChkboxes='serial'
                           else for(let i=1;i<11;i++){
-                            if (chkboxState[i]) console.log(chkboxNames[i])
+                            if (chkboxState[i]) selectedChkboxes += chkboxNames[i] + '\n'
                           }
-                          setResults(fields.serial+'\n'+fields.title+'\n'+fields.author)
+                          setResults(
+                            '=== Fields:\n'+
+                            fields.serial+'\n'+
+                            fields.title+'\n'+
+                            fields.author+'\n'+
+                            fields.publisher+'\n'+
+                            fields.from+'\n'+
+                            fields.to+'\n'+
+                            fields.keywords+'\n'+
+                            '=== Checkboxes:\n'+
+                            selectedChkboxes
+                          )
                           break; }
       case 'clear'     :{ console.log("=== CLEAR ===");
                           clearCheckboxes()
