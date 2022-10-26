@@ -17,7 +17,7 @@ export default function BibliForm(){
 
                 <div>{t('bibliform.title')}</div>
                 <div className="bibliform-twosix"><input name="title" type="text" className="bibliform-intext" value={fields.title} 
-                    onChange={e=>handleChangeReducer('title', e.target.value)}/></div>
+                    onChange={e=>handleChangeReducer('title', e.target.value)} autoComplete="true"/></div>
                 
                 <div>{t('bibliform.author')}</div>
                 <div className="bibliform-twosix"><input name="author" type="text" className="bibliform-intext" value={fields.author} 

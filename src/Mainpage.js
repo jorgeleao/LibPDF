@@ -44,6 +44,7 @@ export default function Mainpage() {
   }
 
   const [fields, setFields] = useState({serial:"",title:"",author:"",publisher:"",from:"",to:"",keywords:""})
+
   function handleChangeReducer(field,value){
       let updatedField = {}
       switch(field){
@@ -72,21 +73,29 @@ export default function Mainpage() {
     'keywordsOR'
   ]
 
+  const [currPage,setCurrPage] = useState('')
   const [results,setResults] = useState('')
 
   function handleSearchButtons(button){
     switch(button){
-      case 'prevSerial':{ console.log("=== PREVIOUS SERIAL ===");break;}
-      case 'nextSerial':{ console.log("=== NEXT SERIAL ===");break;}
-      case 'prevPage'  :{ console.log("=== PREVIOUS PAGE ===");break;}
-      case 'nextPage'  :{ console.log("=== NEXT PAGE ===");break;}
-      case 'search'    :{ console.log("\n\n=== SEARCH ===");
-                          console.log("=== Search mode:")
-                          let selectedChkboxes = ''
+      case 'prevSerial':{ console.log("=== PREVIOUS SERIAL: "+fields.serial);
+                          if(fields.serial>Number(1)) setFields(fields => ({...fields,...fields.serial--}))
+                          break;}
+      case 'nextSerial':{ console.log("=== NEXT SERIAL: "+fields.serial);
+                          setFields(fields => ({...fields,...fields.serial++}))
+                          break;}
+      case 'prevPage'  :{ console.log("=== PREVIOUS PAGE ===");
+                          if(currPage>Number(1)) setCurrPage(currPage => currPage-Number(1))
+                          break;}
+      case 'nextPage'  :{ console.log("=== NEXT PAGE ===");
+                          setCurrPage(currPage => currPage+Number(1))
+                          break;}
+      case 'search'    :{ let selectedChkboxes = ''
                           if(chkboxState[0])selectedChkboxes='serial'
                           else for(let i=1;i<11;i++){
                             if (chkboxState[i]) selectedChkboxes += chkboxNames[i] + '\n'
                           }
+                          setFields({serial:Number(1),title:"",author:"",publisher:"",from:"",to:"",keywords:""});
                           setResults(
                             '=== Fields:\n'+
                             fields.serial+'\n'+
@@ -99,16 +108,27 @@ export default function Mainpage() {
                             '=== Checkboxes:\n'+
                             selectedChkboxes
                           )
+                          setCurrPage(Number(1));
+                          setNroRecords(33)
                           break; }
       case 'clear'     :{ console.log("=== CLEAR ===");
                           clearCheckboxes()
                           setResults('')
                           let updatedField = {serial:"",title:"",author:"",publisher:"",from:"",to:"",keywords:""};
                           setFields(updatedField);
+                          setCurrPage("");
+                          setNroRecords(0)
                           break;}
       default:{}
     }
   }
+
+  function handleChangeCurrPage(e){
+    console.log("=== Curr page changed: "+e.target.value)
+    setCurrPage(Number(e.target.value))
+  }
+
+  const [nroRecords,setNroRecords]= useState(0)
 
   return (
     <div> 
@@ -118,7 +138,13 @@ export default function Mainpage() {
         <BrowserRouter>
           <Menubar />
           <Routes>
-            <Route exact path="/" element={<Search handleSearchButtons={handleSearchButtons} textareavalue={results}/>}></Route>
+            <Route exact path="/" element={<Search 
+                                              handleSearchButtons={handleSearchButtons} 
+                                              currPage={currPage} 
+                                              handleChangeCurrPage={handleChangeCurrPage}
+                                              nroRecords={nroRecords}
+                                              textareavalue={results}/>}>
+            </Route>
             <Route path="/catalog" element={<Cataloging />}></Route>
             <Route path="/about" element={<About />}></Route>
             <Route path="/logout" element={<Logout />}></Route>

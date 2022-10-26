@@ -38,7 +38,9 @@ export default function Search(props) {
 
                     <div className="search-left_button2 search-buttondiv" onClick={()=>props.handleSearchButtons('prevPage')}>&lt; {t('search.previouspage')}</div>
                     <div className="search-center_button2 search-buttondiv">
-                        <input type="text" className="search-currentpageInput" />
+                        <input type="text"  className="search-currentpageInput" 
+                                            value={props.currPage} 
+                                            onChange={e=>props.handleChangeCurrPage(e)}/>
                     </div>
                     <div className="search-right_button2 search-buttondiv" onClick={()=>props.handleSearchButtons('nextPage')}>{t('search.nextpage')} &gt;</div>
                     <div className="search-left_button3 search-buttondiv" onClick={()=>props.handleSearchButtons('search')}>{t('search.search')}</div>
@@ -48,7 +50,7 @@ export default function Search(props) {
 
                 <div className="search-numberOfResults">
                     <span className="search-forResults">{t('search.results')}</span><br />
-                    {t('search.nrorecordsfound')}: <span id="idNroRows">33</span>
+                    {t('search.nrorecordsfound')}: <span id="idNroRecords">{props.nroRecords}</span>
                 </div>
 
                 <textarea className="search-resultsTextArea" id="search-resultsTextArea" value={props.textareavalue} readOnly>

@@ -31,8 +31,9 @@ export default function Logout(props) {
 <input type="submit" value="Submit" />
 </form> */
 
-    const { register, handleSubmit } = useForm();
-    const onSubmit = (data) => console.log(data);
+
+    // const { register, handleSubmit } = useForm();
+    // const onSubmit = (data) => console.log(data);
 
     return (
         <div className="logout_cardboard">
@@ -44,7 +45,10 @@ export default function Logout(props) {
             <br />
             <br />
             <div>
-                <form onSubmit = { handleSubmit(onSubmit) } >
+
+
+
+                {/* <form onSubmit = { handleSubmit(onSubmit) } >
                     <div className="bibliform-twosix"><input  {...register("serial", {required:  false})} name="serial" type="text" className="bibliform-intext" /></div>
 
                     <div>{t('bibliform.title')}</div>
@@ -57,7 +61,7 @@ export default function Logout(props) {
                     <div className="bibliform-twosix"><input  {...register("publisher", {required:  false})} name="publisher" type="text" className="bibliform-intext" /></div>
 
                     <input type="submit" />
-                </form>
+                </form> */}
             </div>
         </div>
     );
