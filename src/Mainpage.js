@@ -14,6 +14,10 @@ import './i18n.js';
 
 export default function Mainpage() {
   //console.log("=== React version: "+version);
+
+
+
+//=========== Search ==========
   
   const [chkboxState, setChkboxState] = useState(new Array(11).fill(false,0,11))
 
@@ -21,6 +25,7 @@ export default function Mainpage() {
     let newChkboxState = new Array(11).fill(false,0,11)
     setChkboxState(newChkboxState)
   }
+  // Checkboxes are numbered from 0 to 10 - 0:serial, 1:titleAND, 2:titleOR, ans so on...
   function serialChange(){
     let newChkboxState = [...chkboxState]  // to ensure it is a deep copy!
     newChkboxState[0] = !chkboxState[0]
@@ -90,12 +95,13 @@ export default function Mainpage() {
       case 'nextPage'  :{ console.log("=== NEXT PAGE ===");
                           setCurrPage(currPage => currPage+Number(1))
                           break;}
-      case 'search'    :{ let selectedChkboxes = ''
+      case 'search'    :{ console.log("=== SEARCH ===");
+                          let selectedChkboxes = ''
                           if(chkboxState[0])selectedChkboxes='serial'
                           else for(let i=1;i<11;i++){
                             if (chkboxState[i]) selectedChkboxes += chkboxNames[i] + '\n'
                           }
-                          setFields({serial:Number(1),title:"",author:"",publisher:"",from:"",to:"",keywords:""});
+                          setFields(fields => ({...fields}));
                           setResults(
                             '=== Fields:\n'+
                             fields.serial+'\n'+
@@ -128,7 +134,62 @@ export default function Mainpage() {
     setCurrPage(Number(e.target.value))
   }
 
-  const [nroRecords,setNroRecords]= useState(0)
+  const [nroRecords,setNroRecords] = useState(0)
+
+
+//=========== Cataloging ==========
+
+const [catalogFields, setCatalogFields] = useState({serial:"serial",title:"title",author:"author",publisher:"publisher",pubdate:"2022",keywords:"#React #Web",originalFilename:"BigFile.bin"})
+const [newComment,setNewComment] = useState("New comment ...")
+const [previousComment,setPreviousComment] = useState("Previous comments ...")
+
+function handleCatalogButtons(button){
+  switch(button){
+    case 'prevSerial':{ console.log("=== PREVIOUS SERIAL: ");
+                        break;}
+    case 'nextSerial':{ console.log("=== NEXT SERIAL: ");
+                        break;}
+    case 'upload':{ console.log("=== UPLOAD: ");
+                        break;}
+    case 'edit':{ console.log("=== EDIT: ");
+                    break;}
+    case 'saveascurrent':{ console.log("=== saveascurrent: ");
+                    break;}
+    case 'saveasnew':{ console.log("=== saveasnew: ");
+                    break;}
+    case 'download':{ console.log("=== download: ");
+                    break;}
+    case 'clear':{ console.log("=== clear: ");
+                    let updatedCatalogFields = {serial:"",title:"",author:"",publisher:"",pubdate:"",keywords:"",originalFilename:""};
+                    setCatalogFields(updatedCatalogFields);
+                    setNewComment(()=>(""))
+                    setPreviousComment(()=>(""))
+                    break;}
+    case 'delete':{ console.log("=== delete: ");
+                    break;}
+    default:{}
+  }
+}
+
+function catalogHandleChangeReducer(field,value){
+  console.log("=== value: "+value)
+  let updatedField = {}
+  switch(field){
+    case 'serial':{ updatedField = {serial:value}; console.log("=== SERIAL ===");break;}  
+    case 'title':{ updatedField = {title:value}; break;}  
+    case 'author':{ updatedField = {author:value}; break;}  
+    case 'publisher':{ updatedField = {publisher:value}; break;}  
+    case 'pubdate':{ updatedField = {pubdate:value}; break;}  
+    case 'keywords':{ updatedField = {keywords:value}; break;}  
+    case 'originalFilename':{ updatedField = {originalFilename:value}; break;}  
+    default:{}
+  }  
+  setCatalogFields(catalogFields => ({...catalogFields,...updatedField}))
+}
+
+function catalogHandleNewComment(e){
+  setNewComment(()=>(e.target.value))    
+}
 
   return (
     <div> 
@@ -145,7 +206,15 @@ export default function Mainpage() {
                                               nroRecords={nroRecords}
                                               textareavalue={results}/>}>
             </Route>
-            <Route path="/catalog" element={<Cataloging />}></Route>
+            <Route path="/catalog" element={<Cataloging
+                                              handleCatalogButtons={handleCatalogButtons}
+                                              catalogHandleChangeReducer={catalogHandleChangeReducer}
+                                              catalogFields={catalogFields}
+                                              newComment={newComment}
+                                              previousComment={previousComment}
+                                              catalogHandleNewComment={catalogHandleNewComment}
+                                              />}>
+            </Route>
             <Route path="/about" element={<About />}></Route>
             <Route path="/logout" element={<Logout />}></Route>
           </Routes>

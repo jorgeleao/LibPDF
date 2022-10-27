@@ -91,7 +91,7 @@
     border:1px solid black;
     border-radius: 5px;
     padding-left:2px;
-    font-size:1.1em;
+    font-size:0.8em;
     text-align:left;
 }
 
@@ -134,7 +134,7 @@
     overflow-y:scroll;
     overflow-x:auto;
     resize: none;
-    text-align: right;
+    text-align: left;
 }
 
 .cataloging_botbutton{
