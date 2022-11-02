@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import './logout.css'
 //import { useInput } from './hooks/useInput';
 import { useForm } from "react-hook-form";
+import axios from 'axios'
 
 export default function Logout(props) {
     const { t } = useTranslation();
@@ -32,8 +33,15 @@ export default function Logout(props) {
 </form> */
 
 
-    // const { register, handleSubmit } = useForm();
-    // const onSubmit = (data) => console.log(data);
+    const { register, handleSubmit } = useForm();
+    const onSubmit = (data) => {
+        console.log(data);
+        axios("https://jsonplaceholder.typicode.com/users")
+        .then((response) => {
+          console.log(response.data[0].name);
+        })
+
+    }        
 
     return (
         <div className="logout_cardboard">
@@ -48,7 +56,7 @@ export default function Logout(props) {
 
 
 
-                {/* <form onSubmit = { handleSubmit(onSubmit) } >
+                <form onSubmit = { handleSubmit(onSubmit) } >
                     <div className="bibliform-twosix"><input  {...register("serial", {required:  false})} name="serial" type="text" className="bibliform-intext" /></div>
 
                     <div>{t('bibliform.title')}</div>
@@ -61,7 +69,7 @@ export default function Logout(props) {
                     <div className="bibliform-twosix"><input  {...register("publisher", {required:  false})} name="publisher" type="text" className="bibliform-intext" /></div>
 
                     <input type="submit" />
-                </form> */}
+                </form>
             </div>
         </div>
     );
