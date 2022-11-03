@@ -74,8 +74,8 @@ export default function Mainpage() {
     'authorOR',
     'publisherAND',
     'publisherOR',
-    'dateAND',
-    'dateOR',
+    'datesAND',
+    'datesOR',
     'keywordsAND',
     'keywordsOR'
   ]
@@ -112,7 +112,7 @@ export default function Mainpage() {
                           let selectedChkboxes = ''
                           if(chkboxState[0])selectedChkboxes='serial'
                           else for(let i=1;i<11;i++){
-                            if (chkboxState[i]) selectedChkboxes += chkboxNames[i] + '\n'
+                            if (chkboxState[i]) selectedChkboxes += chkboxNames[i] + ','//'\n'
                           }
                           advancedSearch(selectedChkboxes,fields)
                           setCurrPage(Number(1));
@@ -136,13 +136,20 @@ export default function Mainpage() {
   }
 
   function searchById(id){
-    let success 
+    let success = null
     axios
     .get(`http://localhost:3001/searchbyid/${id}`)
     .then(response => {
       console.log("=== searchById: "+id+" responded! ===")
       let obj = response.data
-      let updatedField = {serial:id,title:obj.title,author:obj.author,publisher:obj.publisher,from:obj.from,to:obj.to,keywords:obj.keywords};
+      let updatedField = {  serial:id,
+                            title:obj.title,
+                            author:obj.author,
+                            publisher:obj.publisher,
+                            from:obj.from,
+                            to:obj.to,
+                            keywords:obj.keywords
+                          };
       setFields(updatedField);
       success = true
     })
@@ -157,20 +164,20 @@ export default function Mainpage() {
     return success
 }
 function advancedSearch(selBoxes,flds){
-  let success 
+  let success = null
   axios
-  .get("http://localhost:3001/advsearch")
+  .post("http://localhost:3001/advsearch",{id:selBoxes})
   .then(response => {
     console.log("=== advsearch: responded! ===")
     let obj = response.data
     let buff = ""
-    obj.forEach((ob => (buff = buff + 
-            ob.id + ". "+ 
-            "\""+ ob.title +"\" - "+ 
-            ob.author + ", "+ 
-            ob.publisher + ", "+ 
-            "published: "+ ob.from +". "+ 
-            ob.keywords+"\n\n")))
+    obj.forEach((ob => (buff =  buff + 
+                                ob.id + ". \""+
+                                ob.title + "\" - "+ 
+                                ob.author + ", "+ 
+                                ob.publisher + ", published:"+
+                                ob.from + ". "+ 
+                                ob.keywords + "\n\n")))
     setResults(buff)
     success = true
   })
