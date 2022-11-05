@@ -11,6 +11,8 @@ import Menubar from './menubar.js'
 import Cataloging from './cataloging.js';
 import './Mainpage.css';
 import './i18n.js';
+import { advancedSearch } from './api/advancedSearch.js';
+import { searchById } from './api/searchById.js';
 
 
 export default function Mainpage() {
@@ -32,22 +34,22 @@ export default function Mainpage() {
   // Checkboxes are numbered from 0 to 10 - 0:serial, 1:titleAND, 2:titleOR, ans so on...
   function serialChange(){
     let newChkboxState = [...chkboxState]  // to ensure it is a deep copy!
-    newChkboxState[0] = !chkboxState[0]
+    newChkboxState[0] = !chkboxState[0]    // Toggle the serial checkbox
     setChkboxState(newChkboxState)
   }
   function checkboxANDChange(and,or){
-    let newChkboxState = [...chkboxState]
-    if(!newChkboxState[0]){
-        newChkboxState[and] = !chkboxState[and] // or document.getElementById('titleAnd').checked
-        newChkboxState[or] = false
-        setChkboxState(newChkboxState)
+    let newChkboxState = [...chkboxState]       // Get a deep copy
+    if(!newChkboxState[0]){                     // If serial is not checked
+        newChkboxState[and] = !chkboxState[and] // Toggle a given AND checkbox
+        newChkboxState[or] = false              // Corresponding OR must be uncheckd, no matter what
+        setChkboxState(newChkboxState)          // Set the state...
     }
   }
   function checkboxORChange(and,or){
       let newChkboxState = [...chkboxState]
       if(!newChkboxState[0]){
           newChkboxState[and] = false
-          newChkboxState[or] = !chkboxState[or] // or document.getElementById('titleAnd').checked
+          newChkboxState[or] = !chkboxState[or] 
           setChkboxState(newChkboxState)
       }
   }
@@ -80,53 +82,92 @@ export default function Mainpage() {
     'keywordsOR'
   ]
 
+  async function advSearchUtil(){
+      console.log("=== SEARCH ===");
+      let selectedChkboxes = ''
+      if(chkboxState[0])selectedChkboxes='serial'
+      else for(let i=1;i<11;i++){
+        if (chkboxState[i]) selectedChkboxes += chkboxNames[i] + ','//'\n'
+      }
+
+      let searchResult = await advancedSearch(selectedChkboxes,fields)
+      console.log("=== success B: "+searchResult.success+"\n=== data:\n"+searchResult.data)                         
+      if(searchResult.success){
+        setResults(searchResult.data)
+      }else{
+        setResults("=== Didn't find any ...")
+      }
+  }
+  async function searchByIdNextUtil(id){
+    if(Number(fields.serial)>=0){
+      let newChkboxState = [...chkboxState]  // to ensure it is a deep copy!
+      newChkboxState[0] = true
+      setChkboxState(newChkboxState)
+      let result = await searchById(Number(fields.serial)+1)
+      let updatedField = {
+                    serial:result.data.id,
+                    title:result.data.title,
+                    author:result.data.author,
+                    publisher:result.data.publisher,
+                    from:result.data.from,
+                    to:result.data.to,
+                    keywords:result.data.keywords};
+      result.success?
+        setFields(updatedField):
+        console.log("=== Didn't find the resource ===")
+    }   
+  }
+  async function searchByIdPreviousUtil(id){
+    if(Number(fields.serial)>1){
+      let newChkboxState = [...chkboxState]  // to ensure it is a deep copy!
+      newChkboxState[0] = true
+      setChkboxState(newChkboxState)
+      let result = await searchById(Number(fields.serial)-1)
+      let updatedField = {
+        serial:result.data.id,
+        title:result.data.title,
+        author:result.data.author,
+        publisher:result.data.publisher,
+        from:result.data.from,
+        to:result.data.to,
+        keywords:result.data.keywords};
+      result.success?
+      setFields(updatedField):
+      console.log("=== Didn't find the resource ===")
+    }   
+  }
+
   function handleSearchButtons(button){
     switch(button){
-      case 'prevSerial':{ console.log("=== PREVIOUS SERIAL: "+fields.serial);
-                          if(Number(fields.serial)>1){
-                            let newChkboxState = [...chkboxState]  // to ensure it is a deep copy!
-                            newChkboxState[0] = true
-                            setChkboxState(newChkboxState)
-                            searchById(fields.serial-1)?
-                            setFields(prevFields => ({...fields,...prevFields.serial--})):
-                            console.log("=== Didn't find the resource ===")
-                          }   
-                          break;}
-      case 'nextSerial':{ console.log("=== NEXT SERIAL: "+fields.serial);
-                          if(Number(fields.serial)>=0){
-                            let newChkboxState = [...chkboxState]  // to ensure it is a deep copy!
-                            newChkboxState[0] = true
-                            setChkboxState(newChkboxState)
-                            searchById(fields.serial+1)?
-                            setFields(prevFields => ({...fields,...prevFields.serial++})):
-                            console.log("=== Didn't find the resource ===")
-                          }   
-                          break;}
-      case 'prevPage'  :{ console.log("=== PREVIOUS PAGE ===");
-                          if(Number(currPage)>1) setCurrPage(currPage => Number(currPage)-Number(1))
-                          break;}
-      case 'nextPage'  :{ console.log("=== NEXT PAGE ===");
-                          setCurrPage(currPage => Number(currPage)+Number(1))
-                          break;}
-      case 'search'    :{ console.log("=== SEARCH ===");
-                          let selectedChkboxes = ''
-                          if(chkboxState[0])selectedChkboxes='serial'
-                          else for(let i=1;i<11;i++){
-                            if (chkboxState[i]) selectedChkboxes += chkboxNames[i] + ','//'\n'
-                          }
-                          advancedSearch(selectedChkboxes,fields)
-                          setCurrPage(Number(1));
-                          setNroRecords(33)
-                          break; }
-      case 'clear'     :{ console.log("=== CLEAR ===");
-                          clearCheckboxes()
-                          setResults('')
-                          let updatedField = {serial:0,title:"",author:"",publisher:"",from:"",to:"",keywords:""};
-                          setFields(updatedField);
-                          setCurrPage("");
-                          setNroRecords(0)
-                          break;}
-      default:{}
+      case 'prevSerial':  { searchByIdPreviousUtil(fields.serial)   
+                            break;}
+
+      case 'nextSerial':  { searchByIdNextUtil(fields.serial)
+                            break;}
+
+      case 'prevPage'  :  { console.log("=== PREVIOUS PAGE ===");
+                            if(Number(currPage)>1) setCurrPage(currPage => Number(currPage)-Number(1))
+                            break;}
+
+      case 'nextPage'  :  { console.log("=== NEXT PAGE ===");
+                            setCurrPage(currPage => Number(currPage)+Number(1))
+                            break;}
+
+      case 'search'    :  { advSearchUtil()
+                            setCurrPage(Number(1));
+                            setNroRecords(33)
+                            break; }
+
+      case 'clear'     :  { console.log("=== CLEAR ===");
+                            clearCheckboxes()
+                            setResults('')
+                            let updatedField = {serial:0,title:"",author:"",publisher:"",from:"",to:"",keywords:""};
+                            setFields(updatedField);
+                            setCurrPage("");
+                            setNroRecords(0)
+                            break;}
+
+      default          :  {}
     }
   }
 
@@ -135,62 +176,6 @@ export default function Mainpage() {
     setCurrPage(Number(e.target.value))
   }
 
-  function searchById(id){
-    let success = null
-    axios
-    .get(`http://localhost:3001/searchbyid/${id}`)
-    .then(response => {
-      console.log("=== searchById: "+id+" responded! ===")
-      let obj = response.data
-      let updatedField = {  serial:id,
-                            title:obj.title,
-                            author:obj.author,
-                            publisher:obj.publisher,
-                            from:obj.from,
-                            to:obj.to,
-                            keywords:obj.keywords
-                          };
-      setFields(updatedField);
-      success = true
-    })
-    .catch(error => {
-      if (error.response) {
-          console.log(error.status)
-      } else {
-          console.log(error.message)
-      }
-      success = false
-    })
-    return success
-}
-function advancedSearch(selBoxes,flds){
-  let success = null
-  axios
-  .post("http://localhost:3001/advsearch",{id:selBoxes})
-  .then(response => {
-    console.log("=== advsearch: responded! ===")
-    let obj = response.data
-    let buff = ""
-    obj.forEach((ob => (buff =  buff + 
-                                ob.id + ". \""+
-                                ob.title + "\" - "+ 
-                                ob.author + ", "+ 
-                                ob.publisher + ", published:"+
-                                ob.from + ". "+ 
-                                ob.keywords + "\n\n")))
-    setResults(buff)
-    success = true
-  })
-  .catch(error => {
-    if (error.response) {
-        console.log(error.status)
-    } else {
-        console.log(error.message)
-    }
-    success = false
-  })
-  return success
-}
 
 
 //=========== Cataloging ==========
