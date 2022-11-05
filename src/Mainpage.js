@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import axios from 'axios'
 //import { version } from 'react';
 import About from './about.js';
 import Search from './search.js';
@@ -31,7 +30,7 @@ export default function Mainpage() {
     let newChkboxState = new Array(11).fill(false,0,11)
     setChkboxState(newChkboxState)
   }
-  // Checkboxes are numbered from 0 to 10 - 0:serial, 1:titleAND, 2:titleOR, ans so on...
+  // Checkboxes are numbered from 0 to 10 - 0:serial, 1:titleAND, 2:titleOR, and so on...
   function serialChange(){
     let newChkboxState = [...chkboxState]  // to ensure it is a deep copy!
     newChkboxState[0] = !chkboxState[0]    // Toggle the serial checkbox
@@ -124,13 +123,13 @@ export default function Mainpage() {
       setChkboxState(newChkboxState)
       let result = await searchById(Number(fields.serial)-1)
       let updatedField = {
-        serial:result.data.id,
-        title:result.data.title,
-        author:result.data.author,
-        publisher:result.data.publisher,
-        from:result.data.from,
-        to:result.data.to,
-        keywords:result.data.keywords};
+                    serial:result.data.id,
+                    title:result.data.title,
+                    author:result.data.author,
+                    publisher:result.data.publisher,
+                    from:result.data.from,
+                    to:result.data.to,
+                    keywords:result.data.keywords};
       result.success?
       setFields(updatedField):
       console.log("=== Didn't find the resource ===")

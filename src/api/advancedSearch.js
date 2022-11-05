@@ -13,8 +13,8 @@ export async function advancedSearch(selBoxes,flds){
                                 ob.publisher + ", published:"+
                                 ob.from + ". "+ 
                                 ob.keywords + "\n\n")))
-    result.success = true
     result.data = buff
+    result.success = true
   }catch(error){  
     if (error.response) {
         console.log(error.status)
@@ -23,6 +23,5 @@ export async function advancedSearch(selBoxes,flds){
     }
     result.success = false
   }
-  console.log("=== success:"+result.success+"\n=== data:\n"+result)
   return result
 }
