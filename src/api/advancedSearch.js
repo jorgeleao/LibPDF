@@ -1,20 +1,10 @@
 import axios from 'axios'
 
-export async function advancedSearch(selBoxes,flds){
-  let result = {success:false,data:''}
+export async function advancedSearch(queryparam,page){
+  let result = {}
   try{
-    const response = await axios.post("http://localhost:3001/advsearch",{id:selBoxes})
-    let buff = ''
-    let obj = response.data
-    obj.forEach((ob => (buff =  buff + 
-                                ob.id + ". \""+
-                                ob.title + "\" - "+ 
-                                ob.author + ", "+ 
-                                ob.publisher + ", published:"+
-                                ob.from + ". "+ 
-                                ob.keywords + "\n\n")))
-    result.data = buff
-    result.success = true
+    const response = await axios.get(`http://localhost:3001/advsearch/${page}`,queryparam)
+    result = response.data
   }catch(error){  
     if (error.response) {
         console.log(error.status)

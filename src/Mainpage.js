@@ -81,22 +81,32 @@ export default function Mainpage() {
     'keywordsOR'
   ]
 
-  async function advSearchUtil(){
-      console.log("=== SEARCH ===");
+  async function advSearchUtil(page){
       let selectedChkboxes = ''
       if(chkboxState[0])selectedChkboxes='serial'
       else for(let i=1;i<11;i++){
         if (chkboxState[i]) selectedChkboxes += chkboxNames[i] + ','//'\n'
       }
-
-      let searchResult = await advancedSearch(selectedChkboxes,fields)
-      console.log("=== success B: "+searchResult.success+"\n=== data:\n"+searchResult.data)                         
-      if(searchResult.success){
-        setResults(searchResult.data)
+      let queryparam = {params:{
+                                tm:"or",title:"Running again",
+                                am:"or",author:"Dr. Joh Doolittle",
+                                pm:"or",publisher:"McGraw-Hill Inc.",
+                                fdm:"or",from:"2020-01-01",
+                                tdm:"or",to:"2022-11-05",
+                                km:"or",keywords:"#REACT"
+                              }}
+      let searchResult = await advancedSearch(queryparam,page)
+      if(searchResult[0].success){
+        let buff = ''
+        searchResult.forEach(res=>{
+          buff = buff + JSON.stringify(res)
+        })
+        setResults(buff)
       }else{
         setResults("=== Didn't find any ...")
       }
   }
+
   async function searchByIdNextUtil(id){
     if(Number(fields.serial)>=0){
       let newChkboxState = [...chkboxState]  // to ensure it is a deep copy!
@@ -104,13 +114,13 @@ export default function Mainpage() {
       setChkboxState(newChkboxState)
       let result = await searchById(Number(fields.serial)+1)
       let updatedField = {
-                    serial:result.data.id,
-                    title:result.data.title,
-                    author:result.data.author,
-                    publisher:result.data.publisher,
-                    from:result.data.from,
-                    to:result.data.to,
-                    keywords:result.data.keywords};
+                    serial:result.id,
+                    title:result.title,
+                    author:result.author,
+                    publisher:result.publisher,
+                    from:result.from,
+                    to:result.to,
+                    keywords:result.keywords};
       result.success?
         setFields(updatedField):
         console.log("=== Didn't find the resource ===")
@@ -123,13 +133,13 @@ export default function Mainpage() {
       setChkboxState(newChkboxState)
       let result = await searchById(Number(fields.serial)-1)
       let updatedField = {
-                    serial:result.data.id,
-                    title:result.data.title,
-                    author:result.data.author,
-                    publisher:result.data.publisher,
-                    from:result.data.from,
-                    to:result.data.to,
-                    keywords:result.data.keywords};
+                    serial:result.id,
+                    title:result.title,
+                    author:result.author,
+                    publisher:result.publisher,
+                    from:result.from,
+                    to:result.to,
+                    keywords:result.keywords};
       result.success?
       setFields(updatedField):
       console.log("=== Didn't find the resource ===")
@@ -152,7 +162,7 @@ export default function Mainpage() {
                             setCurrPage(currPage => Number(currPage)+Number(1))
                             break;}
 
-      case 'search'    :  { advSearchUtil()
+      case 'search'    :  { advSearchUtil(1)
                             setCurrPage(Number(1));
                             setNroRecords(33)
                             break; }
