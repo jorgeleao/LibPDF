@@ -118,8 +118,8 @@ export default function Mainpage() {
                     title:result.title,
                     author:result.author,
                     publisher:result.publisher,
-                    from:result.from,
-                    to:result.to,
+                    from:result.pubdate,
+                    to:'',
                     keywords:result.keywords};
       result.success?
         setFields(updatedField):
@@ -137,8 +137,8 @@ export default function Mainpage() {
                     title:result.title,
                     author:result.author,
                     publisher:result.publisher,
-                    from:result.from,
-                    to:result.to,
+                    from:result.pubdate,
+                    to:'',
                     keywords:result.keywords};
       result.success?
       setFields(updatedField):
