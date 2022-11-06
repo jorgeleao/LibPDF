@@ -81,30 +81,46 @@ export default function Mainpage() {
     'keywordsOR'
   ]
 
-  async function advSearchUtil(page){
-      let selectedChkboxes = ''
-      if(chkboxState[0])selectedChkboxes='serial'
-      else for(let i=1;i<11;i++){
-        if (chkboxState[i]) selectedChkboxes += chkboxNames[i] + ','//'\n'
-      }
-      let queryparam = {params:{
-                                tm:"or",title:"Running again",
-                                am:"or",author:"Dr. Joh Doolittle",
-                                pm:"or",publisher:"McGraw-Hill Inc.",
-                                fdm:"or",from:"2020-01-01",
-                                tdm:"or",to:"2022-11-05",
-                                km:"or",keywords:"#REACT"
-                              }}
-      let searchResult = await advancedSearch(queryparam,page)
-      if(searchResult[0].success){
-        let buff = ''
-        searchResult.forEach(res=>{
-          buff = buff + JSON.stringify(res)
-        })
-        setResults(buff)
-      }else{
-        setResults("=== Didn't find any ...")
-      }
+  async function advSearchUtil(){
+    let page = 1
+    // let selectedChkboxes = ''
+    // if(chkboxState[0])selectedChkboxes='serial'
+    // else for(let i=1;i<11;i++){
+    //   if (chkboxState[i]) selectedChkboxes += chkboxNames[i] + ','//'\n'
+    // }
+    let queryparam = {params:{
+                              tm:"or",title:"Running again",
+                              am:"or",author:"Dr. Joh Doolittle",
+                              pm:"or",publisher:"McGraw-Hill Inc.",
+                              fdm:"or",from:"2020-01-01",
+                              tdm:"or",to:"2022-11-05",
+                              km:"or",keywords:"#REACT"
+                            }}
+    let searchResult = await advancedSearch(queryparam,page)
+    if(searchResult[0].success){
+
+    }
+    
+    
+    if(searchResult[0].success){
+      let buff = ''
+      searchResult.forEach(res=>{
+        buff = buff +
+                res.id+". \""+
+                res.title+"\", "+
+                res.author+". "+
+                res.publisher+", "+
+                res.pubdate+". Keywords: "+
+                res.keywords+". <a onclick={edit()}>EDIT</a>\n\n"
+      })
+      setResults(buff)
+    }else{
+      setResults("=== Didn't find any ...")
+    }
+
+
+    setCurrPage(Number(1));
+    setNroRecords(33)
   }
 
   async function searchByIdNextUtil(id){
@@ -162,9 +178,7 @@ export default function Mainpage() {
                             setCurrPage(currPage => Number(currPage)+Number(1))
                             break;}
 
-      case 'search'    :  { advSearchUtil(1)
-                            setCurrPage(Number(1));
-                            setNroRecords(33)
+      case 'search'    :  { advSearchUtil()
                             break; }
 
       case 'clear'     :  { console.log("=== CLEAR ===");
