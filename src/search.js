@@ -4,7 +4,7 @@ import './search.css'
 import BibliForm from './BibliForm'
 import SearchMode from './SearchMode'
 import SearchResults from './searchResults'
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Search(props) {
     const { t } = useTranslation();
@@ -21,9 +21,11 @@ export default function Search(props) {
         navigate("/catalog")
     }
 
-
     let contents = props.results.map((el,i) => 
-        <div key={i} onClick={elementClickHandle} className="searchElement" style={i%2?{backgroundColor:"white"}:{backgroundColor:"#e3f9ff"}}>
+        <div    key={el.id} onClick={elementClickHandle} className="searchElement" 
+                        style={i%2?
+                            {backgroundColor:"white",borderBottom:"1px solid #5b83b5"}:
+                            {backgroundColor:"#e3f9ff",borderBottom:"1px solid #5b83b5"}}>
             {el}
         </div>
     )

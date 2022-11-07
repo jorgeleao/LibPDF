@@ -107,7 +107,7 @@ export default function Mainpage() {
                 res.author+". "+
                 res.publisher+", "+
                 res.pubdate+". Keywords: "+
-                res.keywords+".")
+                res.keywords+". Grade: 1.")
       })
       buff.forEach((el)=>console.log(el))
       setResults(buff)
