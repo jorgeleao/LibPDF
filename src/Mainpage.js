@@ -109,7 +109,7 @@ export default function Mainpage() {
                 res.pubdate+". Keywords: "+
                 res.keywords+". Grade: 1.")
       })
-      buff.forEach((el)=>console.log(el))
+      //buff.forEach((el)=>console.log(el))
       setResults(buff)
     }else{
       setResults(["=== Didn't find any ..."])
@@ -191,7 +191,7 @@ export default function Mainpage() {
   }
 
   function handleChangeCurrPage(e){
-    console.log("=== Curr page changed: "+e.target.value)
+    //console.log("=== Curr page changed: "+e.target.value)
     setCurrPage(Number(e.target.value))
   }
 
@@ -232,10 +232,10 @@ function handleCatalogButtons(button){
 }
 
 function catalogHandleChangeReducer(field,value){
-  console.log("=== value: "+value)
+  //console.log("=== value: "+value)
   let updatedField = {}
   switch(field){
-    case 'serial':{ updatedField = {serial:value}; console.log("=== SERIAL ===");break;}  
+    case 'serial':{ updatedField = {serial:value}; break;}  
     case 'title':{ updatedField = {title:value}; break;}  
     case 'author':{ updatedField = {author:value}; break;}  
     case 'publisher':{ updatedField = {publisher:value}; break;}  
