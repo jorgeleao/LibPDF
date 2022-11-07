@@ -23,8 +23,9 @@ export default function Mainpage() {
   const [chkboxState, setChkboxState] = useState(new Array(11).fill(false,0,11))
   const [fields, setFields] = useState({serial:0,title:"",author:"",publisher:"",from:"",to:"",keywords:""})
   const [currPage,setCurrPage] = useState('')
-  const [results,setResults] = useState('')
+  const [results,setResults] = useState([])
   const [nroRecords,setNroRecords] = useState(0)
+ // const [resulstContents,setResultsContents] = useState([])
 
   function clearCheckboxes(){
     let newChkboxState = new Array(11).fill(false,0,11)
@@ -98,26 +99,21 @@ export default function Mainpage() {
                             }}
     let searchResult = await advancedSearch(queryparam,page)
     if(searchResult[0].success){
-
-    }
-    
-    
-    if(searchResult[0].success){
-      let buff = ''
+      let buff = []
       searchResult.forEach(res=>{
-        buff = buff +
+        buff.push(
                 res.id+". \""+
                 res.title+"\", "+
                 res.author+". "+
                 res.publisher+", "+
                 res.pubdate+". Keywords: "+
-                res.keywords+". <a onclick={edit()}>EDIT</a>\n\n"
+                res.keywords+".")
       })
+      buff.forEach((el)=>console.log(el))
       setResults(buff)
     }else{
-      setResults("=== Didn't find any ...")
+      setResults(["=== Didn't find any ..."])
     }
-
 
     setCurrPage(Number(1));
     setNroRecords(33)
@@ -183,7 +179,7 @@ export default function Mainpage() {
 
       case 'clear'     :  { console.log("=== CLEAR ===");
                             clearCheckboxes()
-                            setResults('')
+                            setResults([])
                             let updatedField = {serial:0,title:"",author:"",publisher:"",from:"",to:"",keywords:""};
                             setFields(updatedField);
                             setCurrPage("");
@@ -268,7 +264,7 @@ function catalogHandleNewComment(e){
                                               currPage={currPage} 
                                               handleChangeCurrPage={handleChangeCurrPage}
                                               nroRecords={nroRecords}
-                                              textareavalue={results}/>}>
+                                              results={results}/>}>
             </Route>
             <Route path="/catalog" element={<Cataloging
                                               handleCatalogButtons={handleCatalogButtons}

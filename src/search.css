@@ -220,4 +220,17 @@
     overflow-y:scroll;
     overflow-x:auto;
     resize: none;
-  }
+}
+
+ul{
+    list-style-type: none;
+    text-align: left;
+    color:black;
+}
+li{
+    text-align: left;;
+}
+
+.searchElement{
+    cursor:pointer;
+}

@@ -3,9 +3,32 @@ import { useTranslation } from 'react-i18next';
 import './search.css'
 import BibliForm from './BibliForm'
 import SearchMode from './SearchMode'
+import SearchResults from './searchResults'
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Search(props) {
     const { t } = useTranslation();
+
+    let navigate = useNavigate();
+    function elementClickHandle(){
+        console.log("=== elementClickHandle")
+        navigate("/catalog")
+    }
+    const clickGoto = (e) => {
+        props.setCataloging_Input_ID(props.search_input_ID)
+        props.setCataloging_Input_Name(props.search_input_Name)
+        props.setCataloging_Input_Phone(props.search_input_Phone)
+        navigate("/catalog")
+    }
+
+
+    let contents = props.results.map((el,i) => 
+        <div key={i} onClick={elementClickHandle} className="searchElement" style={i%2?{backgroundColor:"white"}:{backgroundColor:"#e3f9ff"}}>
+            {el}
+        </div>
+    )
+//     <Link to="/catalog" style={{color:"black"}}><strong>GO TO CATALOGING - &nbsp;&nbsp;</strong></Link>
+
 
     return (
         <div className="search_cardboard">
@@ -53,9 +76,9 @@ export default function Search(props) {
                     {t('search.nrorecordsfound')}: <span id="idNroRecords">{props.nroRecords}</span>
                 </div>
 
-                <textarea className="search-resultsTextArea" id="search-resultsTextArea" value={props.textareavalue} readOnly>
-
-                </textarea>
+                <SearchResults>
+                    {contents}
+                </SearchResults>
             </div>
         </div>
     );
