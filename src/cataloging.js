@@ -19,34 +19,79 @@ export default function Cataloging(props) {
                 <div></div>
 
                 <div></div>
-                <div className="common_2buttons">2 buttons</div>
+                <div className="common-two-upper-buttons">
+                    <div className="common_but_top" onClick={()=>props.handleSearchButtons('prevSerial')}>{t('search.previous')}</div>
+                    <div className="common_but_top" onClick={()=>props.handleSearchButtons('nextSerial')}>{t('search.next')}</div>
+                </div>
                 <div></div>
 
-                <div className="common_item1">{t('cataloging.serial')}</div>
-                <div className="common_item2"><input type="text" className="common_largeinput"/></div>
-
-                <div className="common_item1">{t('cataloging.title')}</div>
-                <div className="common_item2"><input type="text" className="common_largeinput"/></div>
-
-                <div className="common_item1">Dates</div>
-                <div className="common_item3">From</div>
-                <div className="common_item3b"><input type="text" className="shorttext"/></div>
-                <div className="common_item4">To</div>
-                <div className="common_item4b"><input type="text" className="shorttext"/></div>
-
-                <div className="common_item1">{t('cataloging.title')}</div>
-                <div className="common_item2"><input type="text" className="common_largeinput"/></div>
-
-                <div className="common_item1">{t('cataloging.title')}</div>
-                <div className="common_item2"><input type="text" className="common_largeinput"/></div>
-
-                <div className="common_item1">{t('cataloging.title')}</div>
-                <div className="common_item2"><input type="text" className="common_largeinput"/></div>
-
-
-                <div className="common-mode-grid">
-                    <SearchMode />
+                <div className="common_item1">{t('common.serial')}</div>
+                <div className="common_item2"><input type="text" className="common_largeinput"
+                                                            onChange={e=>props.catalogHandleChangeReducer('serial', e.target.value)}
+                                                            value={props.catalogFields.serial}/>
                 </div>
+                <div></div>
+
+                <div className="common_item1">{t('common.title')}</div>
+                <div className="common_item2"><input type="text" className="common_largeinput"
+                                                            onChange={e=>props.catalogHandleChangeReducer('title', e.target.value)}
+                                                            value={props.catalogFields.title}/>
+                </div>
+                <div></div>
+
+                <div className="common_item1">{t('common.author')}</div>
+                <div className="common_item2"><input type="text" className="common_largeinput"
+                                                            onChange={e=>props.catalogHandleChangeReducer('author', e.target.value)}
+                                                            value={props.catalogFields.author}/>
+                </div>
+                <div></div>
+
+                <div className="common_item1">{t('common.publisher')}</div>
+                <div className="common_item2"><input type="text" className="common_largeinput" 
+                                                            onChange={e=>props.catalogHandleChangeReducer('publisher', e.target.value)}
+                                                            value={props.catalogFields.publisher}/>
+                </div>
+                <div></div>
+
+                <div className="common_item1">{t('common.pubdate')}</div>
+                <div className="common_item2"><input type="text" className="common_largeinput"
+                                                            onChange={e=>props.catalogHandleChangeReducer('pubdate', e.target.value)}
+                                                            value={props.catalogFields.pubdate}/>
+                </div>
+                <div></div>
+
+                <div className="common_item1">{t('common.keywords')}</div>
+                <div className="common_item2"><input type="text" className="common_largeinput"
+                                                            onChange={e=>props.catalogHandleChangeReducer('keywords', e.target.value)}
+                                                            value={props.catalogFields.keywords}/>
+                </div>
+                <div></div>
+
+                <div className="common_item1">{t('common.originalfilename')}</div>
+                <div className="common_item2"><input type="text" className="common_largeinput"
+                                                            onChange={e=>props.catalogHandleChangeReducer('originalFilename', e.target.value)}
+                                                            value={props.catalogFields.originalFilename}/>
+                </div>
+                <div></div>
+
+                <div className="common_item1">{t('common.fileupload')}</div>
+                <div className="common_item2"><input type="file" className="cataloging_largeinput_file" /></div>
+                <div className="cataloging-eightnine">
+                    <div className="cataloging_upload" onClick={()=>props.handleCatalogButtons('upload')}>
+                        {t('common.upload')}
+                    </div>
+                </div>
+
+                <div className="cataloging_itemC">{t('cataloging.newcomment')}</div>
+                <div className="cataloging_item2"><textarea className="cataloging_newcomment"
+                                                            value={props.newComment}
+                                                            onChange={e=>props.catalogHandleNewComment(e)}/></div>
+                <div></div>
+
+                <div className="cataloging_previouscomment">{t('cataloging.previouscomments')}</div>
+                <div className="cataloging_previouscommentbox"><textarea className="cataloging_newcomment" value={props.previousComment} readOnly /></div>
+                <div className="cataloging_item3"></div>
+
             </div>
         </div>
     );
