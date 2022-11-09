@@ -92,6 +92,20 @@ export default function Cataloging(props) {
                 <div className="cataloging_previouscommentbox"><textarea className="cataloging_newcomment" value={props.previousComment} readOnly /></div>
                 <div className="cataloging_item3"></div>
 
+                <div className="cataloging-firstbuttonrow"></div>
+                <div className="cataloging-threebuttons">
+                    <div className="cataloging_botbutton" onClick={()=>props.handleCatalogButtons('edit')}>{t('cataloging.edit')}</div>
+                    <div className="cataloging_botbutton" onClick={()=>props.handleCatalogButtons('saveascurrent')}>{t('cataloging.saveascurrent')}</div>
+                    <div className="cataloging_botbutton" onClick={()=>props.handleCatalogButtons('saveasnew')}>{t('cataloging.saveasnew')}</div>
+                </div>
+                <div></div>
+
+                <div className="cataloging-firstbuttonrow"></div>
+                <div className="cataloging-threebuttons">
+                    <div className="cataloging_botbutton" onClick={()=>props.handleCatalogButtons('download')}>{t('cataloging.download')}</div>
+                    <div className="cataloging_botbutton" onClick={()=>props.handleCatalogButtons('clear')}>{t('cataloging.clear')}</div>
+                    <div className="cataloging_botbutton" onClick={()=>props.handleCatalogButtons('delete')}>{t('cataloging.delete')}</div>
+                </div>
             </div>
         </div>
     );
