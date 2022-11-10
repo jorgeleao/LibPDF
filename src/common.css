@@ -27,9 +27,10 @@
     grid-column: 2 / 8;
     margin-bottom:2px;
     text-align: center;
-    font-size: larger;
+/*    font-size: larger;
     font-weight: 700;
-    color:red;
+    color:red;*/
+    padding-left:6px
 }
 .common-two-upper-buttons{
     grid-column: 2 / 8;

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import './common.css';
+import Alert from './alert';
 
 
 export default function Cataloging(props) {
@@ -14,7 +15,7 @@ export default function Cataloging(props) {
             <br/>
             <div className="common_divcontainer">
                 <div className="common_pageTitle"><span>{t('appPageTexts.part6')}</span></div>
-                <div className="common_message">{props.loggerMessage}</div>
+                <div className="common_message"><Alert loggerMessage={props.loggerMessage}/></div>
                 <div></div>
 
                 <div></div>

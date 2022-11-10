@@ -28,10 +28,6 @@ export default function Mainpage() {
  // const [resultsContents,setResultsContents] = useState([])
   const [loggerMessage, setLoggerMessage] = useState('This is an alarm message!')
 
-  function sendMessage(message){
-
-    setLoggerMessage(message)
-  }
   function clearCheckboxes(){
     let newChkboxState = new Array(11).fill(false,0,11)
     setChkboxState(newChkboxState)
@@ -73,19 +69,19 @@ export default function Mainpage() {
       }  
       setFields(fields => ({...fields,...updatedField}))
   }
-  const chkboxNames = [
-    'serial',
-    'titleAND',
-    'titleOR',
-    'authorAND',
-    'authorOR',
-    'publisherAND',
-    'publisherOR',
-    'datesAND',
-    'datesOR',
-    'keywordsAND',
-    'keywordsOR'
-  ]
+  // const chkboxNames = [
+  //   'serial',
+  //   'titleAND',
+  //   'titleOR',
+  //   'authorAND',
+  //   'authorOR',
+  //   'publisherAND',
+  //   'publisherOR',
+  //   'datesAND',
+  //   'datesOR',
+  //   'keywordsAND',
+  //   'keywordsOR'
+  // ]
 
   async function advSearchUtil(){
     let page = 1
@@ -130,36 +126,69 @@ export default function Mainpage() {
       newChkboxState[0] = true
       setChkboxState(newChkboxState)
       let result = await searchById(Number(fields.serial)+1)
-      let updatedField = {
-                    serial:result.id,
-                    title:result.title,
-                    author:result.author,
-                    publisher:result.publisher,
-                    from:result.pubdate,
-                    to:'',
-                    keywords:result.keywords};
-      result.success?
-        setFields(updatedField):
-        console.log("=== Didn't find the resource ===")
+
+      if(result.success){
+        let updatedField = {...fields}
+        updatedField.serial = result.id;
+        setFields(updatedField)
+        let buff = []
+        buff.push(
+          result.id+". \""+
+          result.title+"\", "+
+          result.author+". "+
+          result.publisher+", "+
+          result.pubdate+". Keywords: "+
+          result.keywords+". Grade: 1."
+        )
+        setResults(buff)
+        setLoggerMessage("And the next serial is ...");
+      }else{  
+        setLoggerMessage("Could not find next...")
+      }
+    }else{
+      //let updatedField = {...fields}
+      //updatedField.serial = ''
+      //setFields(updatedField)
+      setLoggerMessage("Could not find next ...")
     }   
   }
+
   async function searchByIdPreviousUtil(id){
+    console.log("=== Previous ===")
     if(Number(fields.serial)>1){
       let newChkboxState = [...chkboxState]  // to ensure it is a deep copy!
       newChkboxState[0] = true
       setChkboxState(newChkboxState)
       let result = await searchById(Number(fields.serial)-1)
-      let updatedField = {
-                    serial:result.id,
-                    title:result.title,
-                    author:result.author,
-                    publisher:result.publisher,
-                    from:result.pubdate,
-                    to:'',
-                    keywords:result.keywords};
-      result.success?
-      setFields(updatedField):
-      console.log("=== Didn't find the resource ===")
+      if(result.success){
+        let updatedField = {
+          serial:result.id,
+          title:fields.title,
+          author:fields.author,
+          publisher:fields.publisher,
+          from:fields.pubdate,
+          to:fields.to,
+          keywords:fields.keywords
+        }
+        setFields(updatedField)
+        let buff = []
+        buff.push(
+          result.id+". \""+
+          result.title+"\", "+
+          result.author+". "+
+          result.publisher+", "+
+          result.pubdate+". Keywords: "+
+          result.keywords+". Grade: 1.")
+        setResults(buff)
+        setLoggerMessage("And the previous serial is ...");
+      }else{  
+        setLoggerMessage("Could not find previous...")
+      }
+    }else{
+      //let updatedField = {...fields}
+      //updatedField.serial = ''
+      //setFields(updatedField)
+      setLoggerMessage("Could not find previous ...")
     }   
   }
 

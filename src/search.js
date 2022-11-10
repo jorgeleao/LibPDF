@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 //import { BibliformContext } from './contexts/BibliformContext.js'
 import { useTranslation } from 'react-i18next';
 import './search.css'
@@ -7,6 +7,8 @@ import SearchMode from './SearchMode'
 import SearchResults from './searchResults'
 import { useNavigate } from "react-router-dom";
 import './common.css';
+import Alert from './alert';
+
 
 
 export default function Search(props) {
@@ -42,7 +44,7 @@ export default function Search(props) {
             <br/>
             <div className="common_divcontainer">
                 <div className="common_pageTitle"><span>{t('appPageTexts.part5')}</span></div>
-                <div className="common_message">{props.loggerMessage}</div>
+                <div className="common_message"><Alert loggerMessage={props.loggerMessage}/></div>
                 <div></div>
 
                 <div></div>
