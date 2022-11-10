@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import About from './about.js';
 import Search from './search.js';
 import { SearchModeContext } from './contexts/SearchModeContext.js'
-import { BibliformContext } from './contexts/BibliformContext.js'
+//import { BibliformContext } from './contexts/BibliformContext.js'
 import Logout from './logout.js';
 import Menubar from './menubar.js'
 import Cataloging from './cataloging.js';
@@ -21,12 +21,17 @@ export default function Mainpage() {
 
 //=========== Search ==========
   const [chkboxState, setChkboxState] = useState(new Array(11).fill(false,0,11))
-  const [fields, setFields] = useState({serial:0,title:"",author:"",publisher:"",from:"",to:"",keywords:""})
+  const [fields, setFields] = useState({serial:"",title:"",author:"",publisher:"",from:"",to:"",keywords:""})
   const [currPage,setCurrPage] = useState('')
   const [results,setResults] = useState([])
   const [nroRecords,setNroRecords] = useState(0)
- // const [resulstContents,setResultsContents] = useState([])
+ // const [resultsContents,setResultsContents] = useState([])
+  const [loggerMessage, setLoggerMessage] = useState('This is an alarm message!')
 
+  function sendMessage(message){
+
+    setLoggerMessage(message)
+  }
   function clearCheckboxes(){
     let newChkboxState = new Array(11).fill(false,0,11)
     setChkboxState(newChkboxState)
@@ -116,7 +121,7 @@ export default function Mainpage() {
     }
 
     setCurrPage(Number(1));
-    setNroRecords(33)
+    setNroRecords(10)
   }
 
   async function searchByIdNextUtil(id){
@@ -180,7 +185,7 @@ export default function Mainpage() {
       case 'clear'     :  { console.log("=== CLEAR ===");
                             clearCheckboxes()
                             setResults([])
-                            let updatedField = {serial:0,title:"",author:"",publisher:"",from:"",to:"",keywords:""};
+                            let updatedField = {serial:"",title:"",author:"",publisher:"",from:"",to:"",keywords:""};
                             setFields(updatedField);
                             setCurrPage("");
                             setNroRecords(0)
@@ -255,18 +260,22 @@ function catalogHandleNewComment(e){
     <div> 
       <div className="mainpage_cardboard"></div>
       <SearchModeContext.Provider value={{chkboxState, serialChange, checkboxANDChange, checkboxORChange}}>
-      <BibliformContext.Provider value={{fields, handleChangeReducer}}>
+{/*      <BibliformContext.Provider value={{fields, handleChangeReducer}}> */}
         <BrowserRouter>
           <Menubar />
           <Routes>
-            <Route exact path="/" element={<Search 
+            <Route exact path="/" element={<Search
+                                              loggerMessage={loggerMessage} 
+                                              handleChangeReducer={handleChangeReducer}
                                               handleSearchButtons={handleSearchButtons} 
+                                              fields={fields}
                                               currPage={currPage} 
                                               handleChangeCurrPage={handleChangeCurrPage}
                                               nroRecords={nroRecords}
                                               results={results}/>}>
             </Route>
             <Route path="/catalog" element={<Cataloging
+                                              loggerMessage={loggerMessage} 
                                               handleCatalogButtons={handleCatalogButtons}
                                               catalogHandleChangeReducer={catalogHandleChangeReducer}
                                               catalogFields={catalogFields}
@@ -279,7 +288,7 @@ function catalogHandleNewComment(e){
             <Route path="/logout" element={<Logout />}></Route>
           </Routes>
         </BrowserRouter>
-      </BibliformContext.Provider>
+{/*      </BibliformContext.Provider>  */}
       </SearchModeContext.Provider>
     </div>
   );

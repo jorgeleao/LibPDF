@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import './common.css';
-import SearchMode from './SearchMode'
 
 
 export default function Cataloging(props) {
@@ -15,7 +14,7 @@ export default function Cataloging(props) {
             <br/>
             <div className="common_divcontainer">
                 <div className="common_pageTitle"><span>{t('appPageTexts.part6')}</span></div>
-                <div className="common_message"></div>
+                <div className="common_message">{props.loggerMessage}</div>
                 <div></div>
 
                 <div></div>
@@ -82,15 +81,16 @@ export default function Cataloging(props) {
                     </div>
                 </div>
 
-                <div className="cataloging_itemC">{t('cataloging.newcomment')}</div>
-                <div className="cataloging_item2"><textarea className="cataloging_newcomment"
+                <div className="cataloging_startnewcomment">{t('cataloging.newcomment')}</div>
+                <div className="cataloging_newcommentcontainer"><textarea className="cataloging_newcomment"
                                                             value={props.newComment}
                                                             onChange={e=>props.catalogHandleNewComment(e)}/></div>
-                <div></div>
+                <div className="cataloging_endnewcomment"></div>
 
                 <div className="cataloging_previouscomment">{t('cataloging.previouscomments')}</div>
-                <div className="cataloging_previouscommentbox"><textarea className="cataloging_newcomment" value={props.previousComment} readOnly /></div>
-                <div className="cataloging_item3"></div>
+                <div className="cataloging_previouscommentbox"><textarea className="cataloging_newcomment" 
+                                                            value={props.previousComment} readOnly /></div>
+                <div></div>
 
                 <div className="cataloging-firstbuttonrow"></div>
                 <div className="cataloging-threebuttons">

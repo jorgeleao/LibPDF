@@ -11,8 +11,9 @@ export default function SearchMode(){
         <form>
             <div className='SearchMode' style={chkboxState[0]?{color:'lightgray'}:{color:'black'}}>
                 <div className='SearchMode-checkboxes'>
-                    <label htmlFor="serialChkd" style={{color:"rgb(243, 245, 243)"}}>{t('searchMode.AND')}</label>
+                    <label htmlFor="serialChkd" style={{color:"rgb(243, 245, 243)"}}>{t('searchMode.AND')}
                     <input name="serialChkd" type="checkbox" id="serialChkd" checked={chkboxState[0]} onChange={serialChange} />
+                    </label>
                     <br />
                     <label htmlFor="titleAnd">{t('searchMode.AND')}</label>
                     <input name="titleAnd" type="checkbox" id="titleAnd" checked={chkboxState[1]} disabled={chkboxState[0]} onChange={()=>checkboxANDChange(1,2)} />
