@@ -12,7 +12,7 @@ export default function Cataloging(props) {
         <div className="common_cardboard">
             <br />
             <br />
-            <br/>
+            <br />
             <div className="common_divcontainer">
                 <div className="common_pageTitle"><span>{t('appPageTexts.part6')}</span></div>
                 <div className="common_message"><Alert loggerMessage={props.loggerMessage}/></div>

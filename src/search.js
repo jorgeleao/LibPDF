@@ -13,11 +13,17 @@ import Alert from './alert';
 
 export default function Search(props) {
     const { t } = useTranslation();
-//    const {fields, handleChangeReducer} = useContext(BibliformContext)
-
     let navigate = useNavigate();
-    function elementClickHandle(){
-        console.log("=== elementClickHandle")
+    function elementClickHandle(i){
+        console.log("=== elementClickHandle - serial: "+ (((props.currPage-1)*4)+i+1) + "    Data: " + props.results[i])
+        console.log("=== lastSearch: "+props.lastSearch[i].originalfn)
+        props.catalogFields.serial = props.lastSearch[i].id
+        props.catalogFields.title = props.lastSearch[i].title
+        props.catalogFields.author = props.lastSearch[i].author
+        props.catalogFields.publisher = props.lastSearch[i].publisher
+        props.catalogFields.pubdate = props.lastSearch[i].pubdate
+        props.catalogFields.keywords = props.lastSearch[i].keywords
+        props.catalogFields.originalFilename = props.lastSearch[i].originalfn
         navigate("/catalog")
     }
 //     const clickGoto = (e) => {
@@ -29,11 +35,15 @@ export default function Search(props) {
 //     }
 
     let contents = props.results.map((el,i) => 
-        <div    key={el.id} onClick={elementClickHandle} className="searchElement" 
-                            style={i%2?
-                                {backgroundColor:"white",borderBottom:"1px solid #5b83b5"}:
-                                {backgroundColor:"#e3f9ff",borderBottom:"1px solid #5b83b5"}}>
-                {el}
+        <div
+            key={el.id} 
+            onClick={() => elementClickHandle(i)} 
+            className="searchElement" 
+            style={i%2
+                ?{backgroundColor:"white",  borderBottom:"1px solid #5b83b5"}
+                :{backgroundColor:"#e3f9ff",borderBottom:"1px solid #5b83b5"}}
+        >
+            {el}
         </div>
     )
 
@@ -41,7 +51,7 @@ export default function Search(props) {
         <div className="common_cardboard">
             <br />
             <br />
-            <br/>
+            <br />
             <div className="common_divcontainer">
                 <div className="common_pageTitle"><span>{t('appPageTexts.part5')}</span></div>
                 <div className="common_message"><Alert loggerMessage={props.loggerMessage}/></div>

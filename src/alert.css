@@ -1,10 +1,18 @@
 .alert{
+    font-family: Helvetica, sans-serif;
     width:585px;
     height:42px;
-    background-image: linear-gradient(to right, rgb(219, 255, 243,0), rgb(219, 255, 243,1), rgb(219, 255, 243,0));
 }
 .alert-message{
-    color:rgb(44, 143, 110);
     font-size: larger;
+}
+.alert-info{
+    font-weight:lighter; 
+    color:rgb(44, 143, 110);
+    background-image: linear-gradient(to right, rgb(219, 255, 243,0), rgb(219, 255, 243,1), rgb(219, 255, 243,0));
+}
+.alert-fail{
     font-weight: 700;
+    color:white;
+    background-image: linear-gradient(to right, rgb(219, 255, 243,0), red, rgb(219, 255, 243,0));
 }

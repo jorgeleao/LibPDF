@@ -25,8 +25,14 @@ export default function Mainpage() {
   const [currPage,setCurrPage] = useState('')
   const [results,setResults] = useState([])
   const [nroRecords,setNroRecords] = useState(0)
+  const [lastSearch, setLastSearch] = useState([])
  // const [resultsContents,setResultsContents] = useState([])
-  const [loggerMessage, setLoggerMessage] = useState('This is an alarm message!')
+  const [loggerMessage, setLoggerMessage] = useState(['',true])
+
+  function showMessage(message,infolevel){
+    let msg = [message, infolevel]
+    setLoggerMessage(msg)
+  }
 
   function clearCheckboxes(){
     let newChkboxState = new Array(11).fill(false,0,11)
@@ -83,8 +89,8 @@ export default function Mainpage() {
   //   'keywordsOR'
   // ]
 
-  async function advSearchUtil(){
-    let page = 1
+  async function advSearchUtil(page2){
+    let page = page2
     // let selectedChkboxes = ''
     // if(chkboxState[0])selectedChkboxes='serial'
     // else for(let i=1;i<11;i++){
@@ -100,23 +106,25 @@ export default function Mainpage() {
                             }}
     let searchResult = await advancedSearch(queryparam,page)
     if(searchResult[0].success){
+      setLastSearch(searchResult)
       let buff = []
-      searchResult.forEach(res=>{
+      searchResult.forEach(result=>{
         buff.push(
-                res.id+". \""+
-                res.title+"\", "+
-                res.author+". "+
-                res.publisher+", "+
-                res.pubdate+". Keywords: "+
-                res.keywords+". Grade: 1.")
+          result.id+". \""+
+          result.title+"\", "+
+          result.author+". Pub: "+
+          result.publisher+", "+
+          result.pubdate+". Keywords: "+
+          result.keywords+". Grade: 1.")
       })
-      //buff.forEach((el)=>console.log(el))
       setResults(buff)
+      setLoggerMessage(["The results for the current page are...",true]);
     }else{
       setResults(["=== Didn't find any ..."])
+      setLoggerMessage(["Didn't find another page...",false]);
     }
 
-    setCurrPage(Number(1));
+    setCurrPage(page);
     setNroRecords(10)
   }
 
@@ -135,21 +143,18 @@ export default function Mainpage() {
         buff.push(
           result.id+". \""+
           result.title+"\", "+
-          result.author+". "+
+          result.author+". Pub: "+
           result.publisher+", "+
           result.pubdate+". Keywords: "+
           result.keywords+". Grade: 1."
         )
         setResults(buff)
-        setLoggerMessage("And the next serial is ...");
+        setLoggerMessage(["And the next serial is ...",true]);
       }else{  
-        setLoggerMessage("Could not find next...")
+        setLoggerMessage(["Could not find next...",false])
       }
     }else{
-      //let updatedField = {...fields}
-      //updatedField.serial = ''
-      //setFields(updatedField)
-      setLoggerMessage("Could not find next ...")
+      setLoggerMessage(["Could not find next...",false])
     }   
   }
 
@@ -175,20 +180,17 @@ export default function Mainpage() {
         buff.push(
           result.id+". \""+
           result.title+"\", "+
-          result.author+". "+
+          result.author+". Pub: "+
           result.publisher+", "+
           result.pubdate+". Keywords: "+
           result.keywords+". Grade: 1.")
         setResults(buff)
-        setLoggerMessage("And the previous serial is ...");
+        setLoggerMessage(["And the previous is...",true]);
       }else{  
-        setLoggerMessage("Could not find previous...")
+        setLoggerMessage(["Could not find previous...",false])
       }
     }else{
-      //let updatedField = {...fields}
-      //updatedField.serial = ''
-      //setFields(updatedField)
-      setLoggerMessage("Could not find previous ...")
+      setLoggerMessage(["Could not find previous...Could not find previous...",false])
     }   
   }
 
@@ -200,15 +202,17 @@ export default function Mainpage() {
       case 'nextSerial':  { searchByIdNextUtil(fields.serial)
                             break;}
 
-      case 'prevPage'  :  { console.log("=== PREVIOUS PAGE ===");
-                            if(Number(currPage)>1) setCurrPage(currPage => Number(currPage)-Number(1))
+      case 'prevPage'  :  { if(Number(currPage)>1){
+                              advSearchUtil(currPage-1)
+                            }
                             break;}
 
-      case 'nextPage'  :  { console.log("=== NEXT PAGE ===");
-                            setCurrPage(currPage => Number(currPage)+Number(1))
+      case 'nextPage'  :  { if(Number(currPage)>0){
+                              advSearchUtil(currPage+1)
+                            }
                             break;}
 
-      case 'search'    :  { advSearchUtil()
+      case 'search'    :  { advSearchUtil(1)
                             break; }
 
       case 'clear'     :  { console.log("=== CLEAR ===");
@@ -218,6 +222,7 @@ export default function Mainpage() {
                             setFields(updatedField);
                             setCurrPage("");
                             setNroRecords(0)
+                            setLoggerMessage([" ",true])
                             break;}
 
       default          :  {}
@@ -298,8 +303,10 @@ function catalogHandleNewComment(e){
                                               handleChangeReducer={handleChangeReducer}
                                               handleSearchButtons={handleSearchButtons} 
                                               fields={fields}
+                                              catalogFields={catalogFields}
                                               currPage={currPage} 
                                               handleChangeCurrPage={handleChangeCurrPage}
+                                              lastSearch={lastSearch}
                                               nroRecords={nroRecords}
                                               results={results}/>}>
             </Route>
