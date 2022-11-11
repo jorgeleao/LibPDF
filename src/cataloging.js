@@ -26,7 +26,7 @@ export default function Cataloging(props) {
                 <div></div>
 
                 <div className="common_item1">{t('common.serial')}</div>
-                <div className="common_item2"><input type="text" className="common_largeinput"
+                <div className="common-twoeight"><input type="text" className="common_largeinput"
                                                             onChange={e=>props.catalogHandleChangeReducer('serial', e.target.value)}
                                                             value={props.catalogFields.serial}/>
                 </div>

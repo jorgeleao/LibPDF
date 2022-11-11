@@ -21,7 +21,7 @@
 }
 .search-resultspart{
     grid-column: 1 / 9;
-    grid-row: 12 / 15;
+    grid-row: 12 / 16;
 }
 
 .search-currentpageInput{

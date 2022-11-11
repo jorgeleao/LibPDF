@@ -64,23 +64,23 @@ export default function Search(props) {
                 </div>
                 <div></div>
 
-                <div>{t('common.serial')}</div>
+                <div className="common_item1">{t('common.serial')}</div>
                 <div className="common-twoeight"><input name="serial" type="text" className="common-intext" value={props.fields.serial} 
                     onChange={e=>props.handleChangeReducer('serial', e.target.value)}/></div>
 
-                <div>{t('common.title')}</div>
+                <div className="common_item1">{t('common.title')}</div>
                 <div className="common-twoeight"><input name="title" type="text" className="common-intext" value={props.fields.title} 
                     onChange={e=>props.handleChangeReducer('title', e.target.value)} autoComplete="true"/></div>
                 
-                <div>{t('common.author')}</div>
+                <div className="common_item1">{t('common.author')}</div>
                 <div className="common-twoeight"><input name="author" type="text" className="common-intext" value={props.fields.author} 
                     onChange={e=>props.handleChangeReducer('author', e.target.value)}/></div>
                 
-                <div>{t('common.publisher')}</div>
+                <div className="common_item1">{t('common.publisher')}</div>
                 <div className="common-twoeight"><input name="publisher" type="text" className="common-intext" value={props.fields.publisher} 
                     onChange={e=>props.handleChangeReducer('publisher', e.target.value)}/></div>
                 
-                <div>{t('common.pubdate')}</div>
+                <div className="common_item1">{t('common.pubdate')}</div>
                 <div>{t('common.from')}</div>
                 <div className="search-threefive"><input name="from" type="text" className="common-intextSmall" value={props.fields.from} 
                     onChange={e=>props.handleChangeReducer('from', e.target.value)}/></div>
@@ -89,7 +89,7 @@ export default function Search(props) {
                 <div className="search-sixeight"><input name="to" type="text" className="common-intextSmall" value={props.fields.to} 
                     onChange={e=>props.handleChangeReducer('to', e.target.value)}/></div>
 
-                <div>{t('common.keywords')}</div>
+                <div className="common_item1">{t('common.keywords')}</div>
                 <div className="common-twoeight"><input name="keywords" type="text" className="common-intext" value={props.fields.keywords} 
                     onChange={e=>props.handleChangeReducer('keywords', e.target.value)}/></div>
 
