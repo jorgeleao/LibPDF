@@ -12,6 +12,8 @@ import './Mainpage.css';
 import './i18n.js';
 import { advancedSearch } from './api/advancedSearch.js';
 import { searchById } from './api/searchById.js';
+import { savenew } from './api/savenew.js';
+import { savecurrent } from './api/savecurrent.js';
 
 
 export default function Mainpage() {
@@ -241,7 +243,12 @@ export default function Mainpage() {
 const [catalogFields, setCatalogFields] = useState({serial:"",title:"",author:"",publisher:"",pubdate:"",keywords:"",originalFilename:""})
 const [newComment,setNewComment] = useState("New comment ...")
 const [previousComment,setPreviousComment] = useState("Previous comments ...")
+const [isEditing, setIsEditing] = useState(false)
+const [inputTypeFileValue, setInputTypeFileValue] = useState('')
 
+function handleInputTypeFile(e){
+    setInputTypeFileValue(e.target.value)
+}
 
 
 
@@ -256,8 +263,7 @@ async function catalogNextByIdUtil(id){
         title:result.title,
         author:result.author,
         publisher:result.publisher,
-        from:result.pubdate,
-        to:result.to,
+        pubdate:result.pubdate,
         keywords:result.keywords,
         originalFilename:result.originalfn
       }
@@ -282,8 +288,7 @@ async function catalogPreviousByIdUtil(id){
         title:result.title,
         author:result.author,
         publisher:result.publisher,
-        from:result.pubdate,
-        to:result.to,
+        pubdate:result.pubdate,
         keywords:result.keywords,
         originalFilename:result.originalfn
       }
@@ -300,31 +305,44 @@ async function catalogPreviousByIdUtil(id){
 
 function handleCatalogButtons(button){
   switch(button){
-    case 'prevSerial':{ console.log("=== PREVIOUS SERIAL: ");
-                        catalogPreviousByIdUtil(catalogFields.serial);
-                        break;}
-    case 'nextSerial':{ console.log("=== NEXT SERIAL: ");
-                        catalogNextByIdUtil(catalogFields.serial);
-                        break;}
-    case 'upload':{ console.log("=== UPLOAD: ");
-                        break;}
-    case 'edit':{ console.log("=== EDIT: ");
-                    break;}
-    case 'saveascurrent':{ console.log("=== saveascurrent: ");
-                    break;}
-    case 'saveasnew':{ console.log("=== saveasnew: ");
-                    break;}
-    case 'download':{ console.log("=== download: ");
-                    break;}
-    case 'clear':{ console.log("=== clear: ");
-                    let updatedCatalogFields = {serial:"",title:"",author:"",publisher:"",pubdate:"",keywords:"",originalFilename:""};
-                    setCatalogFields(updatedCatalogFields);
-                    setNewComment(()=>(""))
-                    setPreviousComment(()=>(""))
-                    break;}
-    case 'delete':{ console.log("=== delete: ");
-                    break;}
-    default:{}
+    case 'prevSerial':    { catalogPreviousByIdUtil(catalogFields.serial);
+                            setIsEditing(false)
+                            break;}
+    case 'nextSerial':    { catalogNextByIdUtil(catalogFields.serial);
+                            setIsEditing(false)
+                            break;}
+    case 'upload':        { let updatedField = {originalFilename : inputTypeFileValue.split('\\').pop().split('/').pop()}    
+                            //.replace(/^.*[\\\/]/, '')}  // to extract just the filename from a full path...
+                            // https://stackoverflow.com/questions/423376/how-to-get-the-file-name-from-a-full-path-using-javascript
+
+                            // do the real upload here...
+                            setCatalogFields(catalogFields => ({...catalogFields,...updatedField}))
+                            break;}
+    case 'edit':          { if(isEditing){
+                              setIsEditing(false);
+                              setLoggerMessage(["",true])
+                            }else{
+                              setIsEditing(true);
+                              setLoggerMessage(["Atention: is editing... ",false])
+                            }
+                            break;}
+    case 'saveascurrent': { console.log("=== saveascurrent: ");
+                            savecurrent({title:"Running more..."},3333)
+                            break;}
+    case 'saveasnew':     { console.log("=== saveasnew: ");
+                            savenew({title:"Running more..."})
+                            break;}
+    case 'download':      { console.log("=== download: ");
+                            break;}
+    case 'clear':         { let updatedCatalogFields = {serial:"",title:"",author:"",publisher:"",pubdate:"",keywords:"",originalFilename:""};
+                            setCatalogFields(updatedCatalogFields);
+                            setNewComment(()=>(""))
+                            setPreviousComment(()=>(""))
+                            setIsEditing(false)
+                            break;}
+    case 'delete':        { console.log("=== delete: ");
+                            break;}
+    default:              {}
   }
 }
 
@@ -373,9 +391,14 @@ function catalogHandleNewComment(e){
                                               handleCatalogButtons={handleCatalogButtons}
                                               catalogHandleChangeReducer={catalogHandleChangeReducer}
                                               catalogFields={catalogFields}
+                                              inputTypeFileValue={inputTypeFileValue}
+                                              setInputTypeFileValue={setInputTypeFileValue}
+                                              handleInputTypeFile={handleInputTypeFile}
                                               newComment={newComment}
                                               previousComment={previousComment}
                                               catalogHandleNewComment={catalogHandleNewComment}
+                                              isEditing={isEditing}
+                                              setIsEditing={setIsEditing}
                                               />}>
             </Route>
             <Route path="/about" element={<About />}></Route>

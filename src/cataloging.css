@@ -165,8 +165,6 @@
     border-radius: 5px;
     text-align:center;
     margin:3px 0 3px 3px;
-    background-color: rgb(149, 176, 252);
-    color:white;
     font-size:0.9em;
     font-weight: bold;
 }
@@ -189,4 +187,16 @@
     display: flex;
     justify-content: space-between;
     padding-left:3px;
+}
+.redColor{
+    color:white;
+    background-color: red;
+}
+.normalColor{
+    color:white;
+    background-color: rgb(149, 176, 252);
+}
+.disabledColor{
+    color:gray;
+    background-color: rgb(149, 176, 252);
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import './common.css';
 import Alert from './alert';
@@ -6,7 +6,6 @@ import Alert from './alert';
 
 export default function Cataloging(props) {
     const { t } = useTranslation();
-
 
     return (
         <div className="common_cardboard">
@@ -35,56 +34,57 @@ export default function Cataloging(props) {
                 <div className="common_item1">{t('common.title')}</div>
                 <div className="common_item2"><input type="text" className="common_largeinput"
                                                             onChange={e=>props.catalogHandleChangeReducer('title', e.target.value)}
-                                                            value={props.catalogFields.title}/>
+                                                            value={props.catalogFields.title} disabled={!props.isEditing}/>
                 </div>
                 <div></div>
 
                 <div className="common_item1">{t('common.author')}</div>
                 <div className="common_item2"><input type="text" className="common_largeinput"
                                                             onChange={e=>props.catalogHandleChangeReducer('author', e.target.value)}
-                                                            value={props.catalogFields.author}/>
+                                                            value={props.catalogFields.author} disabled={!props.isEditing}/>
                 </div>
                 <div></div>
 
                 <div className="common_item1">{t('common.publisher')}</div>
                 <div className="common_item2"><input type="text" className="common_largeinput" 
                                                             onChange={e=>props.catalogHandleChangeReducer('publisher', e.target.value)}
-                                                            value={props.catalogFields.publisher}/>
+                                                            value={props.catalogFields.publisher} disabled={!props.isEditing}/>
                 </div>
                 <div></div>
 
                 <div className="common_item1">{t('common.pubdate')}</div>
                 <div className="common_item2"><input type="text" className="common_largeinput"
                                                             onChange={e=>props.catalogHandleChangeReducer('pubdate', e.target.value)}
-                                                            value={props.catalogFields.pubdate}/>
+                                                            value={props.catalogFields.pubdate} disabled={!props.isEditing}/>
                 </div>
                 <div></div>
 
                 <div className="common_item1">{t('common.keywords')}</div>
                 <div className="common_item2"><input type="text" className="common_largeinput"
                                                             onChange={e=>props.catalogHandleChangeReducer('keywords', e.target.value)}
-                                                            value={props.catalogFields.keywords}/>
+                                                            value={props.catalogFields.keywords} disabled={!props.isEditing}/>
                 </div>
                 <div></div>
 
                 <div className="common_item1">{t('common.originalfilename')}</div>
                 <div className="common_item2"><input type="text" className="common_largeinput"
                                                             onChange={e=>props.catalogHandleChangeReducer('originalFilename', e.target.value)}
-                                                            value={props.catalogFields.originalFilename}/>
+                                                            value={props.catalogFields.originalFilename} disabled={!props.isEditing}/>
                 </div>
                 <div></div>
 
                 <div className="common_item1">{t('common.fileupload')}</div>
-                <div className="common_item2"><input type="file" className="cataloging_largeinput_file" /></div>
+                <div className="common_item2"><input type="file" className="cataloging_largeinput_file" disabled={!props.isEditing} onChange={ e => props.handleInputTypeFile(e)}/></div>
                 <div className="cataloging-eightnine">
-                    <div className="cataloging_upload" onClick={()=>props.handleCatalogButtons('upload')}>
-                        {t('common.upload')}
+                <div    className={props.isEditing?"normalColor cataloging_upload":"disabledColor cataloging_upload"}
+                        onClick={() => props.handleCatalogButtons('upload')}>
+                            {t('common.upload')}
                     </div>
                 </div>
 
                 <div className="cataloging_startnewcomment">{t('cataloging.newcomment')}</div>
                 <div className="cataloging_newcommentcontainer"><textarea className="cataloging_newcomment"
-                                                            value={props.newComment}
+                                                            value={props.newComment} readOnly={!props.isEditing}
                                                             onChange={e=>props.catalogHandleNewComment(e)}/></div>
                 <div className="cataloging_endnewcomment"></div>
 
@@ -95,17 +95,21 @@ export default function Cataloging(props) {
 
                 <div className="cataloging-firstbuttonrow"></div>
                 <div className="cataloging-threebuttons">
-                    <div className="cataloging_botbutton" onClick={()=>props.handleCatalogButtons('edit')}>{t('cataloging.edit')}</div>
-                    <div className="cataloging_botbutton" onClick={()=>props.handleCatalogButtons('saveascurrent')}>{t('cataloging.saveascurrent')}</div>
-                    <div className="cataloging_botbutton" onClick={()=>props.handleCatalogButtons('saveasnew')}>{t('cataloging.saveasnew')}</div>
+                    <div    className={props.isEditing?"redColor cataloging_botbutton":"normalColor cataloging_botbutton"}
+                            onClick={() => props.handleCatalogButtons('edit')}>{t('cataloging.edit')}</div>
+                    <div    className={props.isEditing?"normalColor cataloging_botbutton":"disabledColor cataloging_botbutton"}
+                            onClick={()=> {props.isEditing?props.handleCatalogButtons('saveascurrent'):props.handleCatalogButtons('nada')}}>{t('cataloging.saveascurrent')}</div>
+                    <div    className={props.isEditing?"normalColor cataloging_botbutton":"disabledColor cataloging_botbutton"}
+                            onClick={()=> {props.isEditing?props.handleCatalogButtons('saveasnew'):props.handleCatalogButtons('nada')}}>{t('cataloging.saveasnew')}</div>
                 </div>
                 <div></div>
 
                 <div className="cataloging-firstbuttonrow"></div>
                 <div className="cataloging-threebuttons">
-                    <div className="cataloging_botbutton" onClick={()=>props.handleCatalogButtons('download')}>{t('cataloging.download')}</div>
-                    <div className="cataloging_botbutton" onClick={()=>props.handleCatalogButtons('clear')}>{t('cataloging.clear')}</div>
-                    <div className="cataloging_botbutton" onClick={()=>props.handleCatalogButtons('delete')}>{t('cataloging.delete')}</div>
+                    <div className="normalColor cataloging_botbutton" onClick={()=>props.handleCatalogButtons('download')}>{t('cataloging.download')}</div>
+                    <div className="normalColor cataloging_botbutton" onClick={()=>props.handleCatalogButtons('clear')}>{t('cataloging.clear')}</div>
+                    <div    className={props.isEditing?"normalColor cataloging_botbutton":"disabledColor cataloging_botbutton"}
+                            onClick={()=> {props.isEditing?props.handleCatalogButtons('delete'):props.handleCatalogButtons('nada')}}>{t('cataloging.delete')}</div>
                 </div>
             </div>
         </div>
