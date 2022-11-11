@@ -238,15 +238,73 @@ export default function Mainpage() {
 
 //=========== Cataloging ==========
 
-const [catalogFields, setCatalogFields] = useState({serial:"serial",title:"title",author:"author",publisher:"publisher",pubdate:"2022",keywords:"#React #Web",originalFilename:"BigFile.bin"})
+const [catalogFields, setCatalogFields] = useState({serial:"",title:"",author:"",publisher:"",pubdate:"",keywords:"",originalFilename:""})
 const [newComment,setNewComment] = useState("New comment ...")
 const [previousComment,setPreviousComment] = useState("Previous comments ...")
+
+
+
+
+
+async function catalogNextByIdUtil(id){
+  if(Number(catalogFields.serial)>=0){
+
+    let result = await searchById(Number(catalogFields.serial)+1)
+    if(result.success){
+      let updatedField = {
+        serial:result.id,
+        title:result.title,
+        author:result.author,
+        publisher:result.publisher,
+        from:result.pubdate,
+        to:result.to,
+        keywords:result.keywords,
+        originalFilename:result.originalfn
+      }
+      setCatalogFields(updatedField)
+      setLoggerMessage(["And the next serial is ...",true]);
+    }else{  
+      setLoggerMessage(["Could not find next...",false])
+    }
+  }else{
+    setLoggerMessage(["Could not find next...",false])
+  }   
+}
+
+async function catalogPreviousByIdUtil(id){
+  console.log("=== Previous ===")
+  if(Number(catalogFields.serial)>1){
+
+    let result = await searchById(Number(catalogFields.serial)-1)
+    if(result.success){
+      let updatedField = {
+        serial:result.id,
+        title:result.title,
+        author:result.author,
+        publisher:result.publisher,
+        from:result.pubdate,
+        to:result.to,
+        keywords:result.keywords,
+        originalFilename:result.originalfn
+      }
+      setCatalogFields(updatedField)
+      setLoggerMessage(["And the previous serial is ...",true]);
+    }else{  
+      setLoggerMessage(["Could not find previous...",false])
+    }
+  }else{
+    setLoggerMessage(["Could not find previous...",false])
+  }   
+
+}
 
 function handleCatalogButtons(button){
   switch(button){
     case 'prevSerial':{ console.log("=== PREVIOUS SERIAL: ");
+                        catalogPreviousByIdUtil(catalogFields.serial);
                         break;}
     case 'nextSerial':{ console.log("=== NEXT SERIAL: ");
+                        catalogNextByIdUtil(catalogFields.serial);
                         break;}
     case 'upload':{ console.log("=== UPLOAD: ");
                         break;}

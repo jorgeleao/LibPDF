@@ -20,8 +20,8 @@ export default function Cataloging(props) {
 
                 <div></div>
                 <div className="common-two-upper-buttons">
-                    <div className="common_but_top" onClick={()=>props.handleSearchButtons('prevSerial')}>{t('search.previous')}</div>
-                    <div className="common_but_top" onClick={()=>props.handleSearchButtons('nextSerial')}>{t('search.next')}</div>
+                    <div className="common_but_top" onClick={()=>props.handleCatalogButtons('prevSerial')}>{t('search.previous')}</div>
+                    <div className="common_but_top" onClick={()=>props.handleCatalogButtons('nextSerial')}>{t('search.next')}</div>
                 </div>
                 <div></div>
 
