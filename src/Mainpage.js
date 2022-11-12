@@ -245,6 +245,7 @@ const [newComment,setNewComment] = useState("New comment ...")
 const [previousComment,setPreviousComment] = useState("Previous comments ...")
 const [isEditing, setIsEditing] = useState(false)
 const [inputTypeFileValue, setInputTypeFileValue] = useState('')
+const [inputFileKey, setInputFileKey] = useState(Date.now())
 
 function handleInputTypeFile(e){
     setInputTypeFileValue(e.target.value)
@@ -336,9 +337,13 @@ function handleCatalogButtons(button){
                             break;}
     case 'clear':         { let updatedCatalogFields = {serial:"",title:"",author:"",publisher:"",pubdate:"",keywords:"",originalFilename:""};
                             setCatalogFields(updatedCatalogFields);
+                            setInputTypeFileValue(()=>(""))
                             setNewComment(()=>(""))
                             setPreviousComment(()=>(""))
                             setIsEditing(false)
+                            // https://stackoverflow.com/questions/42192346/how-to-reset-reactjs-file-input
+                            setInputFileKey(Date.now())
+                            setLoggerMessage([" ",true])
                             break;}
     case 'delete':        { console.log("=== delete: ");
                             break;}
@@ -394,6 +399,7 @@ function catalogHandleNewComment(e){
                                               inputTypeFileValue={inputTypeFileValue}
                                               setInputTypeFileValue={setInputTypeFileValue}
                                               handleInputTypeFile={handleInputTypeFile}
+                                              inputFileKey={inputFileKey}
                                               newComment={newComment}
                                               previousComment={previousComment}
                                               catalogHandleNewComment={catalogHandleNewComment}

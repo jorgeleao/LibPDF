@@ -8,6 +8,7 @@ import SearchResults from './searchResults'
 import { useNavigate } from "react-router-dom";
 import './common.css';
 import Alert from './alert';
+import Messager from './messager'
 
 
 
@@ -54,7 +55,7 @@ export default function Search(props) {
             <br />
             <div className="common_divcontainer">
                 <div className="common_pageTitle"><span>{t('appPageTexts.part5')}</span></div>
-                <div className="common_message"><Alert loggerMessage={props.loggerMessage}/></div>
+                <div className="common_message"><Messager message="This is an example..." /></div>
                 <div></div>
 
                 <div></div>
@@ -65,19 +66,22 @@ export default function Search(props) {
                 <div></div>
 
                 <div className="common_item1">{t('common.serial')}</div>
-                <div className="common-twoeight"><input name="serial" type="text" className="common-intext" value={props.fields.serial} 
-                    onChange={e=>props.handleChangeReducer('serial', e.target.value)}/></div>
+                <div className="common-twoeight"><input type="text" 
+                                                        className="common_largeinput" 
+                                                        value={props.fields.serial} 
+                                                        onChange={e=>props.handleChangeReducer('serial', e.target.value)}/>
+                </div>
 
                 <div className="common_item1">{t('common.title')}</div>
-                <div className="common-twoeight"><input name="title" type="text" className="common-intext" value={props.fields.title} 
+                <div className="common-twoeight"><input name="title" type="text" className="common_largeinput" value={props.fields.title} 
                     onChange={e=>props.handleChangeReducer('title', e.target.value)} autoComplete="true"/></div>
                 
                 <div className="common_item1">{t('common.author')}</div>
-                <div className="common-twoeight"><input name="author" type="text" className="common-intext" value={props.fields.author} 
+                <div className="common-twoeight"><input name="author" type="text" className="common_largeinput" value={props.fields.author} 
                     onChange={e=>props.handleChangeReducer('author', e.target.value)}/></div>
                 
                 <div className="common_item1">{t('common.publisher')}</div>
-                <div className="common-twoeight"><input name="publisher" type="text" className="common-intext" value={props.fields.publisher} 
+                <div className="common-twoeight"><input name="publisher" type="text" className="common_largeinput" value={props.fields.publisher} 
                     onChange={e=>props.handleChangeReducer('publisher', e.target.value)}/></div>
                 
                 <div className="common_item1">{t('common.pubdate')}</div>
@@ -90,7 +94,7 @@ export default function Search(props) {
                     onChange={e=>props.handleChangeReducer('to', e.target.value)}/></div>
 
                 <div className="common_item1">{t('common.keywords')}</div>
-                <div className="common-twoeight"><input name="keywords" type="text" className="common-intext" value={props.fields.keywords} 
+                <div className="common-twoeight"><input name="keywords" type="text" className="common_largeinput" value={props.fields.keywords} 
                     onChange={e=>props.handleChangeReducer('keywords', e.target.value)}/></div>
 
                 <div className="common-mode-grid">

@@ -1,8 +1,14 @@
 .search-threefive{
     grid-column: 3 / 5;
+    height:25px;
+    line-height:25px;
+    text-align:right;
 }
 .search-sixeight{
     grid-column: 6 / 8;
+    height:25px;
+    line-height:25px;
+    text-align:right;
 }
 .search-next_previous_buttons{
     display: grid;

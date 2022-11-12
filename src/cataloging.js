@@ -25,56 +25,75 @@ export default function Cataloging(props) {
                 <div></div>
 
                 <div className="common_item1">{t('common.serial')}</div>
-                <div className="common-twoeight"><input type="text" className="common_largeinput"
-                                                            onChange={e=>props.catalogHandleChangeReducer('serial', e.target.value)}
-                                                            value={props.catalogFields.serial}/>
+                <div className="common-twoeight"><input type="text"
+                                                        className="common_largeinput"
+                                                        value={props.catalogFields.serial}
+                                                        onChange={e=>props.catalogHandleChangeReducer('serial', e.target.value)}/>
                 </div>
                 <div></div>
 
                 <div className="common_item1">{t('common.title')}</div>
-                <div className="common_item2"><input type="text" className="common_largeinput"
-                                                            onChange={e=>props.catalogHandleChangeReducer('title', e.target.value)}
-                                                            value={props.catalogFields.title} disabled={!props.isEditing}/>
+                <div className="common_item2"><input    type="text" 
+                                                        className="common_largeinput"
+                                                        onChange={e=>props.catalogHandleChangeReducer('title', e.target.value)}
+                                                        value={props.catalogFields.title} 
+                                                        disabled={!props.isEditing}/>
                 </div>
                 <div></div>
 
                 <div className="common_item1">{t('common.author')}</div>
-                <div className="common_item2"><input type="text" className="common_largeinput"
-                                                            onChange={e=>props.catalogHandleChangeReducer('author', e.target.value)}
-                                                            value={props.catalogFields.author} disabled={!props.isEditing}/>
+                <div className="common_item2"><input    type="text" 
+                                                        className="common_largeinput"
+                                                        onChange={e=>props.catalogHandleChangeReducer('author', e.target.value)}
+                                                        value={props.catalogFields.author} 
+                                                        disabled={!props.isEditing}/>
                 </div>
                 <div></div>
 
                 <div className="common_item1">{t('common.publisher')}</div>
-                <div className="common_item2"><input type="text" className="common_largeinput" 
-                                                            onChange={e=>props.catalogHandleChangeReducer('publisher', e.target.value)}
-                                                            value={props.catalogFields.publisher} disabled={!props.isEditing}/>
+                <div className="common_item2"><input    type="text" 
+                                                        className="common_largeinput" 
+                                                        onChange={e=>props.catalogHandleChangeReducer('publisher', e.target.value)}
+                                                        value={props.catalogFields.publisher} 
+                                                        disabled={!props.isEditing}/>
                 </div>
                 <div></div>
 
                 <div className="common_item1">{t('common.pubdate')}</div>
-                <div className="common_item2"><input type="text" className="common_largeinput"
-                                                            onChange={e=>props.catalogHandleChangeReducer('pubdate', e.target.value)}
-                                                            value={props.catalogFields.pubdate} disabled={!props.isEditing}/>
+                <div className="common_item2"><input    type="text" 
+                                                        className="common_largeinput"
+                                                        onChange={e=>props.catalogHandleChangeReducer('pubdate', e.target.value)}
+                                                        value={props.catalogFields.pubdate} 
+                                                        disabled={!props.isEditing}/>
                 </div>
                 <div></div>
 
                 <div className="common_item1">{t('common.keywords')}</div>
-                <div className="common_item2"><input type="text" className="common_largeinput"
-                                                            onChange={e=>props.catalogHandleChangeReducer('keywords', e.target.value)}
-                                                            value={props.catalogFields.keywords} disabled={!props.isEditing}/>
+                <div className="common_item2"><input    type="text" 
+                                                        className="common_largeinput"
+                                                        onChange={e=>props.catalogHandleChangeReducer('keywords', e.target.value)}
+                                                        value={props.catalogFields.keywords} 
+                                                        disabled={!props.isEditing}/>
                 </div>
                 <div></div>
 
                 <div className="common_item1">{t('common.originalfilename')}</div>
-                <div className="common_item2"><input type="text" className="common_largeinput"
-                                                            onChange={e=>props.catalogHandleChangeReducer('originalFilename', e.target.value)}
-                                                            value={props.catalogFields.originalFilename} disabled={!props.isEditing}/>
+                <div className="common_item2"><input    type="text" 
+                                                        className="common_largeinput"
+                                                        onChange={e=>props.catalogHandleChangeReducer('originalFilename', e.target.value)}
+                                                        value={props.catalogFields.originalFilename} 
+                                                        disabled={!props.isEditing}/>
                 </div>
                 <div></div>
 
                 <div className="common_item1">{t('common.fileupload')}</div>
-                <div className="common_item2"><input type="file" className="cataloging_largeinput_file" disabled={!props.isEditing} onChange={ e => props.handleInputTypeFile(e)}/></div>
+                <div className="common_item2">
+                    <input  type="file" 
+                            key={props.inputFileKey}
+                            className={props.isEditing?"cataloging-bg_white cataloging_largeinput_file":"cataloging_largeinput_file"} 
+                            disabled={!props.isEditing} 
+                            onChange={ e => props.handleInputTypeFile(e)}/>
+                </div>
                 <div className="cataloging-eightnine">
                 <div    className={props.isEditing?"normalColor cataloging_upload":"disabledColor cataloging_upload"}
                         onClick={() => props.handleCatalogButtons('upload')}>
@@ -83,14 +102,20 @@ export default function Cataloging(props) {
                 </div>
 
                 <div className="cataloging_startnewcomment">{t('cataloging.newcomment')}</div>
-                <div className="cataloging_newcommentcontainer"><textarea className="cataloging_newcomment"
-                                                            value={props.newComment} readOnly={!props.isEditing}
-                                                            onChange={e=>props.catalogHandleNewComment(e)}/></div>
+                <div className="cataloging_newcommentcontainer">
+                    <textarea   className="cataloging_newcomment"
+                                value={props.newComment} 
+                                readOnly={!props.isEditing}
+                                onChange={e=>props.catalogHandleNewComment(e)}/>
+                </div>
                 <div className="cataloging_endnewcomment"></div>
 
                 <div className="cataloging_previouscomment">{t('cataloging.previouscomments')}</div>
-                <div className="cataloging_previouscommentbox"><textarea className="cataloging_newcomment" 
-                                                            value={props.previousComment} readOnly /></div>
+                <div className="cataloging_previouscommentbox">
+                    <textarea   className="cataloging_newcomment" 
+                                value={props.previousComment} 
+                                readOnly />
+                </div>
                 <div></div>
 
                 <div className="cataloging-firstbuttonrow"></div>
