@@ -12,32 +12,22 @@
 }
 .search-next_previous_buttons{
     display: grid;
-    grid-template-columns: 160px 160px 160px;
-    grid-template-rows: 20px 30px 30px;
+    grid-template-columns: 195px 195px 195px;
+    grid-template-rows: 28px 28px;
     padding: 0;
     margin-right: auto;
     margin-left: auto;
-    height: 85px;
     justify-content: center;
 }
 
-.search-bottompart{
-    grid-column: 2 / 8;
-    grid-row: 9 / 10;
-}
-.search-resultspart{
-    grid-column: 1 / 9;
-    grid-row: 12 / 16;
-}
-
 .search-currentpageInput{
-    border:1px solid white;
-    height:16px;
-    line-height:16px;
-    outline: none;
+    height:19px;
+    line-height:19px;
     width:134px;
     text-align:center;
     font-size:1.1em;
+    border:none;
+    outline:none;
 }
 .search-buttondivSmall{
     width:150px;
@@ -52,7 +42,8 @@
     font-weight: bold;
 }
 .search-buttondiv{
-    width:150px;
+    width:187px;
+    margin: 0 auto 0 auto;
     height:21px;
     line-height:21px;
     border:2px solid black;
@@ -63,6 +54,24 @@
     color:white;
     font-size:0.9em;
     font-weight: bold;
+}
+.search-centerBold{
+    text-align: center;
+    font-weight: bold;
+}
+.search-buttondivlike{
+    width:187px;
+    height:21px;
+    line-height:21px;
+    border:2px solid black;
+    border-radius: 8px;
+    text-align:center;
+    margin:3px;
+    color:black;
+    background-color: white;
+    font-size:0.9em;
+    font-weight: bold;
+    margin: 0 auto 0 auto;
 }
 
 .search-left_button1{
@@ -76,6 +85,7 @@
 }
 .search-left_button2{
     cursor:pointer;
+    margin: 0 auto 0 auto;
 }
 .search-left_button2:active {
     transform: scale(0.98);
@@ -86,6 +96,7 @@
 }
 .search-right_button2{
     cursor:pointer;
+    margin: 0 auto 0 auto;
 }
 .search-right_button2:active {
     transform: scale(0.98);
@@ -93,6 +104,8 @@
 
 .search-left_button3{
     cursor:pointer;
+    margin: 0 auto 0 auto;
+
 }
 .search-left_button3:active {
     transform: scale(0.96);
@@ -108,6 +121,8 @@
 }
 .search-right_button3{
     cursor:pointer;
+    margin: 0 auto 0 auto;
+
 }
 .search-right_button3:active {
     transform: scale(0.96);
@@ -116,6 +131,11 @@
     /* Lowering the shadow */
     background-color:rgb(186, 239, 248);
     color:black;
+}
+.search-resultspart{
+    grid-column: 1 / 9;
+    grid-row: 11 / 16;
+    text-align: center;
 }
 
 .search-numberOfResults{
@@ -157,3 +177,8 @@ li{
 .searchElement{
     cursor:pointer;
 }
+.search-bottompart{
+    grid-column: 2 / 8;
+    grid-row: 9 / 11;
+}
+

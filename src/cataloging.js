@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import './common.css';
-import Alert from './alert';
+import Messager from './messager/messager.js'
 
 
 export default function Cataloging(props) {
@@ -14,7 +14,7 @@ export default function Cataloging(props) {
             <br />
             <div className="common_divcontainer">
                 <div className="common_pageTitle"><span>{t('appPageTexts.part6')}</span></div>
-                <div className="common_message"><Alert loggerMessage={props.loggerMessage}/></div>
+                <div className="common_message"><Messager isActive = {props.isActive} message={props.message}/></div>
                 <div></div>
 
                 <div></div>

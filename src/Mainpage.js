@@ -14,12 +14,17 @@ import { advancedSearch } from './api/advancedSearch.js';
 import { searchById } from './api/searchById.js';
 import { savenew } from './api/savenew.js';
 import { savecurrent } from './api/savecurrent.js';
+import { deleteById } from './api/deleteById.js'
+import { useMessager } from './messager/useMessager.js'
 
 
 export default function Mainpage() {
 //console.log("=== React version: "+version);
 
-
+const { isActive, message, openMessager } = useMessager();
+const showMessager = (msg) => {
+  openMessager(msg);
+}
 
 //=========== Search ==========
   const [chkboxState, setChkboxState] = useState(new Array(11).fill(false,0,11))
@@ -29,12 +34,11 @@ export default function Mainpage() {
   const [nroRecords,setNroRecords] = useState(0)
   const [lastSearch, setLastSearch] = useState([])
  // const [resultsContents,setResultsContents] = useState([])
-  const [loggerMessage, setLoggerMessage] = useState(['',true])
-
-  function showMessage(message,infolevel){
-    let msg = [message, infolevel]
-    setLoggerMessage(msg)
-  }
+  // const [loggerMessage, setLoggerMessage] = useState(['',true])
+  // function showMessage(message,infolevel){
+  //   let msg = [message, infolevel]
+  //   setLoggerMessage(msg)
+  // }
 
   function clearCheckboxes(){
     let newChkboxState = new Array(11).fill(false,0,11)
@@ -120,10 +124,10 @@ export default function Mainpage() {
           result.keywords+". Grade: 1.")
       })
       setResults(buff)
-      setLoggerMessage(["The results for the current page are...",true]);
+      showMessager("The results for the current page are...");
     }else{
       setResults(["=== Didn't find any ..."])
-      setLoggerMessage(["Didn't find another page...",false]);
+      showMessager("Didn't find another page...");
     }
 
     setCurrPage(page);
@@ -151,12 +155,12 @@ export default function Mainpage() {
           result.keywords+". Grade: 1."
         )
         setResults(buff)
-        setLoggerMessage(["And the next serial is ...",true]);
+        showMessager("And the next serial is ...");
       }else{  
-        setLoggerMessage(["Could not find next...",false])
+        showMessager("Could not find next...")
       }
     }else{
-      setLoggerMessage(["Could not find next...",false])
+      showMessager("Could not find next...")
     }   
   }
 
@@ -187,12 +191,12 @@ export default function Mainpage() {
           result.pubdate+". Keywords: "+
           result.keywords+". Grade: 1.")
         setResults(buff)
-        setLoggerMessage(["And the previous is...",true]);
+        showMessager("And the previous is...");
       }else{  
-        setLoggerMessage(["Could not find previous...",false])
+        showMessager("Could not find previous...")
       }
     }else{
-      setLoggerMessage(["Could not find previous...Could not find previous...",false])
+      showMessager("Could not find previous...")
     }   
   }
 
@@ -224,7 +228,7 @@ export default function Mainpage() {
                             setFields(updatedField);
                             setCurrPage("");
                             setNroRecords(0)
-                            setLoggerMessage([" ",true])
+                            showMessager("Clearing...")
                             break;}
 
       default          :  {}
@@ -251,12 +255,8 @@ function handleInputTypeFile(e){
     setInputTypeFileValue(e.target.value)
 }
 
-
-
-
 async function catalogNextByIdUtil(id){
   if(Number(catalogFields.serial)>=0){
-
     let result = await searchById(Number(catalogFields.serial)+1)
     if(result.success){
       let updatedField = {
@@ -269,19 +269,18 @@ async function catalogNextByIdUtil(id){
         originalFilename:result.originalfn
       }
       setCatalogFields(updatedField)
-      setLoggerMessage(["And the next serial is ...",true]);
+      showMessager("And the next serial is ...");
     }else{  
-      setLoggerMessage(["Could not find next...",false])
+      showMessager("Could not find next...")
     }
   }else{
-    setLoggerMessage(["Could not find next...",false])
+    showMessager("Could not find next...")
   }   
 }
 
 async function catalogPreviousByIdUtil(id){
   console.log("=== Previous ===")
   if(Number(catalogFields.serial)>1){
-
     let result = await searchById(Number(catalogFields.serial)-1)
     if(result.success){
       let updatedField = {
@@ -294,14 +293,44 @@ async function catalogPreviousByIdUtil(id){
         originalFilename:result.originalfn
       }
       setCatalogFields(updatedField)
-      setLoggerMessage(["And the previous serial is ...",true]);
+      showMessager("And the previous serial is ...");
     }else{  
-      setLoggerMessage(["Could not find previous...",false])
+      showMessager("Could not find previous...")
     }
   }else{
-    setLoggerMessage(["Could not find previous...",false])
+    showMessager("Could not find previous...")
   }   
+}
 
+async function deleteCurrent(serial){
+  if(Number(serial)>0){
+    let result = await deleteById(serial)
+    if(result[0].success){
+      showMessager("Deleted the current serial")
+    }else{
+      showMessager("Did not find this serial on the database!")
+    }
+  }else{
+    showMessager("Current serial is not valid...")
+  }
+}
+
+async function saveAsNew(bodyParam){
+  let result = await savenew(bodyParam)
+  if(result[0].success)
+    showMessager("Saved as new")
+  else
+    showMessager("Could not save...")
+  return result
+}
+
+async function saveAsCurrent(bodyParam,serial){
+  let result = await savecurrent(bodyParam,serial)
+  if(result[0].success)
+    showMessager("Saved as current")
+  else
+    showMessager("Could not save...")
+  return result
 }
 
 function handleCatalogButtons(button){
@@ -321,17 +350,15 @@ function handleCatalogButtons(button){
                             break;}
     case 'edit':          { if(isEditing){
                               setIsEditing(false);
-                              setLoggerMessage(["",true])
+                              showMessager("Not editing any more")
                             }else{
                               setIsEditing(true);
-                              setLoggerMessage(["Atention: is editing... ",false])
+                              showMessager("Atention: is editing... ")
                             }
                             break;}
-    case 'saveascurrent': { console.log("=== saveascurrent: ");
-                            savecurrent({title:"Running more..."},3333)
+    case 'saveascurrent': { saveAsCurrent({title:"Running more..."},catalogFields.serial)
                             break;}
-    case 'saveasnew':     { console.log("=== saveasnew: ");
-                            savenew({title:"Running more..."})
+    case 'saveasnew':     { saveAsNew({title:"Running more..."})
                             break;}
     case 'download':      { console.log("=== download: ");
                             break;}
@@ -343,9 +370,9 @@ function handleCatalogButtons(button){
                             setIsEditing(false)
                             // https://stackoverflow.com/questions/42192346/how-to-reset-reactjs-file-input
                             setInputFileKey(Date.now())
-                            setLoggerMessage([" ",true])
                             break;}
     case 'delete':        { console.log("=== delete: ");
+                            deleteCurrent(catalogFields.serial)
                             break;}
     default:              {}
   }
@@ -380,7 +407,8 @@ function catalogHandleNewComment(e){
           <Menubar />
           <Routes>
             <Route exact path="/" element={<Search
-                                              loggerMessage={loggerMessage} 
+                                              isActive={isActive}
+                                              message={message}
                                               handleChangeReducer={handleChangeReducer}
                                               handleSearchButtons={handleSearchButtons} 
                                               fields={fields}
@@ -392,7 +420,8 @@ function catalogHandleNewComment(e){
                                               results={results}/>}>
             </Route>
             <Route path="/catalog" element={<Cataloging
-                                              loggerMessage={loggerMessage} 
+                                              isActive={isActive}
+                                              message={message}
                                               handleCatalogButtons={handleCatalogButtons}
                                               catalogHandleChangeReducer={catalogHandleChangeReducer}
                                               catalogFields={catalogFields}
@@ -408,7 +437,9 @@ function catalogHandleNewComment(e){
                                               />}>
             </Route>
             <Route path="/about" element={<About />}></Route>
-            <Route path="/logout" element={<Logout />}></Route>
+            <Route path="/logout" element={<Logout
+                                              isActive={isActive}
+                                              message={message}/>}></Route>
           </Routes>
         </BrowserRouter>
 {/*      </BibliformContext.Provider>  */}

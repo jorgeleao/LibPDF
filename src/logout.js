@@ -1,18 +1,30 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import './logout.css'
 import './common.css';
 import './cataloging.css';
 import SearchMode from './SearchMode'
 
+import App from './messager/mainprogressbar'
+import Messager from './messager/messager.js'
+
+
+
 
 export default function Logout(props) {
     const { t } = useTranslation();
 
+    
 
     return (
         <div className="common_cardboard">
             <br />
+            <br />
+            <br/>
+            {/*<App />*/}
+            <br />
+            <br/>
+            <Messager isActive = {props.isActive} message={props.message}/>
             <br />
             <br/>
             <div className="common_divcontainer">

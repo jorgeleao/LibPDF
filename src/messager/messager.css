@@ -1,0 +1,72 @@
+.messager{
+    visibility:hidden;
+    width:579px;
+    height:37px;
+    font-weight:bolder;
+    margin-bottom:5px;
+    text-align: center;
+}
+.messager-colorsTransparent{
+    color:black;
+    background-image: rgb(255, 255, 255,0);
+}
+.messager-colorsInfo{
+    color:rgb(44, 143, 110);
+    background-image: linear-gradient(to right, rgb(219, 255, 243,0), rgb(219, 255, 243,1), rgb(219, 255, 243,0));
+    border:2px solid lightgray;
+    border-radius: 5px;
+}
+.messager-colorsWarn{
+    color:black;
+    background-image: linear-gradient(to right, rgb(219, 255, 243,0), yellow, rgb(219, 255, 243,0));
+    border:2px solid lightgray;
+    border-radius: 5px;
+}
+.messager-colorsAlert{
+    color:white;
+    background-image: linear-gradient(to right, rgb(219, 255, 243,0), red, rgb(219, 255, 243,0));
+    border:2px solid lightgray;
+    border-radius: 5px;
+}
+.messager-outerSpinner{
+    display:flex;
+    flex-direction: row;
+    text-align:center;
+    justify-content: center;
+    padding: 0 10px 0 10px;
+    font-weight:lighter;
+}
+.messager-spinner{
+    position:relative;
+    bottom:-7px;
+    margin-left: auto;
+    margin-right: auto;
+    height:2px;
+    width:450px;
+    border:2px solid gray;
+    border-radius: 4px;
+    background-color: lightgray;
+}
+.messager-inner{
+    width:50%;
+    height:2px;
+    background-color: rgb(149, 176, 252);
+}
+.messager-controls{
+    font-size:0.7em;
+    color:gray;
+}
+.messager-fadeIn {
+    margin-left: auto;
+    margin-right: auto;
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s linear 0s, opacity 500ms;
+}
+.messager-fadeOut{
+    margin-left: auto;
+    margin-right: auto;
+    visibility: visible;
+    opacity: 0;
+    transition: visibility 0s linear 300s, opacity 2000ms;
+}

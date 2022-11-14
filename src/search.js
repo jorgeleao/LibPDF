@@ -7,14 +7,16 @@ import SearchMode from './SearchMode'
 import SearchResults from './searchResults'
 import { useNavigate } from "react-router-dom";
 import './common.css';
-import Alert from './alert';
-import Messager from './messager'
-
+import Messager from './messager/messager.js'
 
 
 export default function Search(props) {
     const { t } = useTranslation();
     let navigate = useNavigate();
+  
+
+
+
     function elementClickHandle(i){
         console.log("=== elementClickHandle - serial: "+ (((props.currPage-1)*4)+i+1) + "    Data: " + props.results[i])
         console.log("=== lastSearch: "+props.lastSearch[i].originalfn)
@@ -55,7 +57,7 @@ export default function Search(props) {
             <br />
             <div className="common_divcontainer">
                 <div className="common_pageTitle"><span>{t('appPageTexts.part5')}</span></div>
-                <div className="common_message"><Messager message="This is an example..." /></div>
+                <div className="common_message"><Messager isActive = {props.isActive} message={props.message}  /></div>
                 <div></div>
 
                 <div></div>
@@ -104,28 +106,25 @@ export default function Search(props) {
                 <div></div>
                 <div className="search-bottompart">
                     <div className="search-next_previous_buttons">
-                        <div className="search-left_button1 search-buttondivSmall"></div>
-                        <div className="search-center_button1 search-buttondivSmall">{t('search.currentpage')}</div>
-                        <div className="search-right_button1 search-buttondivSmall"></div>
+                        <div className="search-left_button3 search-buttondiv" onClick={()=>props.handleSearchButtons('search')}>{t('search.search')}</div>
+                        <div className="search-centerBold">{t('search.currentpage')}</div>
+                        <div className="search-right_button3 search-buttondiv" onClick={()=>props.handleSearchButtons('clear')}>{t('search.clear')}</div>
 
                         <div className="search-left_button2 search-buttondiv" onClick={()=>props.handleSearchButtons('prevPage')}>&lt; {t('search.previouspage')}</div>
-                        <div className="search-center_button2 search-buttondiv">
+                        <div className="search-buttondivlike">
                             <input type="text"  className="search-currentpageInput" 
                                                 value={props.currPage} 
                                                 onChange={e=>props.handleChangeCurrPage(e)}/>
-                        </div>
-                        <div className="search-right_button2 search-buttondiv" onClick={()=>props.handleSearchButtons('nextPage')}>{t('search.nextpage')} &gt;</div>
-                        <div className="search-left_button3 search-buttondiv" onClick={()=>props.handleSearchButtons('search')}>{t('search.search')}</div>
-                        <div className="search-center_button3" style={{textAlign:"center"}}>
-                        <br /><span className="search-forResults">{t('search.results')}</span><br />
-                            {t('search.nrorecordsfound')}: <span id="idNroRecords">{props.nroRecords}</span>
                         </div>  
-                        <div className="search-right_button3 search-buttondiv" onClick={()=>props.handleSearchButtons('clear')}>{t('search.clear')}</div>
+                        <div className="search-right_button2 search-buttondiv" onClick={()=>props.handleSearchButtons('nextPage')}>{t('search.nextpage')} &gt;</div>
                     </div>
                 </div>
                 <div></div>
 
                 <div className="search-resultspart">
+                    <span className="search-forResults">{t('search.results')}</span>
+                    <br />
+                    {t('search.nrorecordsfound')}: <span id="idNroRecords">{props.nroRecords}</span>
                     <SearchResults>
                         {contents}
                     </SearchResults>
