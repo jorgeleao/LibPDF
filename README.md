@@ -4,10 +4,9 @@ LibPDF is a web app designed to store and retrieve bibliographic materials, like
 
 It should be used on a computer with a minimum resolution of 1280x720 pixels. The text may not be readable in small screens.
 
-![search screen](https://user-images.githubusercontent.com/6748360/197244663-31a6956e-c98f-48c4-a90f-0a685976ed1a.png)
+![Search as 2022-11-15](https://user-images.githubusercontent.com/6748360/202022635-74f232c1-2d4b-452a-9109-bc43c3dc048d.png)
 
-![cataloging screen](https://user-images.githubusercontent.com/6748360/197244705-0594b6b7-fe13-4e7d-bd4a-9f6db3aa2253.png)
+![Cataloging as 2022-11-15](https://user-images.githubusercontent.com/6748360/202022687-1e11c517-61a7-4019-8982-010f9ad5f05d.png)
 
-![about screen](https://user-images.githubusercontent.com/6748360/197244737-936867d8-946e-4e94-8890-2bf57cdfa60d.png)
-
+![About as 2022-11-15](https://user-images.githubusercontent.com/6748360/202022782-b3cc28e5-cc63-44dc-a4d5-e9a1d9d3675f.png)
 
