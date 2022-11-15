@@ -1,14 +1,14 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './messager.css'
 
 
 export default function Messager2(props){
-
+// messager-colorsAlert
     return(
         <div className={    
             props.isActive
-            ?"messager-fadeIn messager messager-colorsAlert"
-            :"messager-fadeOut messager messager-colorsAlert"
+            ?`messager-fadeIn messager ${props.colortheme}`  
+            :`messager-fadeOut messager ${props.colortheme}`   
         }>
 
             <div className="messager-textdiv">{props.message}</div>

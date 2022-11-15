@@ -56,7 +56,7 @@ export default function Search(props) {
             <div className="common_divcontainer">
                 <div className="common_pageTitle"><span>{t('appPageTexts.part5')}</span></div>
                 <div className="common_message">
-                <Messager2 isActive = {props.isActive} message={props.message} progress={props.progress}/>
+                    <Messager2 isActive = {props.isActive} message={props.message} progress={props.progress} colortheme={props.colortheme}/>
                 </div>
                 <div></div>
 

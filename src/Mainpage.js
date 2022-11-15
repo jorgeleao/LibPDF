@@ -20,9 +20,11 @@ import { useMessager } from './messager2/useMessager.js'
 
 export default function Mainpage() {
 //console.log("=== React version: "+version);
+const [colortheme, setColortheme] = useState([])
 
 const { isActive, message, progress, openMessager } = useMessager();
-const showMessager = (msg) => {
+const showMessager = (mode,msg) => {
+  setColortheme("messager-colors"+mode)
   openMessager(msg);
 }
 
@@ -33,12 +35,6 @@ const showMessager = (msg) => {
   const [results,setResults] = useState([])
   const [nroRecords,setNroRecords] = useState(0)
   const [lastSearch, setLastSearch] = useState([])
- // const [resultsContents,setResultsContents] = useState([])
-  // const [loggerMessage, setLoggerMessage] = useState(['',true])
-  // function showMessage(message,infolevel){
-  //   let msg = [message, infolevel]
-  //   setLoggerMessage(msg)
-  // }
 
   function clearCheckboxes(){
     let newChkboxState = new Array(11).fill(false,0,11)
@@ -104,7 +100,7 @@ const showMessager = (msg) => {
     // }
     let queryparam = {params:{
                               tm:"or",title:"Running again",
-                              am:"or",author:"Dr. Joh Doolittle",
+                              am:"or",author:"Dr. John Doolittle",
                               pm:"or",publisher:"McGraw-Hill Inc.",
                               fdm:"or",from:"2020-01-01",
                               tdm:"or",to:"2022-11-05",
@@ -124,10 +120,10 @@ const showMessager = (msg) => {
           result.keywords+". Grade: 1.")
       })
       setResults(buff)
-      showMessager("The results for the current page are...");
+      showMessager("Info","The results for the current page are...");
     }else{
-      setResults(["=== Didn't find any ..."])
-      showMessager("Didn't find another page...");
+      //setResults(["=== Didn't find any ..."])
+      showMessager("Alert","There was an error...");
     }
 
     setCurrPage(page);
@@ -155,12 +151,12 @@ const showMessager = (msg) => {
           result.keywords+". Grade: 1."
         )
         setResults(buff)
-        showMessager("And the next serial is ...");
+        showMessager("Info","And the next serial is ...");
       }else{  
-        showMessager("Could not find next...")
+        showMessager("Alert","There was an error...");
       }
     }else{
-      showMessager("Could not find next...")
+      showMessager("Warn","Invalid serial...");
     }   
   }
 
@@ -191,12 +187,12 @@ const showMessager = (msg) => {
           result.pubdate+". Keywords: "+
           result.keywords+". Grade: 1.")
         setResults(buff)
-        showMessager("And the previous is...");
+        showMessager("Info","And the previous is...");
       }else{  
-        showMessager("Could not find previous...")
+        showMessager("Alert","There was an error...");
       }
     }else{
-      showMessager("Could not find previous...")
+      showMessager("Warn","Invalid serial...");
     }   
   }
 
@@ -228,7 +224,7 @@ const showMessager = (msg) => {
                             setFields(updatedField);
                             setCurrPage("");
                             setNroRecords(0)
-                            showMessager("Clearing...")
+                            showMessager("Info","Cleared...")
                             break;}
 
       default          :  {}
@@ -240,13 +236,11 @@ const showMessager = (msg) => {
     setCurrPage(Number(e.target.value))
   }
 
-
-
 //=========== Cataloging ==========
 
 const [catalogFields, setCatalogFields] = useState({serial:"",title:"",author:"",publisher:"",pubdate:"",keywords:"",originalFilename:""})
-const [newComment,setNewComment] = useState("New comment ...")
-const [previousComment,setPreviousComment] = useState("Previous comments ...")
+const [newComment,setNewComment] = useState("")
+const [previousComment,setPreviousComment] = useState("")
 const [isEditing, setIsEditing] = useState(false)
 const [inputTypeFileValue, setInputTypeFileValue] = useState('')
 const [inputFileKey, setInputFileKey] = useState(Date.now())
@@ -269,17 +263,16 @@ async function catalogNextByIdUtil(id){
         originalFilename:result.originalfn
       }
       setCatalogFields(updatedField)
-      showMessager("And the next serial is ...");
+      showMessager("Info","And the next serial is ...");
     }else{  
-      showMessager("Could not find next...")
+      showMessager("Alert","There was an error...")
     }
   }else{
-    showMessager("Could not find next...")
+    showMessager("Warn","Could not find next...")
   }   
 }
 
 async function catalogPreviousByIdUtil(id){
-  console.log("=== Previous ===")
   if(Number(catalogFields.serial)>1){
     let result = await searchById(Number(catalogFields.serial)-1)
     if(result.success){
@@ -293,12 +286,12 @@ async function catalogPreviousByIdUtil(id){
         originalFilename:result.originalfn
       }
       setCatalogFields(updatedField)
-      showMessager("And the previous serial is ...");
+      showMessager("Info","And the previous serial is ...");
     }else{  
-      showMessager("Could not find previous...")
+      showMessager("Alert","There was an error...")
     }
   }else{
-    showMessager("Could not find previous...")
+    showMessager("Warn","Could not find previous...")
   }   
 }
 
@@ -306,30 +299,30 @@ async function deleteCurrent(serial){
   if(Number(serial)>0){
     let result = await deleteById(serial)
     if(result[0].success){
-      showMessager("Deleted the current serial")
+      showMessager("Info","Deleted the current serial")
     }else{
-      showMessager("Did not find this serial on the database!")
+      showMessager("Alert","There was an error...")
     }
   }else{
-    showMessager("Current serial is not valid...")
+    showMessager("Warn","Current serial is not valid...")
   }
 }
 
 async function saveAsNew(bodyParam){
   let result = await savenew(bodyParam)
   if(result[0].success)
-    showMessager("Saved as new")
+    showMessager("Info","Saved as new")
   else
-    showMessager("Could not save...")
+    showMessager("Alert","Could not save...")
   return result
 }
 
 async function saveAsCurrent(bodyParam,serial){
   let result = await savecurrent(bodyParam,serial)
   if(result[0].success)
-    showMessager("Saved as current")
+    showMessager("Info","Saved as current")
   else
-    showMessager("Could not save...")
+    showMessager("Alert","Could not save...")
   return result
 }
 
@@ -350,10 +343,10 @@ function handleCatalogButtons(button){
                             break;}
     case 'edit':          { if(isEditing){
                               setIsEditing(false);
-                              showMessager("Not editing any more")
+                              showMessager("Warn","Not editing any more")
                             }else{
                               setIsEditing(true);
-                              showMessager("Atention: is editing... ")
+                              showMessager("Warn","Atention: is editing... ")
                             }
                             break;}
     case 'saveascurrent': { saveAsCurrent({title:"Running more..."},catalogFields.serial)
@@ -410,6 +403,7 @@ function catalogHandleNewComment(e){
                                               isActive={isActive}
                                               message={message}
                                               progress={progress}
+                                              colortheme={colortheme}
                                               handleChangeReducer={handleChangeReducer}
                                               handleSearchButtons={handleSearchButtons} 
                                               fields={fields}
@@ -424,6 +418,7 @@ function catalogHandleNewComment(e){
                                               isActive={isActive}
                                               message={message}
                                               progress={progress}
+                                              colortheme={colortheme}
                                               handleCatalogButtons={handleCatalogButtons}
                                               catalogHandleChangeReducer={catalogHandleChangeReducer}
                                               catalogFields={catalogFields}
