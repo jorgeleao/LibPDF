@@ -7,15 +7,13 @@ import SearchMode from './SearchMode'
 import SearchResults from './searchResults'
 import { useNavigate } from "react-router-dom";
 import './common.css';
-import Messager from './messager/messager.js'
+import Messager2 from './messager2/messager.js'
 
 
 export default function Search(props) {
     const { t } = useTranslation();
     let navigate = useNavigate();
   
-
-
 
     function elementClickHandle(i){
         console.log("=== elementClickHandle - serial: "+ (((props.currPage-1)*4)+i+1) + "    Data: " + props.results[i])
@@ -57,7 +55,9 @@ export default function Search(props) {
             <br />
             <div className="common_divcontainer">
                 <div className="common_pageTitle"><span>{t('appPageTexts.part5')}</span></div>
-                <div className="common_message"><Messager isActive = {props.isActive} message={props.message}  /></div>
+                <div className="common_message">
+                <Messager2 isActive = {props.isActive} message={props.message} progress={props.progress}/>
+                </div>
                 <div></div>
 
                 <div></div>

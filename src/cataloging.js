@@ -1,7 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import './common.css';
-import Messager from './messager/messager.js'
+import './cataloging.css';
+import Messager2 from './messager2/messager.js'
 
 
 export default function Cataloging(props) {
@@ -14,7 +15,9 @@ export default function Cataloging(props) {
             <br />
             <div className="common_divcontainer">
                 <div className="common_pageTitle"><span>{t('appPageTexts.part6')}</span></div>
-                <div className="common_message"><Messager isActive = {props.isActive} message={props.message}/></div>
+                <div className="common_message">
+                <Messager2 isActive = {props.isActive} message={props.message} progress={props.progress}/>
+                </div>
                 <div></div>
 
                 <div></div>

@@ -15,13 +15,13 @@ import { searchById } from './api/searchById.js';
 import { savenew } from './api/savenew.js';
 import { savecurrent } from './api/savecurrent.js';
 import { deleteById } from './api/deleteById.js'
-import { useMessager } from './messager/useMessager.js'
+import { useMessager } from './messager2/useMessager.js'
 
 
 export default function Mainpage() {
 //console.log("=== React version: "+version);
 
-const { isActive, message, openMessager } = useMessager();
+const { isActive, message, progress, openMessager } = useMessager();
 const showMessager = (msg) => {
   openMessager(msg);
 }
@@ -409,6 +409,7 @@ function catalogHandleNewComment(e){
             <Route exact path="/" element={<Search
                                               isActive={isActive}
                                               message={message}
+                                              progress={progress}
                                               handleChangeReducer={handleChangeReducer}
                                               handleSearchButtons={handleSearchButtons} 
                                               fields={fields}
@@ -422,6 +423,7 @@ function catalogHandleNewComment(e){
             <Route path="/catalog" element={<Cataloging
                                               isActive={isActive}
                                               message={message}
+                                              progress={progress}
                                               handleCatalogButtons={handleCatalogButtons}
                                               catalogHandleChangeReducer={catalogHandleChangeReducer}
                                               catalogFields={catalogFields}
