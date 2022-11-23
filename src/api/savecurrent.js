@@ -4,7 +4,7 @@ export async function savecurrent(bodyparam,serial){
   let result = {}
   let resp = []
   try{
-    const response = await axios.put(`http://localhost:3001/savecurrent/${serial}`,bodyparam)
+    const response = await axios.put(`https://jleao.com/LibPDFAPI/savecurrent/${serial}`,bodyparam)
     let resp2 = response.data
     if(resp2[0].success){
       return resp2

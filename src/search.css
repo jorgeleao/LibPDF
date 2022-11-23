@@ -132,10 +132,17 @@
     background-color:rgb(186, 239, 248);
     color:black;
 }
-.search-resultspart{
-    grid-column: 1 / 9;
-    grid-row: 11 / 16;
+.search-resultspart1{
+    grid-column: 2 / 8;
+    grid-row: 11 / 12;
     text-align: center;
+    padding-left:  5px;
+}
+.search-resultspart{
+    grid-column: 2 / 8;
+    grid-row: 12 / 16;
+    text-align: center;
+    padding-left:  5px;
 }
 
 .search-numberOfResults{

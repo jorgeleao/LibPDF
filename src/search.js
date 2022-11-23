@@ -120,11 +120,17 @@ export default function Search(props) {
                     </div>
                 </div>
                 <div></div>
+                <div></div>
 
-                <div className="search-resultspart">
+                <div></div>
+                <div></div>
+                <div className="search-resultspart1">
                     <span className="search-forResults">{t('search.results')}</span>
                     <br />
                     {t('search.nrorecordsfound')}: <span id="idNroRecords">{props.nroRecords}</span>
+                </div>
+                <div></div>
+                <div className="search-resultspart">
                     <SearchResults>
                         {contents}
                     </SearchResults>

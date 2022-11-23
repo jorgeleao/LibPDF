@@ -101,7 +101,7 @@ i18n
               paragraph01: 'LibPDF is a React/Java web application that allows you to manage electronic bibliographic resources such as papers, books, and even code.',  
               paragraph02: 'The frontend will be built with REACT/JS, while the backend will be a Restful API built with Java/Spring and Spring-JPA with PostgreSQL.',  
               paragraph03: 'The development process uses Github (https://github.com/jorgeleao/LibPDF) and follows a continuous integration and continuous deployment (CI/CD) methodology that includes automated testing.',  
-              paragraph04: 'The deployment will take place in the cloud (AWS or another provider) or on a traditional provider like Digital Ocean.',  
+              paragraph04: 'The deployment will take place in the cloud (AWS or another provider) or on a traditional provider like a Digital Ocean droplet.',  
               paragraph05: 'Although this software ought to be useful, it will mostly serve as a technology demonstration.',  
               paragraph06: 'Jorge L.S. Leão (jorge.ls.leao@gmail.com, currently working alone) is leading the project.',  
               paragraph07a: 'The software will be available free and open source (',
@@ -195,7 +195,7 @@ i18n
               paragraph02: 'O frontend vai ser desenvolvido em REACT/JS e o backend vai ser, na sua versão final, uma implementação de uma API REST em Java/Spring,'+
                             ' com SpringJPA e PostgreSQL.',  
               paragraph03: 'O processo de desenvolvimento está sendo feito com o Github (https://github.com/jorgeleao/LibPDF) com uma disciplina de CI/CD que inclui testes automatizados.',  
-              paragraph04: 'A implantação será feita em um serviço de cloud (AWS ou outro) ou em um provedor tradicional como o Digital Ocean.',  
+              paragraph04: 'A implantação será feita em um serviço de cloud (AWS ou outro) ou em um provedor tradicional como um droplet da Digital Ocean.',  
               paragraph05: 'Embora esta aplicação seja útil por si mesma, ela deve servir sobretudo como uma demonstração das tecnologias mencionadas acima.',  
               paragraph06: 'O projeto está sendo conduzido por Jorge L.S.Leão (jorge.ls.leao@gmail.com, sozinho por enquanto).',  
               paragraph07a: 'O software será disponibilizado gratuitamente, com o código aberto (',

@@ -17,7 +17,7 @@
 .common_divcontainer{
     display: grid;
     grid-template-columns: 190px 60px 125px 100px 60px 125px 100px 120px;
-    grid-template-rows: 46px repeat(6, 29px) 30px 30px 34px 55px 63px 118px 29px 29px;
+    grid-template-rows: 46px repeat(8, 29px) 34px 55px 63px 118px 29px 29px;
     grid-column-gap:4px;
     grid-row-gap: 0;
     padding: 5px;

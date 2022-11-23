@@ -4,7 +4,7 @@ export async function savenew(bodyparam){
   let result = {}
   let resp = []
   try{
-    const response = await axios.post("http://localhost:3001/savenew",bodyparam)
+    const response = await axios.post("https://jleao.com/LibPDFAPI/savenew",bodyparam)
     let resp2 = response.data
     if(resp2[0].success){
       return resp2

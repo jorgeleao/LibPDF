@@ -396,7 +396,7 @@ function catalogHandleNewComment(e){
       <div className="mainpage_cardboard"></div>
       <SearchModeContext.Provider value={{chkboxState, serialChange, checkboxANDChange, checkboxORChange}}>
 {/*      <BibliformContext.Provider value={{fields, handleChangeReducer}}> */}
-        <BrowserRouter>
+        <BrowserRouter  basename={'/LibPDF'}>
           <Menubar />
           <Routes>
             <Route exact path="/" element={<Search

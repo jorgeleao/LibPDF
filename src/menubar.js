@@ -38,8 +38,7 @@ export default function Menubar() {
                     <Link to="/about" className={location.pathname === "/about" ?
                         "spacer menuitemselected" : "spacer menuitemNOTselected"}>{t('appPageTexts.part7')}</Link>
 
-                    <Link to="/logout" className={location.pathname === "/logout" ?
-                        "spacer menuitemselected" : "spacer menuitemNOTselected"}>{t('appPageTexts.part8')}</Link>
+                    <a href="https://www.jleao.com" className={"spacer menuitemNOTselected"}>Back to www.jleao.com</a>
                 </div>
             </div>
         </div >

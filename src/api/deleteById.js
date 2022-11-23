@@ -4,7 +4,7 @@ export async function deleteById(id){
     let result = {}
     let resp = []
     try{
-        const response = await axios.delete(`http://localhost:3001/deletebyid/${id}`)
+        const response = await axios.delete(`https://jleao.com/LibPDFAPI/deletebyid/${id}`)
         if(response.data[0].success){
             return response.data
         }else{
